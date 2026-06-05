@@ -1,0 +1,80 @@
+<!-- 公开课列表视图 -->
+<div id="public-list-view">
+    <!-- 公开课第一屏：CEO专场（左图右文） -->
+    <div class="feature-section">
+        <div class="feature-container">
+            <div class="feature-image-side">
+                <img src="https://gw.alicdn.com/imgextra/i3/O1CN012F6YmT1qcqEw1OpFS_!!6000000005517-0-tps-5907-3938.jpg" alt="CEO专场示例" style="width: 100%; height: auto; border-radius: 12px;">
+            </div>
+            <div class="feature-text-side">
+                <h2>悟空·破界者进化营【CEO专场】</h2>
+                <p class="feature-subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
+                <p class="feature-desc">解决"业务管理如何AI化管理"的难题，构建企业专属的AI转型闭环。CEO + 3~4位核心骨干共同参与，1+X+1微定制模式，从认知重塑到实战产出。</p>
+                <ul class="feature-list">
+                    <li>✓ 认知重塑：消除AI焦虑，建立组织语言</li>
+                    <li>✓ 实战产出：跑通可直接应用的AI业务原型</li>
+                    <li>✓ 微定制化：适配你的业务场景</li>
+                </ul>
+                <button onclick="showCeoDetail()" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 更多课程提示 -->
+    <div style="text-align: center; padding: 80px 20px; background: #f7f8fa;">
+        <p style="font-size: 18px; color: #999; margin: 0;">更多公开课正在筹备中，敬请期待...</p>
+    </div>
+
+    <!-- 精彩回顾（横向滚动图片） -->
+    <div class="hot-courses-section">
+        <div class="hot-courses-header">
+            <h2>精彩回顾</h2>
+            <p class="hot-courses-subtitle">往期公开课现场精彩瞬间</p>
+        </div>
+        
+        <div class="hot-courses-wrapper">
+            <button class="scroll-btn scroll-left" id="reviewScrollLeft" aria-label="向左滚动">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#333"/>
+                </svg>
+            </button>
+            
+            <div class="hot-courses-track" id="reviewTrack">
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i3/O1CN012F6YmT1qcqEw1OpFS_!!6000000005517-0-tps-5907-3938.jpg" alt="精彩回顾1">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i4/O1CN01eqE4AR21GoyFRTOMn_!!6000000006958-0-tps-3701-2467.jpg" alt="精彩回顾2">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i3/O1CN01Agmp2P1mJMwBbKEfv_!!6000000004933-0-tps-5987-3991.jpg" alt="精彩回顾3">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i3/O1CN01TPMvCt1wCdGmHElTT_!!6000000006272-0-tps-3735-2490.jpg" alt="精彩回顾4">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i3/O1CN01ci3Ho21ch3GB63vzF_!!6000000003631-0-tps-6000-4000.jpg" alt="精彩回顾5">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i4/O1CN01L33ifO1uuwM19Km2a_!!6000000006098-0-tps-5838-3892.jpg" alt="精彩回顾6">
+                </div>
+
+                <div class="review-image-card">
+                    <img class="review-image" src="https://gw.alicdn.com/imgextra/i3/O1CN01meNXYB1ec8Ekl1pif_!!6000000003891-0-tps-5986-3991.jpg" alt="精彩回顾7">
+                </div>
+            </div>
+            
+            <button class="scroll-btn scroll-right" id="reviewScrollRight" aria-label="向右滚动">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="#333"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>
+
