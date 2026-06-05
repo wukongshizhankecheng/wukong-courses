@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钉钉AI咨询研究院 - 课程系统</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* 简单的加载动画 */
+        .loading-spinner {
+            text-align: center;
+            padding: 50px;
+            color: var(--dt-text-secondary);
+        }
+        
+        /* 右下角浮动工具栏 */
+        .floating-toolbar {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .toolbar-item {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .toolbar-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+        }
+        
+        .toolbar-item svg {
+            width: 24px;
+            height: 24px;
+            stroke: #333;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        
+        /* 咨询按钮特殊样式 */
+        .toolbar-item.consult-btn {
+            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+        }
+        
+        .toolbar-item.consult-btn svg {
+            stroke: #1677FF;
+        }
+        
+        .toolbar-item.consult-btn:hover {
+            background: linear-gradient(135deg, #D4E4FC, #BFD8FC);
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.3);
+        }
+        
+        /* 左侧弹出提示框 */
+        .consult-popup {
+            position: absolute;
+            right: 68px;
+            bottom: -20px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            width: 240px;
+        }
+        
+        .toolbar-item.consult-btn:hover .consult-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        
+        .consult-popup::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 8px solid #ffffff;
+        }
+        
+        .consult-popup img {
+            width: 196px;
+            height: 196px;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto 16px;
+            border-radius: 8px;
+        }
+        
+        .consult-popup-text {
+            text-align: center;
+            font-size: 14px;
+            color: #1677FF;
+            line-height: 1.6;
+            font-weight: 500;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        
+        /* 二维码放大弹窗 */
+        .qr-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        
+        .qr-modal-overlay.active {
+            display: flex;
+        }
+        
+        .qr-modal-content {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: qrZoomIn 0.3s ease;
+        }
+        
+        @keyframes qrZoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .qr-modal-content img {
+            width: 400px;
+            height: 400px;
+            object-fit: contain;
+            display: block;
+        }
+        
+        .qr-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        
+        .qr-modal-close:hover {
+            background: #ffffff;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-logo" onclick="switchMainTab('home')">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01U94gre1ZwfvJk8ik1_!!6000000003259-2-tps-163-80.png" alt="钉钉Logo" class="dingtalk-logo-img">
+                <span class="logo-text-institute">AI咨询研究院  |  课程系统</span>
+            </div>
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="home" onclick="switchMainTab('home')">首页</button>
+                <button class="nav-tab" data-tab="enterprise" onclick="switchMainTab('enterprise')">企业定制课程</button>
+                <button class="nav-tab" data-tab="public" onclick="switchMainTab('public')">公开课</button>
+                <button class="nav-tab" data-tab="online" onclick="switchMainTab('online')">线上课程</button>
+                <button class="nav-tab" data-tab="about" onclick="switchMainTab('about')">关于我们</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 (动态加载容器) -->
+    <div id="main-content-area" class="main-content">
+        <!-- 内容将通过 JS 动态注入 -->
+    </div>
+
+    <script id="main-script" data-version="20260605-1600">
+        // 缓存已加载的内容，避免重复请求
+        const contentCache = {};
+        
+
+        // 显示CEO详情页（全局容器，独立于Tab系统）
+        function showCeoDetail() {
+            const mainContent = document.getElementById('main-content-area');
+            const ceoDetailView = document.getElementById('ceo-detail-view');
+            
+            // 隐藏主内容区（包括公开课列表）
+            if (mainContent) mainContent.style.display = 'none';
+            
+            // 显示CEO详情页
+            if (ceoDetailView) ceoDetailView.style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // 返回公开课列表
+        function showPublicList() {
+            const mainContent = document.getElementById('main-content-area');
+            const ceoDetailView = document.getElementById('ceo-detail-view');
+            
+            // 隐藏CEO详情页
+            if (ceoDetailView) ceoDetailView.style.display = 'none';
+            
+            // 显示主内容区（恢复公开课列表）
+            if (mainContent) mainContent.style.display = 'block';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function switchMainTab(tabId) {
+            const container = document.getElementById('main-content-area');
+            
+            // 0. 如果正在显示CEO详情页，先隐藏它并恢复主内容区
+            const ceoDetailView = document.getElementById('ceo-detail-view');
+            if (ceoDetailView && ceoDetailView.style.display !== 'none') {
+                ceoDetailView.style.display = 'none';
+            }
+            
+            // 确保主内容区可见（从详情页返回时必须恢复）
+            if (container) container.style.display = 'block';
+            
+            // 1. 更新导航栏状态
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-tab') === tabId) {
+                    btn.classList.add('active');
+                }
+            });
+
+            
+            // 2. 如果已经缓存过，直接显示并重新初始化轮播和热门课程滚动
+            if (contentCache[tabId]) {
+                container.innerHTML = contentCache[tabId];
+                initCarousels();
+                initHotCoursesScroll();
+                return;
+            }
+
+            // 3. 显示加载中
+            container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
+
+            try {
+                // 4. 获取对应的 HTML 文件
+                const response = await fetch(`tab-${tabId}.html`);
+                if (!response.ok) throw new Error('加载失败');
+                const html = await response.text();
+                
+                // 5. 缓存并渲染
+                contentCache[tabId] = html;
+                container.innerHTML = html;
+                
+                // 6. 手动执行插入内容中的 <script> 标签
+                const scripts = container.querySelectorAll('script');
+                scripts.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    Array.from(oldScript.attributes).forEach(attr => {
+                        newScript.setAttribute(attr.name, attr.value);
+                    });
+                    if (oldScript.textContent) {
+                        newScript.textContent = oldScript.textContent;
+                    }
+                    oldScript.parentNode.replaceChild(newScript, oldScript);
+                });
+                
+                // 7. 初始化轮播图和热门课程滚动
+                initCarousels();
+                initHotCoursesScroll();
+                initReviewScroll();
+                
+                // 8. 自动滚动到页面顶端
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = '<div class="loading-spinner">内容加载出错，请刷新页面重试。</div>';
+            }
+        }
+        
+        // 轮播图初始化函数
+        function initCarousels() {
+            const carousels = document.querySelectorAll('.carousel-wrapper');
+            
+            carousels.forEach(carousel => {
+                // 避免重复初始化
+                if (carousel.dataset.initialized === 'true') return;
+                carousel.dataset.initialized = 'true';
+                
+                const track = carousel.querySelector('.carousel-track');
+                const dots = carousel.querySelectorAll('.dot');
+                const images = track.querySelectorAll('img');
+                let currentIndex = 0;
+                let autoPlayTimer;
+                
+                function goTo(index) {
+                    currentIndex = index;
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+                
+                function startAutoPlay() {
+                    stopAutoPlay();
+                    autoPlayTimer = setInterval(() => {
+                        const nextIndex = (currentIndex + 1) % images.length;
+                        goTo(nextIndex);
+                    }, 4000);
+                }
+                
+                function stopAutoPlay() {
+                    clearInterval(autoPlayTimer);
+                }
+                
+                dots.forEach(dot => {
+                    dot.addEventListener('click', () => {
+                        const index = parseInt(dot.dataset.index);
+                        goTo(index);
+                        stopAutoPlay();
+                        startAutoPlay();
+                    });
+                });
+                
+                carousel.addEventListener('mouseenter', stopAutoPlay);
+                carousel.addEventListener('mouseleave', startAutoPlay);
+                
+                startAutoPlay();
+            });
+        }
+        
+        // 热门课程横向滚动初始化
+        function initHotCoursesScroll() {
+            const leftBtn = document.getElementById('hotScrollLeft');
+            const rightBtn = document.getElementById('hotScrollRight');
+            const track = document.getElementById('hotCoursesTrack');
+            
+            if (!leftBtn || !rightBtn || !track) return;
+            
+            // 避免重复绑定
+            if (leftBtn.dataset.bound === 'true') return;
+            leftBtn.dataset.bound = 'true';
+            rightBtn.dataset.bound = 'true';
+            
+            let scrollPos = 0;
+            const cardWidth = 300; // 卡片宽度 + gap
+            
+            leftBtn.addEventListener('click', () => {
+                scrollPos = Math.max(0, scrollPos - cardWidth);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            });
+            
+            rightBtn.addEventListener('click', () => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                scrollPos = Math.min(maxScroll, scrollPos + cardWidth);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            });
+            
+            // 同步滚动位置（用户手动拖动时）
+            track.addEventListener('scroll', () => {
+                scrollPos = track.scrollLeft;
+            });
+        }
+
+        // 精彩回顾横向滚动初始化
+        function initReviewScroll() {
+            const leftBtn = document.getElementById('reviewScrollLeft');
+            const rightBtn = document.getElementById('reviewScrollRight');
+            const track = document.getElementById('reviewTrack');
+            
+            if (!leftBtn || !rightBtn || !track) return;
+            
+            // 避免重复绑定
+            if (leftBtn.dataset.bound === 'true') return;
+            leftBtn.dataset.bound = 'true';
+            rightBtn.dataset.bound = 'true';
+            
+            let scrollPos = 0;
+            const cardWidth = 344; // 图片卡片宽度320px + gap 24px
+            
+            leftBtn.addEventListener('click', () => {
+                scrollPos = Math.max(0, scrollPos - cardWidth);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            });
+            
+            rightBtn.addEventListener('click', () => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                scrollPos = Math.min(maxScroll, scrollPos + cardWidth);
+                track.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            });
+            
+            // 同步滚动位置（用户手动拖动时）
+            track.addEventListener('scroll', () => {
+                scrollPos = track.scrollLeft;
+            });
+        }
+
+        // 页面初始化时默认加载首页，支持URL hash导航
+        window.onload = () => {
+            const hash = window.location.hash.substring(1); // 移除#号
+            const targetTab = ['home', 'enterprise', 'public', 'online', 'about'].includes(hash) ? hash : 'home';
+            switchMainTab(targetTab);
+        };
+    </script>
+
+    
+    <!-- CEO专场详情页（全局隐藏容器，独立于Tab系统） -->
+    <div id="ceo-detail-view" style="display: none;">
+    <!-- Hero Section -->
+    <div class="ceo-hero">
+        <h1>悟空·破界者进化营</h1>
+        <p class="subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
+        <p class="desc">解决"业务管理如何AI化管理"的难题，构建企业专属的AI转型闭环</p>
+        <div class="hero-tags">
+            <span class="hero-tag">CEO + 3~4位核心骨干</span>
+            <span class="hero-tag">2天1晚沉浸式</span>
+            <span class="hero-tag">1+X+1微定制</span>
+        </div>
+        <button onclick="showPublicList()" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">← 返回公开课列表</button>
+    </div>
+
+    <!-- 三大客户价值 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>三大客户价值</h2>
+            <p>为什么CEO要带队来参加？因为这里不空谈概念，只解决落地问题</p>
+        </div>
+        <div class="value-cards">
+            <div class="value-card">
+                <div class="value-icon">🧠</div>
+                <h3>认知重塑</h3>
+                <div class="highlight">消除AI焦虑</div>
+                <p>建立AI时代的组织语言和认知基础，让团队从"不知道怎么用"到"知道为什么用、怎么用"</p>
+                <div class="value-badge">从感觉到地图</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h3>实战产出</h3>
+                <div class="highlight">带你跑通Demo</div>
+                <p>带你跑通可直接应用的AI业务原型（Demo），实现从认知到落地的完整闭环</p>
+                <div class="value-badge">不是听课，带你跑通自己的AI业务DEMO</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🧩</div>
+                <h3>微定制化</h3>
+                <div class="highlight">1+X+1模式</div>
+                <p>AI组织认知 + 3个行业实战主题 + 组织答疑与转化，满足不同企业个性化需求</p>
+                <div class="value-badge">适配你的业务场景</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程设计 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>"1+X+1"模块化课程设计</h2>
+            <p>每个模块都有明确产出，不是泛泛而谈，而是带着问题来、带着方案走</p>
+        </div>
+        <div class="design-grid">
+            <div class="design-card">
+                <div class="design-header purple">
+                    <div class="design-num">1</div>
+                    <h3>AI组织认知重塑</h3>
+                    <p>重构AI与组织、业务、管理者的关系</p>
+                </div>
+                <div class="design-body">
+                    <div class="design-item">AI组织：从职能到应用</div>
+                    <div class="design-item">AI业务：业务AI数智系统+悟空调用</div>
+                    <div class="design-item">AI管理者：新数智胜任能力</div>
+                </div>
+            </div>
+            <div class="design-card">
+                <div class="design-header orange">
+                    <div class="design-num">X</div>
+                    <h3>业务场景实战（清单）</h3>
+                    <p>通用管理 + 业务增长 + 效率提升</p>
+                </div>
+                <div class="design-body">
+                    <div class="design-item">通用管理：战略/项目/财务/绩效</div>
+                    <div class="design-item">业务增长：获客/转化/渠道</div>
+                    <div class="design-item">效率提升：商品/库存/供应链</div>
+                </div>
+            </div>
+            <div class="design-card">
+                <div class="design-header teal">
+                    <div class="design-num">1</div>
+                    <h3>组织答疑与转化</h3>
+                    <p>深度解答具体业务难题，引导后续商业合作</p>
+                </div>
+                <div class="design-body">
+                    <div class="design-item">企业AI部署业务难题现场解答</div>
+                    <div class="design-item">Demo成果汇报与全场点评</div>
+                    <div class="design-item">持续成长路径与产品介绍</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程流程 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>课程流程与转化路线</h2>
+            <p>从认知到Demo，从Demo到结果——每一步都有持续的学习目标</p>
+        </div>
+        <div class="process-timeline">
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <h3>第一天 · 认知与落型</h3>
+                </div>
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:00-10:00</span>
+                        <div class="session-content">
+                            <h4>破冰与需求摸底</h4>
+                            <p>确认痛点，企业现场诊断</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">10:00-12:00</span>
+                        <div class="session-content">
+                            <h4>认知重塑</h4>
+                            <p>认知重塑AI组织关系体系架构</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">12:00-13:30</span>
+                        <div class="session-content">
+                            <h4>午间休息</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">13:30-15:30</span>
+                        <div class="session-content">
+                            <h4>X模块实战方法</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">15:30-17:30</span>
+                        <div class="session-content">
+                            <h4>模块上手 + 工具测试</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">19:00-21:00</span>
+                        <div class="session-content">
+                            <h4>晚间圆桌：继续打磨AI业务</h4>
+                            <p>商业设计工作坊，深度对接</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <h3>第二天 · 汇报与签约</h3>
+                </div>
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:00-10:30</span>
+                        <div class="session-content">
+                            <h4>原型打磨</h4>
+                            <p>小组完善Demo，原型汇报准备</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">10:30-12:00</span>
+                        <div class="session-content">
+                            <h4>小组管理：Demo成果汇总</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">12:00-14:00</span>
+                        <div class="session-content">
+                            <h4>午餐 & 休息</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:00-16:00</span>
+                        <div class="session-content">
+                            <h4>汇报路演</h4>
+                            <p>汇报路演，小组成果展示</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:00-17:00</span>
+                        <div class="session-content">
+                            <h4>答疑 & 问题深度解答</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">17:00-17:30</span>
+                        <div class="session-content">
+                            <h4>商业闭环，签约探讨</h4>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 32px; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);">
+            <h4 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px;">• 后续持续机制</h4>
+            <p style="font-size: 15px; color: #666; margin: 0;">在线持续化：社群持续答疑，持续跟踪Demo落地成果</p>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>常见问题</h2>
+            <p>关于课程的常见疑问解答</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>谁适合参加这个课程？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        本课程主要面向企业CEO及3-4位核心骨干（如CTO、COO、业务负责人等）。适合正在寻求AI转型但缺乏清晰路径的企业决策层团队。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>课程结束后能获得什么？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        学员将获得：清晰的AI转型认知框架；②可直接应用的AI业务Demo原型；③针对企业具体问题的解决方案；④持续的社群支持和答疑服务。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>需要提前准备什么吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        建议提前梳理企业当前面临的业务痛点和管理难题，最好能带上具体的案例或问题来课堂讨论。我们会根据学员实际情况调整X模块的内容重点。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>课程形式是怎样的？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        采用"1+X+1"模块化设计：开营共识课建立认知，中间X节核心模块深入拆解不同业务场景，结营课进行Demo答辩验收。全程强调实操而非理论讲授。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+        }
+    </script>
+<footer>
+        <div class="footer-logo">钉钉AI咨询研究院</div>
+        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="switchMainTab('about'); return false;">关于我们</p>
+        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
+        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
+    </footer>
+
+    <!-- 右下角浮动工具栏 -->
+    <div class="floating-toolbar">
+        <!-- 编辑/反馈按钮 -->
+        <div class="toolbar-item" title="意见反馈">
+            <svg viewBox="0 0 24 24">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+        </div>
+        
+        <!-- 电话按钮 -->
+        <div class="toolbar-item" title="电话咨询">
+            <svg viewBox="0 0 24 24">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+        </div>
+        
+        <!-- 咨询按钮（带弹出框） -->
+        <div class="toolbar-item consult-btn" title="课程合作咨询">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            
+            <!-- 左侧弹出提示框 -->
+            <div class="consult-popup">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN016CfrfB1ojaqRMGryd_!!6000000005261-2-tps-544-544.png" alt="课程合作二维码">
+                <div class="consult-popup-text">
+                    课程合作<br>钉钉扫码咨询
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
