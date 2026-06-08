@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI+HR实战营 - 课程详情</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* AI+HR实战营详情页专属样式 */
+        .ai-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .ai-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #ffffff;
+            opacity: 0.95;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #b8c9e0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+        }
+        
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+            border-color: #1677FF;
+        }
+        
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .value-card .highlight {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .value-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f7f8fa;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .value-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1677FF;
+        }
+        
+        .instructor-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 40px;
+        }
+        
+        .instructor-grid-five {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            justify-items: center;
+        }
+        
+        .instructor-grid-five.single-instructor {
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .instructor-card {
+            text-align: center;
+            padding: 24px;
+            background: #f7f8fa;
+            border-radius: 12px;
+        }
+        
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .instructor-title {
+            font-size: 14px;
+            color: #1677FF;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .instructor-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .process-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        .day-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        
+        .session-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .session-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .session-item:last-child {
+            border-bottom: none;
+        }
+        
+        .session-time {
+            flex-shrink: 0;
+            background: #E8F0FE;
+            color: #1677FF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .session-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .session-content p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .contact-info {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .ai-hero h1 {
+                font-size: 32px;
+            }
+            
+            .value-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .instructor-grid-five {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .timeline-day {
+                padding: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .value-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .instructor-grid-five {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <h1>AI+HR实战营</h1>
+        <p class="subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
+        <p class="desc">两天深度赋能工作坊，从场景重构到技能创造，带着自己的AI智能体回家</p>
+        <div class="hero-tags">
+            <span class="hero-tag">实战工作坊</span>
+            <span class="hero-tag">政府认证讲师</span>
+            <span class="hero-tag">可复用模板</span>
+        </div>
+        <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+    </div>
+
+    <!-- 四大核心价值 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>四大核心价值</h2>
+            <p>不是工具培训，而是工作流重构的实战赋能</p>
+        </div>
+        <div class="value-cards">
+            <div class="value-card">
+                <h3>场景驱动</h3>
+                <div class="highlight">深挖业务痛点</div>
+                <p>从招聘、培训、绩效等六大模块出发，找到AI可介入的高价值场景</p>
+                <div class="value-badge">精准切入</div>
+            </div>
+            <div class="value-card">
+                <h3>现场搭建</h3>
+                <div class="highlight">边学边练</div>
+                <p>每人创建一个解决实际痛点的HR智能体，带着成果离开课堂</p>
+                <div class="value-badge">即学即用</div>
+            </div>
+            <div class="value-card">
+                <h3>全套资源</h3>
+                <div class="highlight">抄作业模式</div>
+                <p>获得提示词库、知识库模板、AI工作流指南，可直接复用</p>
+                <div class="value-badge">拿来就用</div>
+            </div>
+            <div class="value-card">
+                <h3>已验证落地</h3>
+                <div class="highlight">多地实践好评</div>
+                <p>浙江省人才市场、湖州市人社局AI HR先锋班实战验证</p>
+                <div class="value-badge">真实有效</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主讲导师 -->
+    <!-- <div class="section-container">
+        <div class="section-title">
+            <h2>主讲导师</h2>
+            <p>兼具理论与实战经验的AI+HR专家</p>
+        </div>
+        <div class="instructor-section">
+            <div class="instructor-grid-five single-instructor">
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01hCs3YJ1pyXNozxu73_!!6000000005429-2-tps-1111-1237.png" alt="威廉">
+                    </div>
+                    <div class="instructor-name">威廉</div>
+                    <div class="instructor-title">浙江省人社厅特聘AI讲师</div>
+                    <div class="instructor-desc">杭州市/湖州市人社局AIHR先锋讲师、阿里巴巴"悟空"智能体首批认证讲师、AIGC讲师认证执行官、工信部工业文化发展中心AIGC导师认证</div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- 课程流程与安排 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>课程流程与转化路线</h2>
+            <p>AI应用四步法：找场景 → 建数据 → 用技能 → 会下指令</p>
+        </div>
+        <div class="process-timeline">
+            <!-- DAY 1 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <h3>第一天 · 场景重构·资源筹备</h3>
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:00-09:30</span>
+                        <div class="session-content">
+                            <h4>开场破冰 & 课程总览</h4>
+                            <p>认识同伴，明确学习目标</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">09:30-10:45</span>
+                        <div class="session-content">
+                            <h4>模块一：AI如何重塑HR工作</h4>
+                            <p>技术现状、组织变革、工具对比</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">11:00-12:00</span>
+                        <div class="session-content">
+                            <h4>模块二：给大模型的高效提示词法</h4>
+                            <p>Prompt Engineering核心技巧</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">13:30-14:00</span>
+                        <div class="session-content">
+                            <h4>模块三：搭建智能体基础框架</h4>
+                            <p>Token管理、知识库构建</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:00-16:00</span>
+                        <div class="session-content">
+                            <h4>模块四：HR工作流与价值流研讨（核心）</h4>
+                            <p>从自身工作挖掘AI可介入的高价值场景</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:00-17:00</span>
+                        <div class="session-content">
+                            <h4>模块五：AI智能体获取路径与知识库搭建</h4>
+                            <p>资源整合与数据资产构建</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- DAY 2 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <h3>第二天 · 技能创造·精准调用</h3>
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:00-10:30</span>
+                        <div class="session-content">
+                            <h4>模块六：亲手搭建HR智能体（实操）</h4>
+                            <p>根据场景自建智能体</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">10:45-12:00</span>
+                        <div class="session-content">
+                            <h4>模块七：精准调用技能与算力技巧</h4>
+                            <p>关键专题：会下指令</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">13:30-16:30</span>
+                        <div class="session-content">
+                            <h4>模块八：AIHR技能搭建大赛与"抄作业"</h4>
+                            <p>小组协作 + 成果展示 + 学习优秀案例模板</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:40-17:00</span>
+                        <div class="session-content">
+                            <h4>模块九：HR的AI进化与后续行动</h4>
+                            <p>趋势展望、工具推荐、生态链接</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 报名联系 -->
+    <!-- <div class="section-container">
+        <div class="contact-section">
+            <h3>📲 扫码锁定席位</h3>
+            <div class="contact-info">联系人：娟姐 18626860006</div>
+            <div class="contact-note">钉钉微信同号</div>
+            <div style="margin-top: 16px; padding: 16px; background: #fffbe6; border-left: 4px solid #faad14; border-radius: 8px; text-align: left;">
+                <div style="font-size: 14px; color: #666; margin-bottom: 8px;"><strong>会议信息：</strong></div>
+                <div style="font-size: 14px; color: #333; line-height: 1.8;">
+                    📅 时间：2025年6月10日-11日<br>
+                    📍 地点：杭州·钉钉创新中心<br>
+                    💰 学费：1980元/人（三人团报：1500元/人）<br>
+                    👥 面向：企业HR负责人、HRBP、COE、HR专员、人力资源数字化转型推动者
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- 页脚 -->
+    <!-- <footer>
+        <div class="footer-logo">钉钉AI咨询研究院</div>
+        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="window.location.href='index.html#about'; return false;">关于我们</p>
+        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
+        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
+    </footer> -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('AI+HR实战营详情页加载完成');
+        });
+    </script>
+    
+</body>
+</html>

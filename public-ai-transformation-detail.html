@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI转型三级跳 - 课程详情</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* AI转型三级跳详情页专属样式 */
+        .ai-hero {
+            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .ai-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #ffffff;
+            opacity: 0.95;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #b8c9e0;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tag {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+        }
+        
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+            border-color: #1677FF;
+        }
+        
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .value-card .highlight {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .value-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f7f8fa;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .value-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1677FF;
+        }
+        
+        .instructor-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 40px;
+        }
+        
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 32px;
+        }
+        
+        .instructor-card {
+            text-align: center;
+            padding: 24px;
+            background: #f7f8fa;
+            border-radius: 12px;
+        }
+        
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .instructor-title {
+            font-size: 14px;
+            color: #1677FF;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .instructor-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 24px;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        .day-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        
+        .session-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .session-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .session-item:last-child {
+            border-bottom: none;
+        }
+        
+        .session-time {
+            flex-shrink: 0;
+            background: #E8F0FE;
+            color: #1677FF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .session-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .session-content p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .contact-info {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* 课程流程时间线 - 左右并排布局 */
+        .process-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        .day-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        
+        @media (max-width: 768px) {
+            .ai-hero h1 {
+                font-size: 32px;
+            }
+            
+            .value-cards,
+            .instructor-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            /* 移动端切换为上下堆叠 */
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .timeline-day {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <h1>AI转型三级跳</h1>
+        <p class="subtitle">AI时代的业务设计和组织设计</p>
+        <p class="desc">钉钉AI咨询研究院 × 拓扑部落联合出品，2天深度赋能工作坊</p>
+        <div class="hero-tags">
+            <span class="hero-tag">双导师授课</span>
+            <span class="hero-tag">2天沉浸式</span>
+            <span class="hero-tag">战略+实操</span>
+        </div>
+        <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+    </div>
+
+    <!-- 三大核心价值 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>三大核心价值</h2>
+            <p>从战略地图到组织设计再到实操平台，闭环式AI转型路径</p>
+        </div>
+        <div class="value-cards">
+            <div class="value-card">
+                <h3>拿到战略地图</h3>
+                <div class="highlight">找到企业切入路径</div>
+                <p>通过AI转型三级跳框架，明确企业AI化的三大战役规划与分阶段推进时间线</p>
+                <div class="value-badge">从迷茫到清晰</div>
+            </div>
+            <div class="value-card">
+                <h3>理清组织变革</h3>
+                <div class="highlight">难点与落地方法</div>
+                <p>掌握人机协同时代组织治理的核心逻辑，避免AI转型中的组织陷阱</p>
+                <div class="value-badge">从传统到人机协同</div>
+            </div>
+            <div class="value-card">
+                <h3>亲历前沿技术</h3>
+                <div class="highlight">阿里悟空装机实操</div>
+                <p>现场体验全球首个企业级AI原生工作平台，分钟级完成装机并上手操作</p>
+                <div class="value-badge">从理论到实战</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 双导师介绍 -->
+    <!-- <div class="section-container">
+        <div class="section-title">
+            <h2>双导师阵容</h2>
+            <p>天使投资人 + 阿里首席顾问，理论与实践的双重保障</p>
+        </div>
+        <div class="instructor-section">
+            <div class="instructor-grid">
+                <div class="instructor-card">
+                    <div class="instructor-avatar">姜</div>
+                    <div class="instructor-name">姜力</div>
+                    <div class="instructor-title">天使投资人 / 湖畔大学专家</div>
+                    <div class="instructor-desc">专注于企业数字化转型投资与辅导，深度参与多家企业的AI转型战略规划</div>
+                </div>
+                <div class="instructor-card">
+                    <div class="instructor-avatar">
+                        <img src="https://gw.alicdn.com/imgextra/i1/O1CN01c8LnsW1Ff0KM54DCc_!!6000000000513-2-tps-1184-1776.png" alt="冯杰楠">
+                    </div>
+                    <div class="instructor-name">冯杰楠</div>
+                    <div class="instructor-title">阿里钉钉首席AI转型顾问</div>
+                    <div class="instructor-desc">
+                        阿里巴巴内部AI转型核心推手，主导多个大型企业的AI组织设计与落地实施
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- 课程流程与安排 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>课程流程与转化路线</h2>
+            <p>从业务设计到组织变革，2天深度赋能工作坊</p>
+        </div>
+        <div class="process-timeline">
+            <!-- DAY 1 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <h3>第一天 · AI时代的业务设计</h3>
+                </div>
+                
+                <div style="margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    上午：如何规划企业AI转型的路径 —— AI转型三级跳
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">第一跳</span>
+                        <div class="session-content">
+                            <h4>安全便利</h4>
+                            <p>解决AI安全问题，主流工具快速上手</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">第二跳</span>
+                        <div class="session-content">
+                            <h4>效率大增</h4>
+                            <p>业务引领AI化，大厂标准落地实战</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">第三跳</span>
+                        <div class="session-content">
+                            <h4>物种重塑</h4>
+                            <p>制造业标杆案例，组织架构配合AI战略</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">战略大图</span>
+                        <div class="session-content">
+                            <h4>三大战役规划</h4>
+                            <p>分阶段推进时间线与关键里程碑</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 24px; margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    下午：理清AI落地的典型场景及实现逻辑
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">个人进阶</span>
+                        <div class="session-content">
+                            <h4>个人AI应用进阶场景及案例</h4>
+                            <p>从个体效率提升到能力跃迁</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">企业进阶</span>
+                        <div class="session-content">
+                            <h4>企业AI应用进阶场景及案例</h4>
+                            <p>业务流程重构与价值创造</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">边界展望</span>
+                        <div class="session-content">
+                            <h4>AI应用的边界及展望</h4>
+                            <p>理性认知AI能力边界与未来趋势</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- DAY 2 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <h3>第二天 · AI时代的组织设计 + 前沿探索</h3>
+                </div>
+                
+                <div style="margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    上午：从传统组织演进到人机协同 —— 最关键的挑战
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">本质洞察</span>
+                        <div class="session-content">
+                            <h4>公司与层级制的本质</h4>
+                            <p>从罗马军团到现代企业的历史演进</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">穿透管理</span>
+                        <div class="session-content">
+                            <h4>穿透管理与高效运作</h4>
+                            <p>阿里参谋长节奏规划 + 新生代员工管理</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">组织治理</span>
+                        <div class="session-content">
+                            <h4>人+AI时代组织治理</h4>
+                            <p>AI处理常规管理，人在引领智能与现实边界</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">中枢设计</span>
+                        <div class="session-content">
+                            <h4>AI中枢设计</h4>
+                            <p>如何规划AI中枢并避免官僚化</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 24px; margin-bottom: 20px; padding: 12px 16px; background: #E8F0FE; border-radius: 8px; font-size: 14px; color: #1677FF; font-weight: 600;">
+                    下午：前沿探索 —— 阿里悟空价值与实操
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">装机体验</span>
+                        <div class="session-content">
+                            <h4>分钟级装机体验</h4>
+                            <p>现场实操全球首个企业级AI原生工作平台</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">深度解析</span>
+                        <div class="session-content">
+                            <h4>悟空背景、差异、效果案例</h4>
+                            <p>理解悟空的独特价值与实际效果</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">配合关系</span>
+                        <div class="session-content">
+                            <h4>悟空与AI三件套的配合关系</h4>
+                            <p>构建完整的AI工作生态体系</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('AI转型三级跳详情页加载完成');
+        });
+    </script>
+    
+</body>
+</html>
