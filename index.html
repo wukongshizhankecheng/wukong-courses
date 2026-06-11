@@ -208,11 +208,165 @@
         <!-- 内容将通过 JS 动态注入 -->
     </div>
 
-    <script id="main-script" data-version="20260605-1600">
+    <script id="main-script" data-version="20260611-1100">
         // 缓存已加载的内容，避免重复请求
         const contentCache = {};
         
 
+        // 公开课筛选功能 - 全局变量和函数（避免闭包导致的事件监听器问题）
+        const publicFilterCityMap = {
+            'hangzhou': '杭州',
+            'guangzhou': '广州',
+            'chengdu': '成都',
+            'hefei': '合肥',
+            'yiwu': '义乌'
+        };
+        
+        const publicFilterMonthMap = {
+            'may': '5月',
+            'june': '6月',
+            'july': '7月'
+        };
+        
+        let publicFilterInitialized = false;
+        
+        function publicFilterCourses() {
+            const keywordInput = document.querySelector('.filter-input');
+            const selects = document.querySelectorAll('.filter-select');
+            const keyword = (keywordInput ? keywordInput.value : '').trim().toLowerCase();
+            
+            const categoryVal = selects[0] ? selects[0].value : '';
+            const audienceVal = selects[1] ? selects[1].value : '';
+            const cityVal = selects[2] ? selects[2].value : '';
+            const timeVal = selects[3] ? selects[3].value : '';
+            
+            const cityText = publicFilterCityMap[cityVal] || '';
+            const monthText = publicFilterMonthMap[timeVal] || '';
+            
+            const items = document.querySelectorAll('.course-list-item');
+            let visibleCount = 0;
+            
+            items.forEach(function(item) {
+                const title = item.querySelector('.course-title');
+                const subtitle = item.querySelector('.course-subtitle');
+                const metaItems = item.querySelectorAll('.meta-item');
+                
+                const titleText = title ? title.textContent.toLowerCase() : '';
+                const subtitleText = subtitle ? subtitle.textContent.toLowerCase() : '';
+                
+                let unitText = '', instructorText = '', cityItemText = '', timeItemText = '';
+                metaItems.forEach(function(meta) {
+                    const text = meta.textContent;
+                    if (text.indexOf('开课单位') !== -1) unitText = text;
+                    else if (text.indexOf('授课讲师') !== -1) instructorText = text;
+                    else if (text.indexOf('开课城市') !== -1) cityItemText = text;
+                    else if (text.indexOf('开课时间') !== -1) timeItemText = text;
+                });
+                
+                let matchKeyword = true;
+                if (keyword) {
+                    matchKeyword = titleText.indexOf(keyword) !== -1 || 
+                                   subtitleText.indexOf(keyword) !== -1 ||
+                                   unitText.toLowerCase().indexOf(keyword) !== -1 ||
+                                   instructorText.toLowerCase().indexOf(keyword) !== -1;
+                }
+                
+                let matchCategory = true;
+                if (categoryVal && categoryVal !== 'all') {
+                    const categoryKeywords = {
+                        'ai-transformation': ['AI转型', 'AI时代'],
+                        'management': ['破界者', 'CEO专场', '增长实战营', '新篇章', '餐饮连锁'],
+                        'hr': ['HR实战营', '人力资源'],
+                        'ecommerce': ['电商', '运营']
+                    };
+                    const keywords = categoryKeywords[categoryVal] || [];
+                    matchCategory = keywords.some(function(kw) {
+                        return titleText.indexOf(kw.toLowerCase()) !== -1;
+                    });
+                }
+                
+                let matchAudience = true;
+                if (audienceVal && audienceVal !== 'all') {
+                    const audienceKeywords = {
+                        'ceo': ['CEO', '决策者', '破界者'],
+                        'manager': ['管理者', '管理'],
+                        'hr': ['HR', '人力'],
+                        'operator': ['运营', '实操']
+                    };
+                    const keywords = audienceKeywords[audienceVal] || [];
+                    matchAudience = keywords.some(function(kw) {
+                        return titleText.indexOf(kw.toLowerCase()) !== -1 || 
+                               subtitleText.indexOf(kw.toLowerCase()) !== -1;
+                    });
+                }
+                
+                let matchCity = true;
+                if (cityText && cityVal !== 'all') {
+                    matchCity = cityItemText.indexOf(cityText) !== -1;
+                }
+                
+                let matchTime = true;
+                if (monthText && timeVal !== 'all') {
+                    matchTime = timeItemText.indexOf(monthText) !== -1;
+                }
+                
+                const show = matchKeyword && matchCategory && matchAudience && matchCity && matchTime;
+                item.style.display = show ? '' : 'none';
+                if (show) visibleCount++;
+            });
+            
+            let noResultMsg = document.getElementById('filter-no-result');
+            if (!noResultMsg) {
+                noResultMsg = document.createElement('div');
+                noResultMsg.id = 'filter-no-result';
+                noResultMsg.style.cssText = 'text-align:center;padding:40px 20px;color:#999;font-size:15px;display:none;';
+                noResultMsg.textContent = '未找到匹配的课程，请调整筛选条件';
+                var container = document.querySelector('.course-list-container');
+                if (container) container.parentNode.insertBefore(noResultMsg, container.nextSibling);
+            }
+            noResultMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+        
+        // 公开课筛选功能初始化
+        function initPublicFilter() {
+            // 如果已经初始化过，直接返回（避免重复绑定事件）
+            if (publicFilterInitialized) {
+                return;
+            }
+            
+            // 绑定事件
+            var keywordInput = document.querySelector('.filter-input');
+            if (keywordInput) {
+                keywordInput.addEventListener('input', publicFilterCourses);
+            }
+            
+            var selects = document.querySelectorAll('.filter-select');
+            selects.forEach(function(sel) {
+                sel.addEventListener('change', publicFilterCourses);
+            });
+            
+            var clearBtn = document.querySelector('.filter-clear-btn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', function() {
+                    // 清空输入框
+                    var input = document.querySelector('.filter-input');
+                    if (input) input.value = '';
+                    
+                    // 重置所有下拉框到placeholder状态
+                    var allSelects = document.querySelectorAll('.filter-select');
+                    allSelects.forEach(function(sel) {
+                        sel.selectedIndex = 0;
+                    });
+                    
+                    // 重新执行筛选（显示所有课程）
+                    publicFilterCourses();
+                });
+            }
+            
+            publicFilterInitialized = true;
+        }
+        
+        // Tab切换主函数
         async function switchMainTab(tabId) {
             const container = document.getElementById('main-content-area');
             
@@ -228,20 +382,13 @@
             });
 
             
-            // 2. 如果已经缓存过，直接显示并重新初始化轮播和热门课程滚动
-            if (contentCache[tabId]) {
-                container.innerHTML = contentCache[tabId];
-                initCarousels();
-                initHotCoursesScroll();
-                return;
-            }
-
-            // 3. 显示加载中
+            // 2. 显示加载中（禁用缓存，确保始终加载最新内容）
             container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
 
             try {
-                // 4. 获取对应的 HTML 文件
-                const response = await fetch(`tab-${tabId}.html`);
+                // 4. 获取对应的 HTML 文件（添加时间戳破坏缓存）
+                const timestamp = new Date().getTime();
+                const response = await fetch(`tab-${tabId}.html?t=${timestamp}`);
                 if (!response.ok) throw new Error('加载失败');
                 const html = await response.text();
                 
@@ -262,12 +409,20 @@
                     oldScript.parentNode.replaceChild(newScript, oldScript);
                 });
                 
-                // 7. 初始化轮播图和热门课程滚动
-                initCarousels();
-                initHotCoursesScroll();
-                initReviewScroll();
+                // 7. 初始化轮播图和精彩回顾滚动
+                setTimeout(() => {
+                    try { initBanner(); } catch(e) { console.error('[Banner] init error:', e); }
+                    try { initCarousels(); } catch(e) { console.error('[Carousels] init error:', e); }
+                    try { initReviewScroll(); } catch(e) { console.error('[Review] init error:', e); }
+                    // initHotCoursesScroll 已注释掉（热门课程模块暂不启用）
+                }, 100);
                 
-                // 8. 自动滚动到页面顶端
+                // 8. 初始化公开课筛选功能
+                if (tabId === 'public') {
+                    setTimeout(initPublicFilter, 50);
+                }
+                
+                // 9. 自动滚动到页面顶端
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } catch (error) {
                 console.error(error);
@@ -326,21 +481,176 @@
             });
         }
         
-        // 热门课程横向滚动初始化
+        
+        // Banner 全屏滚动初始化（无缝循环）
+        function initBanner() {
+            var track = document.getElementById('bannerTrack');
+            if (!track) return;
+
+            var dots = document.querySelectorAll('.banner-dot');
+            if (dots.length === 0) return;
+
+            // 避免重复初始化
+            if (track.dataset.bannerInitialized === 'true') return;
+            track.dataset.bannerInitialized = 'true';
+
+            var totalOriginal = 4;
+            var currentIndex = 0;
+            var autoPlayTimer;
+            var isTransitioning = false;
+
+            // 克隆所有 slide 追加到末尾，实现无缝循环
+            var slides = track.querySelectorAll('.banner-slide');
+            for (var i = 0; i < slides.length; i++) {
+                var clone = slides[i].cloneNode(true);
+                track.appendChild(clone);
+            }
+            // 现在 track 有 8 个 slide：[0,1,2,3,0,1,2,3]
+
+            function goToSlide(index, animate) {
+                if (animate === undefined) animate = true;
+                track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+                track.style.transform = 'translateX(-' + (index * 12.5) + '%)';
+            }
+
+            function updateDots(realIndex) {
+                var dotIndex = realIndex % totalOriginal;
+                for (var i = 0; i < dots.length; i++) {
+                    if (i === dotIndex) {
+                        dots[i].classList.add('active');
+                    } else {
+                        dots[i].classList.remove('active');
+                    }
+                }
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayTimer = setInterval(function() {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    currentIndex++;
+                    goToSlide(currentIndex);
+                    updateDots(currentIndex);
+
+                    // 当滚到克隆的第1屏（索引4）时，瞬间跳回真正的第1屏（索引0）
+                    setTimeout(function() {
+                        if (currentIndex >= totalOriginal) {
+                            currentIndex = currentIndex % totalOriginal;
+                            goToSlide(currentIndex, false);
+                            updateDots(currentIndex);
+                        }
+                        isTransitioning = false;
+                    }, 650);
+                }, 5000);
+            }
+
+            function stopAutoPlay() {
+                clearInterval(autoPlayTimer);
+            }
+
+            // 指示点点击
+            for (var d = 0; d < dots.length; d++) {
+                (function(dot, idx) {
+                    dot.addEventListener('click', function() {
+                        if (isTransitioning) return;
+                        isTransitioning = true;
+                        currentIndex = idx;
+                        goToSlide(currentIndex);
+                        updateDots(currentIndex);
+                        stopAutoPlay();
+                        startAutoPlay();
+                        setTimeout(function() { isTransitioning = false; }, 650);
+                    });
+                })(dots[d], d);
+            }
+
+            // 左右箭头
+            var prevBtn = document.querySelector('.banner-prev');
+            var nextBtn = document.querySelector('.banner-next');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    currentIndex--;
+                    if (currentIndex < 0) {
+                        // 先跳到克隆的最后一屏，再动画回到真正的最后一屏
+                        currentIndex = totalOriginal - 1;
+                        goToSlide(totalOriginal + currentIndex, false);
+                        setTimeout(function() {
+                            goToSlide(currentIndex);
+                            updateDots(currentIndex);
+                            setTimeout(function() { isTransitioning = false; }, 650);
+                        }, 50);
+                    } else {
+                        goToSlide(currentIndex);
+                        updateDots(currentIndex);
+                        setTimeout(function() { isTransitioning = false; }, 650);
+                    }
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    if (isTransitioning) return;
+                    isTransitioning = true;
+                    currentIndex++;
+                    goToSlide(currentIndex);
+                    updateDots(currentIndex);
+                    if (currentIndex >= totalOriginal) {
+                        setTimeout(function() {
+                            currentIndex = currentIndex % totalOriginal;
+                            goToSlide(currentIndex, false);
+                            updateDots(currentIndex);
+                            isTransitioning = false;
+                        }, 650);
+                    } else {
+                        setTimeout(function() { isTransitioning = false; }, 650);
+                    }
+                    stopAutoPlay();
+                    startAutoPlay();
+                });
+            }
+
+            // 鼠标悬停暂停
+            var banner = document.querySelector('.hero-banner');
+            if (banner) {
+                banner.addEventListener('mouseenter', stopAutoPlay);
+                banner.addEventListener('mouseleave', startAutoPlay);
+            }
+
+            // 初始状态
+            goToSlide(0, false);
+            updateDots(0);
+            startAutoPlay();
+        }
+
+        // 热门课程横向滚动初始化（已注释掉，模块暂不启用）
+        /*
         function initHotCoursesScroll() {
             const leftBtn = document.getElementById('hotScrollLeft');
             const rightBtn = document.getElementById('hotScrollRight');
             const track = document.getElementById('hotCoursesTrack');
             
-            if (!leftBtn || !rightBtn || !track) return;
+            if (!leftBtn || !rightBtn || !track) {
+                console.log('[HotCourses] Elements not found, skipping.');
+                return;
+            }
             
-            // 避免重复绑定
-            if (leftBtn.dataset.bound === 'true') return;
+            void track.offsetWidth;
+            
+            if (leftBtn.dataset.bound === 'true') {
+                console.log('[HotCourses] Already initialized.');
+                return;
+            }
             leftBtn.dataset.bound = 'true';
             rightBtn.dataset.bound = 'true';
             
             let scrollPos = 0;
-            const cardWidth = 300; // 卡片宽度 + gap
+            const cardWidth = 304;
             
             leftBtn.addEventListener('click', () => {
                 scrollPos = Math.max(0, scrollPos - cardWidth);
@@ -353,11 +663,11 @@
                 track.scrollTo({ left: scrollPos, behavior: 'smooth' });
             });
             
-            // 同步滚动位置（用户手动拖动时）
             track.addEventListener('scroll', () => {
                 scrollPos = track.scrollLeft;
             });
         }
+        */
 
         // 精彩回顾横向滚动初始化
         function initReviewScroll() {
