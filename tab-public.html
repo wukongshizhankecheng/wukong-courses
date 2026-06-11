@@ -1,147 +1,207 @@
 <!-- 公开课列表视图 -->
 <div id="public-list-view">
-    <!-- 公开课第一屏：CEO专场（左图右文） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01hFAlax1M2iWoO1GR4_!!6000000001377-2-tps-720-405.png" alt="CEO专场" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-            <div class="feature-text-side">
-                <h2>悟空·破界者进化营【CEO专场】</h2>
-                <p class="feature-subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
-                <p class="feature-desc">解决"业务管理如何AI化管理"的难题，构建企业专属的AI转型闭环。CEO + 3~4位核心骨干共同参与，1+X+1微定制模式，从认知重塑到实战产出。</p>
-                <ul class="feature-list">
-                    <li>✓ 认知重塑：消除AI焦虑，建立组织语言</li>
-                    <li>✓ 实战产出：跑通可直接应用的AI业务原型</li>
-                    <li>✓ 微定制化：适配你的业务场景</li>
-                </ul>
-                <button onclick="window.location.href='public-ceo-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
-            </div>
+<div class="section-full-width section-white">
+<div class="content-wrapper">
+
+    <div class="section-header-center">
+        <h2>公开课</h2>
+        <p>了解课程详细安排，找到您需要的课程学习</p>
+    </div>
+
+    <!-- 搜索筛选栏 -->
+    <div class="course-filter-bar">
+        <div class="filter-row">
+            <input type="text" class="filter-input" placeholder="输入关键字">
+            
+            <select class="filter-select filter-select-placeholder">
+                <option value="" disabled selected hidden>课程类别</option>
+                <option value="all">所有</option>
+                <option value="ai-transformation">AI转型</option>
+                <option value="management">经营管理</option>
+                <option value="hr">人力资源</option>
+                <option value="ecommerce">电商运营</option>
+            </select>
+            
+            <select class="filter-select filter-select-placeholder">
+                <option value="" disabled selected hidden>课程对象</option>
+                <option value="all">所有</option>
+                <option value="ceo">企业决策者</option>
+                <option value="manager">管理者</option>
+                <option value="hr">HR从业者</option>
+                <option value="operator">运营人员</option>
+            </select>
+            
+            <select class="filter-select filter-select-placeholder">
+                <option value="" disabled selected hidden>开课城市</option>
+                <option value="all">所有</option>
+                <option value="hangzhou">杭州</option>
+                <option value="guangzhou">广州</option>
+                <option value="chengdu">成都</option>
+                <option value="hefei">合肥</option>
+                <option value="yiwu">义乌</option>
+            </select>
+            
+            <select class="filter-select filter-select-placeholder">
+                <option value="" disabled selected hidden>开课时间</option>
+                <option value="all">所有</option>
+                <option value="may">5月</option>
+                <option value="june">6月</option>
+                <option value="july">7月</option>
+            </select>
+            
+            <button class="filter-clear-btn" aria-label="清除筛选">
+                清除筛选
+            </button>
         </div>
     </div>
 
-    <!-- 第二门课程：AI转型三级跳（左文右图） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-text-side">
-                <h2>AI转型三级跳</h2>
-                <p class="feature-subtitle">AI时代的业务设计和组织设计</p>
-                <p class="feature-desc">钉钉AI咨询研究院 × 拓扑部落联合出品，2天深度赋能工作坊。由天使投资人姜力与阿里钉钉首席AI转型顾问冯杰楠双导师授课，从战略地图到组织设计再到实操平台，闭环式AI转型路径。</p>
-                <ul class="feature-list">
-                    <li>✓ 战略地图：AI转型三级跳路径规划 + 典型场景实现逻辑</li>
-                    <li>✓ 组织设计：人机协同治理 + 阿里悟空前沿实操</li>
-                </ul>
-                <button onclick="window.location.href='public-ai-transformation-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+    <!-- 课程列表容器 -->
+    <div class="course-list-container">
+        
+        <!-- 课程1：CEO专场 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01hFAlax1M2iWoO1GR4_!!6000000001377-2-tps-720-405.png" alt="CEO专场">
             </div>
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01UKzju81j4J425oRJ4_!!6000000004494-2-tps-1079-557.png" alt="AI转型三级跳海报" style="width: 100%; height: auto; border-radius: 12px;">
+            <div class="course-info">
+                <h3 class="course-title">悟空·破界者进化营【CEO专场】</h3>
+                <p class="course-subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>杭州、合肥</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月6-7日 / 6月25-26日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天1晚</span>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- 第三门课程：餐饮连锁AI落地与组织升级（左图右文） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01vc0dNs1tvZHXN5OUq_!!6000000005964-2-tps-1124-863.png" alt="餐饮连锁AI落地与组织升级" style="width: 100%; height: auto; border-radius: 12px;">
-            </div>
-            <div class="feature-text-side">
-                <h2>餐饮连锁AI落地与组织升级</h2>
-                <p class="feature-subtitle">拿到新地图 | 开启新模式 | 成就新组织</p>
-                <p class="feature-desc">钉钉AI咨询研究院 × 餐海咨询联合出品，2天深度赋能工作坊。由张成龙、杨旭坤、巴雷、李军、冯杰楠五位导师联合授课，从认知突破到场景落地再到组织进化，全链路AI转型路径。</p>
-                <ul class="feature-list">
-                    <li>✓ 认知突破：AI底层认知 + 转型完整地图 + 老板必做三件事</li>
-                    <li>✓ 场景深耕：个人提效 + 六大AI场景 + 组织升级释放人心红利</li>
-                </ul>
-                <button onclick="window.location.href='public-catering-ai-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+            <div class="course-action">
+                <a href="public-ceo-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
-    </div>
 
-    <!-- 第四门课程：AI+HR实战营（左文右图） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-text-side">
-                <h2>AI+HR实战营</h2>
-                <p class="feature-subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
-                <p class="feature-desc">两天深度赋能工作坊，从场景重构到技能创造。由浙江省人社厅特聘AI讲师威廉授课，现场搭建解决实际痛点的HR智能体，带着成果离开课堂。</p>
-                <ul class="feature-list">
-                    <li>✓ 场景驱动：深挖业务痛点，找到AI可介入的高价值场景</li>
-                    <li>✓ 现场搭建：每人创建一个HR智能体，边学边练即学即用</li>
-                    <li>✓ 全套资源：获得提示词库、知识库模板、AI工作流指南可直接复用</li>
-                </ul>
-                <button onclick="window.location.href='public-hr-ai-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+        <!-- 课程2：AI转型三级跳 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01UKzju81j4J425oRJ4_!!6000000004494-2-tps-1079-557.png" alt="AI转型三级跳">
             </div>
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01YewURw1h8JIPkIyv9_!!6000000004232-2-tps-1054-499.png" alt="AI+HR实战营海报" style="width: 100%; height: auto; border-radius: 12px;">
+            <div class="course-info">
+                <h3 class="course-title">AI转型三级跳</h3>
+                <p class="course-subtitle">AI时代的业务设计和组织设计</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>广州</span>
+                    <span class="meta-item"><strong>开课时间：</strong>5月29-30日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-ai-transformation-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
-    </div>
 
-    <!-- 第五门课程：从存量到增量AI创新增长实战营（左图右文） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01a0yS121uIT5LcLZGj_!!6000000006014-2-tps-1599-953.png" alt="从存量到增量AI创新增长实战营海报" style="width: 100%; height: auto; border-radius: 12px;">
+        <!-- 课程3：餐饮连锁AI落地与组织升级 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01vc0dNs1tvZHXN5OUq_!!6000000005964-2-tps-1124-863.png" alt="餐饮连锁AI落地">
             </div>
-            <div class="feature-text-side">
-                <h2>从存量到增量AI创新增长实战营</h2>
-                <p class="feature-subtitle">用AI原生组织重构企业增长逻辑，从存量红海杀入增量蓝海</p>
-                <p class="feature-desc">拓扑部落 × 钉钉AI咨询研究院联合出品，两天深度赋能工作坊。六导师跨领域专家团现场轮诊，带专属作战图离开，离场即能开箱即用。</p>
-                <ul class="feature-list">
-                    <li>✓ 搭基座：知识沉淀+数据资产+流程自动化三位一体底层建设</li>
-                    <li>✓ 嵌入核心：让AI融入人、流程、数据的全链路整合深度融合</li>
-                    <li>✓ 30天速赢地图：审核作战图发布VIP深度答疑闭环转化</li>
-                </ul>
-                <button onclick="window.location.href='public-growth-ai-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+            <div class="course-info">
+                <h3 class="course-title">餐饮连锁AI落地与组织升级</h3>
+                <p class="course-subtitle">拿到新地图 | 开启新模式 | 成就新组织</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月8-9日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-catering-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
-    </div>
 
-    <!-- 第六门课程：开启AI新篇章（左文右图） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-text-side">
-                <h2>开启AI新篇章</h2>
-                <p class="feature-subtitle">全部门 AI 落地 · 标杆案例 + 企业流程，企业效率速升！</p>
-                <p class="feature-desc">森创启睿 × 钉钉联合出品，两天沉浸式实战培训。70亿电商操盘手潘虹亲授，从认知到行动形成完整闭环，带企业内部落地方案离开。</p>
-                <ul class="feature-list">
-                    <li>✓ 提升销售：AI驱动消费者洞察+商品企划+研发运营全链路赋能</li>
-                    <li>✓ 降低成本：智能客服+供应链优化+视觉自动化累计节省超3000万</li>
-                    <li>✓ 优化效率：提示词工程+工具实操+组织保障体系平均效率提升20%</li>
-                </ul>
-                <button onclick="window.location.href='public-new-chapter-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+        <!-- 课程4：AI+HR实战营 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i4/O1CN01YewURw1h8JIPkIyv9_!!6000000004232-2-tps-1054-499.png" alt="AI+HR实战营">
             </div>
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01dINpj11ExUhWxr8LR_!!6000000000418-2-tps-800-485.png" alt="开启AI新篇章海报" style="width: 100%; height: auto; border-radius: 12px;">
+            <div class="course-info">
+                <h3 class="course-title">AI+HR实战营</h3>
+                <p class="course-subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong>威廉</span>
+                    <span class="meta-item"><strong>开课城市：</strong>成都</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月10-11日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-hr-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
-    </div>
 
-    <!-- 第七门课程：电商AI自动化实战营（左图右文） -->
-    <div class="feature-section">
-        <div class="feature-container">
-            <div class="feature-image-side">
-                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01XXWgPz1v6OFxElOQi_!!6000000006123-2-tps-1535-825.png" alt="电商AI自动化实战营海报" style="width: 100%; height: auto; border-radius: 12px;">
+        <!-- 课程5：从存量到增量AI创新增长实战营 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01a0yS121uIT5LcLZGj_!!6000000006014-2-tps-1599-953.png" alt="AI创新增长实战营">
             </div>
-            <div class="feature-text-side">
-                <h2>电商AI自动化实战营</h2>
-                <p class="feature-subtitle">让运营自动跑 · 2天打造全自动运营，人效翻倍</p>
-                <p class="feature-desc">钉钉 × 森创启睿联合打造，掌握悟空AI核心逻辑与高频场景自动化搭建能力。从内容生产到数据监控再到团队协作，全链路自动化打通。</p>
-                <ul class="feature-list">
-                    <li>✓ 破除AI焦虑：理解悟空AI能力边界，构建自动化运营认知框架</li>
-                    <li>✓ 场景自动化：商品上架+内容生成+数据监控+报表分析高频场景实战</li>
-                    <li>✓ 全流程赋能：智能监控预警+团队协同闭环，告别重复劳动效率翻倍</li>
-                </ul>
-                <button onclick="window.location.href='public-ecommerce-auto-detail.html'" class="feature-btn" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#1677FF,#0958D9);color:#ffffff;text-decoration:none;border-radius:8px;font-size:16px;font-weight:500;transition:all 0.3s ease;box-shadow:0 4px 12px rgba(22,119,255,0.3);border:none;cursor:pointer;">查看课程详情 →</button>
+            <div class="course-info">
+                <h3 class="course-title">从存量到增量AI创新增长实战营</h3>
+                <p class="course-subtitle">用AI原生组织重构企业增长逻辑，从存量红海杀入增量蓝海</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月12-13日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-growth-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
-    </div>
 
-    <!-- 更多课程提示 -->
-    <div style="text-align: center; padding: 80px 20px; background: #f7f8fa;">
-        <p style="font-size: 18px; color: #999; margin: 0;">更多公开课正在筹备中，敬请期待...</p>
+        <!-- 课程6：开启AI新篇章 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i1/O1CN01dINpj11ExUhWxr8LR_!!6000000000418-2-tps-800-485.png" alt="开启AI新篇章">
+            </div>
+            <div class="course-info">
+                <h3 class="course-title">开启AI新篇章</h3>
+                <p class="course-subtitle">全部门 AI 落地 · 标杆案例 + 企业流程，企业效率速升！</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月13-14日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-new-chapter-detail.html" class="detail-btn">查看详情</a>
+            </div>
+        </div>
+
+        <!-- 课程7：电商AI自动化实战营 -->
+        <div class="course-list-item">
+            <div class="course-thumb">
+                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01XXWgPz1v6OFxElOQi_!!6000000006123-2-tps-1535-825.png" alt="电商AI自动化实战营">
+            </div>
+            <div class="course-info">
+                <h3 class="course-title">电商AI自动化实战营</h3>
+                <p class="course-subtitle">让运营自动跑 · 2天打造全自动运营，人效翻倍</p>
+                <div class="course-meta">
+                    <span class="meta-item"><strong>授课讲师：</strong></span>
+                    <span class="meta-item"><strong>开课城市：</strong>义乌</span>
+                    <span class="meta-item"><strong>开课时间：</strong>6月25-26日</span>
+                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+                </div>
+            </div>
+            <div class="course-action">
+                <a href="public-ecommerce-auto-detail.html" class="detail-btn">查看详情</a>
+            </div>
+        </div>
+
     </div>
+</div>
+</div>
+
 
     <!-- 精彩回顾（横向滚动图片） -->
     <div class="hot-courses-section">
@@ -195,4 +255,3 @@
         </div>
     </div>
 </div>
-
