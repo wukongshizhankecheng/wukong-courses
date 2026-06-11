@@ -10,10 +10,95 @@
         .ai-hero {
             background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
             color: white;
-            padding: 80px 20px;
-            text-align: center;
+            padding: 60px 20px 80px;
             position: relative;
             overflow: hidden;
+        }
+        
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            flex: 1;
+        }
+        
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+        
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+        
+        .schedule-item:not(:last-child) {
+            margin-bottom: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+        
+        .schedule-venue {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        
+        .hero-slogan {
+            font-size: 28px;
+            color: #ffd700;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
         
         .ai-hero::before {
@@ -55,7 +140,7 @@
             font-size: 16px;
             color: #b8c9e0;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
             line-height: 1.8;
             position: relative;
             z-index: 1;
@@ -63,7 +148,7 @@
         
         .hero-tags {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 30px;
@@ -391,15 +476,85 @@
 <body>
     <!-- Hero Section -->
     <div class="ai-hero">
-        <h1>电商AI自动化实战营</h1>
-        <p class="subtitle">让运营自动跑 · 2天打造全自动运营，人效翻倍</p>
-        <p class="desc">钉钉 × 森创启睿联合打造，掌握悟空AI核心逻辑与高频场景自动化搭建能力</p>
-        <div class="hero-tags">
-            <span class="hero-tag">效率翻倍</span>
-            <span class="hero-tag">数据驱动</span>
-            <span class="hero-tag">全流程赋能</span>
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <h1>电商AI自动化实战营</h1>
+                <p class="subtitle">2天打造全自动运营，人效翻倍</p>
+                <p class="desc">从选品到客服全链路AI自动化，掌握AI核心能力，实现智能决策与自主化运营</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">电商操盘手必修</span>
+                    <span class="hero-tag">2天实操</span>
+                    <span class="hero-tag">全链路</span>
+                </div>
+                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 近期活动场次</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">2026年6月25日 - 6月26日</div>
+                        <div class="schedule-location">📍 义乌</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+    </div>
+
+    <!-- 授课讲师（已注释掉） -->
+    <!--
+    <div class="section-container">
+        <div class="section-title">
+            <h2>授课讲师</h2>
+            <p>平台技术背景 + 企业落地经验，双重保障实战效果</p>
+        </div>
+        <div class="instructor-section">
+            <div class="instructor-grid-single" style="grid-template-columns: repeat(2, 1fr); max-width: 800px;">
+                <div class="instructor-card">
+                    <div class="instructor-avatar">吴</div>
+                    <div class="instructor-name">吴彦瑾（易安）</div>
+                    <div class="instructor-title">电商与AI融合领域资深专家</div>
+                    <div class="instructor-desc">曾服务过多家头部品牌及平台；拥有10年+电商行业经验</div>
+                </div>
+                <div class="instructor-card">
+                    <div class="instructor-avatar">冯</div>
+                    <div class="instructor-name">冯杰楠（木兰）</div>
+                    <div class="instructor-title">阿里云AI首席算法工程师 / 腾讯专家</div>
+                    <div class="instructor-desc">曾任百度、京东、网易等公司高级算法工程师；中国传媒大学本科 / 清华大学工业大数据研究所博士</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- 三大课程目标 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>课程目标</h2>
+            <p>从认知重塑到能力构建，全面掌握电商AI自动化</p>
+        </div>
+        <div class="value-cards" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>知界明理</h3>
+                <div class="highlight">理解AI能力边界</div>
+                <p>用AI理解业务逻辑与运营本质，构建自动化运营的底层逻辑</p>
+                <div class="value-badge">认知升级</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h3>破除焦虑</h3>
+                <div class="highlight">建立独立思考能力</div>
+                <p>摆脱对AI的恐惧与依赖，建立独立思考能力</p>
+                <div class="value-badge">心理建设</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚙️</div>
+                <h3>执要构能</h3>
+                <div class="highlight">掌握AI核心能力</div>
+                <p>掌握AI核心能力，实现智能决策与自主化运营能力</p>
+                <div class="value-badge">技能落地</div>
+            </div>
+        </div>
     </div>
 
     <!-- 四大核心价值 -->
@@ -440,36 +595,77 @@
     <div class="section-container">
         <div class="section-title">
             <h2>课程核心内容</h2>
-            <p>5大模块，从认知到实操再到团队协作的全链路赋能</p>
+            <p>2天深度实战，从认知到实操再到团队赋能的全链路提升</p>
         </div>
         <div class="process-timeline">
             <!-- DAY 1 -->
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">1</div>
-                    <h3>第一天 · 认知重塑 + 场景实战</h3>
+                    <h3>从"累死累活"到实现"个人自动化"</h3>
                 </div>
                 
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">模块01</span>
+                        <span class="session-time">09:30-10:00</span>
                         <div class="session-content">
-                            <h4>悟空AI核心逻辑解析</h4>
-                            <p>理解AI能力边界与底层逻辑，构建自动化运营认知框架</p>
+                            <h4>AI电商底层原理</h4>
+                            <p>理解AI在电商领域的核心逻辑与应用场景</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">模块02</span>
+                        <span class="session-time">10:00-11:00</span>
                         <div class="session-content">
-                            <h4>高频运营场景自动化实战</h4>
-                            <p>商品上架、内容生成、数据监控、报表分析等核心场景实操</p>
+                            <h4>AI选品 & 智能定价</h4>
+                            <p>利用AI工具实现精准选品与智能定价策略</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">模块03</span>
+                        <span class="session-time">11:00-12:00</span>
                         <div class="session-content">
-                            <h4>内容生产全流程自动化</h4>
-                            <p>选题→文案→图文/视频生成→发布，全链路自动化打通</p>
+                            <h4>电商场景AI落地整体解析</h4>
+                            <p>全链路AI落地方案拆解与实操</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">12:00-13:30</span>
+                        <div class="session-content">
+                            <h4>午餐休息</h4>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">13:30-14:30</span>
+                        <div class="session-content">
+                            <h4>智能选品企划</h4>
+                            <p>AI驱动的选品企划实操演练</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:30-15:30</span>
+                        <div class="session-content">
+                            <h4>智能辅助上架</h4>
+                            <p>AI辅助商品上架全流程自动化</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">15:40-16:40</span>
+                        <div class="session-content">
+                            <h4>智能运营</h4>
+                            <p>AI赋能日常运营，实现效率倍增</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:40-17:40</span>
+                        <div class="session-content">
+                            <h4>技能沉淀、展示与流程封装</h4>
+                            <p>将AI能力固化为可复用的标准化流程</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">17:40-18:00</span>
+                        <div class="session-content">
+                            <h4>总结 & 答疑</h4>
+                            <p>当天内容回顾与问题解答</p>
                         </div>
                     </li>
                 </ul>
@@ -479,29 +675,50 @@
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">2</div>
-                    <h3>第二天 · 智能监控 + 团队协同</h3>
+                    <h3>高阶组合应用与团队赋能</h3>
                 </div>
                 
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">模块04</span>
+                        <span class="session-time">09:30-10:00</span>
                         <div class="session-content">
-                            <h4>运营数据智能监控与预警</h4>
-                            <p>搭建智能监控看板，实现数据异常预警与自动分析</p>
+                            <h4>智能营销</h4>
+                            <p>AI驱动的精准营销策略与实操</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">模块05</span>
+                        <span class="session-time">10:30-11:30</span>
                         <div class="session-content">
-                            <h4>团队协作与流程自动化</h4>
-                            <p>任务分发、进度跟踪、结果沉淀，打造高效协同闭环</p>
+                            <h4>智能客服</h4>
+                            <p>搭建AI智能客服系统，提升服务效率</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">实战演练</span>
+                        <span class="session-time">11:30-12:00</span>
                         <div class="session-content">
-                            <h4>电商教学SKILLS使用及封装</h4>
-                            <p>掌握可复用、可封装的运营自动化技能模块</p>
+                            <h4>悟空与钉钉联动</h4>
+                            <p>悟空AI与钉钉生态的深度联动实操</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">13:30-16:00</span>
+                        <div class="session-content">
+                            <h4>企业实践：现场搭建场景智能体</h4>
+                            <p>现场实操搭建企业级AI智能体</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:10-17:40</span>
+                        <div class="session-content">
+                            <h4>结业 & 答疑</h4>
+                            <p>学习成果展示与结业颁发</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">17:40-18:00</span>
+                        <div class="session-content">
+                            <h4>一对一答疑 & 个性化建议</h4>
+                            <p>针对企业实际场景的个性化指导</p>
                         </div>
                     </li>
                 </ul>
