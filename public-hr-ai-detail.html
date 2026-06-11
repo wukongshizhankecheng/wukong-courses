@@ -11,9 +11,78 @@
             background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
             color: white;
             padding: 80px 20px;
-            text-align: center;
             position: relative;
             overflow: hidden;
+        }
+        
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            flex: 1;
+        }
+        
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+        
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+        
+        .schedule-item:not(:last-child) {
+            margin-bottom: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
         }
         
         .ai-hero::before {
@@ -55,7 +124,7 @@
             font-size: 16px;
             color: #b8c9e0;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
             line-height: 1.8;
             position: relative;
             z-index: 1;
@@ -63,7 +132,7 @@
         
         .hero-tags {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 30px;
@@ -406,16 +475,31 @@
 <body>
     <!-- Hero Section -->
     <div class="ai-hero">
-        <h1>AI+HR实战营</h1>
-        <p class="subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
-        <p class="desc">两天深度赋能工作坊，从场景重构到技能创造，带着自己的AI智能体回家</p>
-        <div class="hero-tags">
-            <span class="hero-tag">实战工作坊</span>
-            <span class="hero-tag">政府认证讲师</span>
-            <span class="hero-tag">可复用模板</span>
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <h1>AI+HR实战营</h1>
+                <p class="subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
+                <p class="desc">两天深度赋能工作坊，从场景重构到技能创造，带着自己的AI智能体回家</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">实战工作坊</span>
+                    <span class="hero-tag">政府认证讲师</span>
+                    <span class="hero-tag">可复用模板</span>
+                </div>
+                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 近期活动场次</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">6月10日 - 6月11日</div>
+                        <div class="schedule-location">📍 成都</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
     </div>
+
+        </div>
 
     <!-- 四大核心价值 -->
     <div class="section-container" style="background: #f7f8fa;">
