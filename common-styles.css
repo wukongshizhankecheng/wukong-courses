@@ -3348,6 +3348,58 @@
     .marquee-wrapper {
         gap: 15px;
     }
+    
+    /* about页：报名表单卡片改为竖排 */
+    .enrollment-steps {
+        flex-direction: column;
+    }
+    
+    .enrollment-arrow {
+        transform: rotate(90deg);
+        padding: 8px 0;
+    }
+    
+    .enrollment-card {
+        min-width: 0;
+    }
+    
+    /* about页：section容器缩减内边距 */
+    .section-container {
+        padding: 40px 16px;
+    }
+    
+    .section-title {
+        margin-bottom: 32px;
+    }
+    
+    .section-title h2 {
+        font-size: 28px;
+    }
+    
+    /* about页：CTA区域缩减内边距 */
+    .cta-section {
+        padding: 40px 20px !important;
+    }
+    
+    .cta-section h2 {
+        font-size: 26px;
+    }
+    
+    .cta-button {
+        padding: 14px 36px;
+        font-size: 16px;
+    }
+    
+    /* about页：步骤卡片缩减内边距 */
+    .step-card {
+        min-width: 0;
+        padding: 24px 16px;
+    }
+    
+    /* about页：about-hero缩减间距 */
+    .about-hero {
+        margin-bottom: 24px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -3357,6 +3409,52 @@
     
     .client-card img {
         height: 100px;
+    }
+    
+    /* about页：策略时间线改为单列 */
+    .strategy-timeline {
+        grid-template-columns: 1fr;
+    }
+    
+    /* about页：进一步缩减section容器 */
+    .section-container {
+        padding: 30px 12px;
+    }
+    
+    .section-title h2 {
+        font-size: 24px;
+    }
+    
+    .section-title p {
+        font-size: 14px;
+    }
+    
+    /* about页：about-hero进一步缩减 */
+    .about-hero {
+        margin-bottom: 16px;
+    }
+    
+    /* about页：报名表卡片缩减内边距 */
+    .enrollment-body {
+        padding: 16px 14px;
+    }
+    
+    .enrollment-header {
+        padding: 14px;
+    }
+    
+    .enrollment-header h3 {
+        font-size: 20px;
+    }
+    
+    /* about页：CTA区域 */
+    .cta-section h2 {
+        font-size: 22px;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 15px;
     }
 }
 
@@ -3636,6 +3734,7 @@
 
     .course-subtitle {
         white-space: normal;
+        margin-bottom: 16px;
     }
 
     .course-action {
@@ -3665,10 +3764,15 @@
 
     .course-meta {
         gap: 6px 12px;
+        grid-template-columns: 1fr;
     }
 
     .meta-item {
         font-size: 12px;
+    }
+    
+    .content-wrapper {
+        padding: 0 16px;
     }
 }
 
@@ -3843,6 +3947,10 @@
 
 /* 响应式：平板 */
 @media (max-width: 768px) {
+    .hero-banner {
+        aspect-ratio: 16/10;
+    }
+    
     .banner-content {
         padding: 24px;
         width: 95%;
@@ -3882,7 +3990,8 @@
 /* 响应式：手机 */
 @media (max-width: 480px) {
     .hero-banner {
-        height: 80vh;
+        aspect-ratio: unset;
+        height: 45vh;
     }
     
     .banner-content {
