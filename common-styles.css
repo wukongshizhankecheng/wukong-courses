@@ -2467,62 +2467,25 @@
     padding: 0 20px;
 }
 
-/* Hero Section */
+/* Hero Section - New Banner Style */
 .about-hero {
     text-align: center;
-    padding: 60px 20px 40px;
-    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
-    border-radius: 16px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
     margin-bottom: 40px;
-}
-
-.about-hero h1 {
-    font-size: 42px;
-    font-weight: 700;
-    color: #1677FF;
-    margin-bottom: 16px;
-}
-
-.about-hero .subtitle {
-    font-size: 20px;
-    color: #1a1a1a;
-    margin-bottom: 12px;
-    font-weight: 500;
-}
-
-.about-hero .desc {
-    font-size: 16px;
-    color: #666666;
-}
-
-/* Hero Image */
-.hero-image-wrapper {
-    margin-top: 32px;
+    color: white;
     position: relative;
-    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(22, 119, 255, 0.15);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
 }
 
-.about-hero-image {
+.about-hero .about-hero-banner {
     width: 100%;
     height: auto;
     display: block;
-    /* 使用混合模式让图片融入蓝色主题 */
-    filter: saturate(0.85) brightness(1.05);
-}
-
-/* 蓝色渐变叠加层，让图片色调更贴合主题 */
-.hero-image-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(22, 119, 255, 0.08) 0%, rgba(9, 88, 217, 0.04) 100%);
-    pointer-events: none;
-    border-radius: 12px;
+    object-fit: cover;
 }
 
 
@@ -3370,10 +3333,6 @@
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .about-hero h1 {
-        font-size: 32px;
-    }
-    
     .client-card {
         width: 200px;
     }
@@ -3400,3 +3359,574 @@
         height: 100px;
     }
 }
+
+/* ============================================
+   公开课紧凑列表样式 (tab-public.html)
+   ============================================ */
+
+/* 搜索筛选栏 */
+.course-filter-bar {
+    max-width: 1100px;
+    margin: 0 auto 8px;
+    padding: 20px 0;
+}
+
+.filter-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 8px;
+    text-align: center;
+}
+
+.filter-subtitle {
+    font-size: 16px;
+    color: #8c8c8c;
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.filter-input {
+    flex: 1;
+    min-width: 140px;
+    height: 40px;
+    padding: 0 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #fafafa;
+}
+
+.filter-input:focus {
+    border-color: #1677ff;
+    background: #fff;
+}
+
+.filter-select {
+    min-width: 120px;
+    height: 40px;
+    padding: 0 32px 0 14px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+    transition: border-color 0.2s;
+}
+
+.filter-select:focus {
+    border-color: #1677ff;
+    background-color: #fff;
+}
+
+/* 下拉框placeholder样式：未选中时显示灰色提示文字 */
+.filter-select-placeholder {
+    color: #999;
+}
+
+.filter-select-placeholder option:first-child {
+    color: #999;
+}
+
+.filter-select-placeholder option:not(:first-child) {
+    color: #333;
+}
+
+.filter-clear-btn {
+    height: 40px;
+    padding: 0 20px;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background: #fff;
+    color: #666;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.filter-clear-btn:hover {
+    border-color: #1677ff;
+    color: #1677ff;
+    background: #f0f7ff;
+}
+
+.filter-clear-btn:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 768px) {
+    .course-filter-bar {
+        padding: 32px 16px;
+        margin-bottom: 20px;
+    }
+
+    .filter-row {
+        gap: 10px;
+    }
+
+    .filter-input {
+        min-width: 100%;
+    }
+
+    .filter-select {
+        min-width: calc(50% - 6px);
+        flex: 1;
+    }
+
+    .filter-clear-btn {
+        width: 100%;
+    }
+}
+
+.course-list-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.course-list-item {
+    display: flex;
+    align-items: stretch;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+    gap: 20px;
+}
+
+.course-list-item:hover {
+    box-shadow: 0 4px 16px rgba(22, 119, 255, 0.12);
+    border-color: #1677FF;
+    transform: translateY(-2px);
+}
+
+.course-thumb {
+    flex-shrink: 0;
+    width: 300px;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.course-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.course-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.course-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.course-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 56px;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.course-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 48px;
+}
+
+.meta-item {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.meta-item:last-child:nth-child(odd) {
+    grid-column: 1;
+}
+
+.meta-item strong {
+    color: #333;
+    font-weight: 600;
+}
+
+.course-action {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.course-list-item .detail-btn {
+    display: inline-block !important;
+    position: static !important;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, #1677FF, #0958D9);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(22, 119, 255, 0.25);
+    white-space: nowrap;
+}
+
+.course-list-item .detail-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+    background: linear-gradient(135deg, #0958D9, #0747B5);
+}
+
+/* 响应式：平板及以下 */
+@media (max-width: 768px) {
+    .course-list-item {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .course-thumb {
+        width: 100%;
+        height: 200px;
+    }
+
+    .course-title {
+        font-size: 16px;
+        white-space: normal;
+    }
+
+    .course-subtitle {
+        white-space: normal;
+    }
+
+    .course-action {
+        margin-top: 12px;
+    }
+
+    .course-list-item .detail-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 响应式：手机小屏 */
+@media (max-width: 480px) {
+    .course-list-container {
+        padding: 12px;
+    }
+
+    .course-list-item {
+        padding: 12px;
+        margin-bottom: 12px;
+    }
+
+    .course-thumb {
+        height: 180px;
+    }
+
+    .course-meta {
+        gap: 6px 12px;
+    }
+
+    .meta-item {
+        font-size: 12px;
+    }
+}
+
+/* ========================================
+   Hero Banner 全屏滚动样式
+   ======================================== */
+
+.hero-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2.4 / 1;
+    max-height: 80vh;
+    overflow: hidden;
+    background: #0a1628;
+}
+
+.banner-track {
+    display: flex;
+    width: 800%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.banner-slide {
+    position: relative;
+    width: 12.5%;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #1a1f4d;
+}
+
+.banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.banner-content {
+    display: none !important;
+}
+
+.banner-title {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+.banner-slogan {
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    line-height: 1.6;
+}
+
+.banner-section-title {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.banner-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* 服务网格布局 */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.service-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    padding: 24px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s ease;
+}
+
+.service-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.service-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Banner 指示点 */
+.banner-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.banner-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.banner-dot.active {
+    background: #ffffff;
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.banner-dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Banner 左右箭头 */
+.banner-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.banner-arrow:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.banner-prev {
+    left: 30px;
+}
+
+.banner-next {
+    right: 30px;
+}
+
+/* 响应式：平板 */
+@media (max-width: 768px) {
+    .banner-content {
+        padding: 24px;
+        width: 95%;
+    }
+    
+    .banner-title {
+        font-size: 32px;
+    }
+    
+    .banner-slogan {
+        font-size: 18px;
+    }
+    
+    .banner-section-title {
+        font-size: 28px;
+    }
+    
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .banner-arrow {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .banner-prev {
+        left: 16px;
+    }
+    
+    .banner-next {
+        right: 16px;
+    }
+}
+
+/* 响应式：手机 */
+@media (max-width: 480px) {
+    .hero-banner {
+        height: 80vh;
+    }
+    
+    .banner-content {
+        padding: 20px;
+    }
+    
+    .banner-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .banner-slogan {
+        font-size: 16px;
+    }
+    
+    .banner-section-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .service-item {
+        padding: 16px 12px;
+    }
+    
+    .service-icon {
+        font-size: 32px;
+    }
+    
+    .service-name {
+        font-size: 14px;
+    }
+    
+    .banner-dots {
+        bottom: 24px;
+    }
+    
+    .banner-dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
