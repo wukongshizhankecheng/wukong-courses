@@ -11,9 +11,78 @@
             background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
             color: white;
             padding: 80px 20px;
-            text-align: center;
             position: relative;
             overflow: hidden;
+        }
+        
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            flex: 1;
+        }
+        
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+        
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+        
+        .schedule-item:not(:last-child) {
+            margin-bottom: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
         }
         
         .ai-hero::before {
@@ -55,7 +124,7 @@
             font-size: 16px;
             color: #b8c9e0;
             max-width: 600px;
-            margin: 0 auto 30px;
+            margin-bottom: 30px;
             line-height: 1.8;
             position: relative;
             z-index: 1;
@@ -63,7 +132,7 @@
         
         .hero-tags {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 12px;
             flex-wrap: wrap;
             margin-bottom: 30px;
@@ -92,8 +161,7 @@
             text-decoration: none;
             transition: all 0.3s;
             box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
-            position: relative;
-            z-index: 1;
+            margin-top: 24px;
         }
         
         .back-btn:hover {
@@ -424,15 +492,30 @@
 <body>
     <!-- Hero Section -->
     <div class="ai-hero">
-        <h1>AI转型三级跳</h1>
-        <p class="subtitle">AI时代的业务设计和组织设计</p>
-        <p class="desc">钉钉AI咨询研究院 × 拓扑部落联合出品，2天深度赋能工作坊</p>
-        <div class="hero-tags">
-            <span class="hero-tag">双导师授课</span>
-            <span class="hero-tag">2天沉浸式</span>
-            <span class="hero-tag">战略+实操</span>
+        <div class="ai-hero-inner">
+            <!-- 左侧文字 -->
+            <div class="hero-left">
+                <h1>AI转型三级跳</h1>
+                <p class="subtitle">两天深度赋能工作坊</p>
+                <p class="desc">从业务设计到组织变革，构建企业专属的AI转型路线图</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">决策层必修</span>
+                    <span class="hero-tag">2天沉浸式</span>
+                    <span class="hero-tag">战略+落地</span>
+                </div>
+                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <!-- 右侧活动场次 -->
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3> 近期活动场次</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">5月29日 - 5月30日</div>
+                        <div class="schedule-location">📍 广州</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
     </div>
 
     <!-- 三大核心价值 -->
