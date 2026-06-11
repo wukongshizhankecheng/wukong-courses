@@ -2,37 +2,753 @@
     <div class="content-wrapper">
         <div class="section-header-center">
             <h2>线上精品课程</h2>
-            <p>随时随地学习，灵活安排进度</p>
+            <p>钉钉AI应用工程师认证体系，助力个人与企业AI能力提升</p>
         </div>
 
-        <!-- 钉钉AI应用工程师认证体系 -->
-        <div class="online-course-card" style="display: flex; gap: 32px; align-items: center; background: #fff; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); margin-bottom: 24px;">
-            <!-- 左侧图片 -->
-            <div class="course-image-left" style="flex-shrink: 0; width: 360px;">
-                <img src="https://gw.alicdn.com/imgextra/i2/O1CN01LYGK4m1h5Yv4iAMc0_!!6000000004226-2-tps-720-720.png" alt="AI时代必备办公技能" style="width: 100%; height: auto; border-radius: 8px; display: block;" />
-            </div>
-            <!-- 右侧内容 -->
-            <div class="course-content-right" style="flex: 1;">
-                <h3 style="font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px;">钉钉AI应用工程师认证体系</h3>
-                <p style="font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 20px;">面向不同层级AI应用需求的企业人员，提供初、中、高三级官方认证课程与考核，帮助学员系统掌握AI办公应用能力。</p>
+        <!-- Tab导航栏 -->
+        <div class="cert-tab-nav" style="display: flex; justify-content: center; gap: 16px; margin: 32px 0 40px;">
+            <button class="cert-tab-btn cert-tab-active" data-tab="junior" onclick="switchCertTab('junior')">初级工程师</button>
+            <button class="cert-tab-btn" data-tab="intermediate" onclick="switchCertTab('intermediate')">中级工程师</button>
+        </div>
 
-                <div class="cert-levels" style="display: flex; flex-direction: column; gap: 16px;">
-                    <!-- 初级课程 -->
-                    <div class="cert-level-item" style="padding: 16px 20px; background: #f0f5ff; border-left: 4px solid #1677FF; border-radius: 6px;">
-                        <div style="font-size: 16px; font-weight: 600; color: #1677FF; margin-bottom: 6px;">📘 AI应用工程师 · 初级课程</div>
-                        <p style="font-size: 14px; color: #444; line-height: 1.7; margin: 0;">学习AI基础办公技能，掌握文档智能编辑、逻辑内容生成、数据自动整理等核心能力，快速提升日常工作效率。</p>
+        <!-- Tab内容容器 -->
+        <div class="cert-tab-content-wrapper">
+            
+            <!-- 初级工程师Tab -->
+            <div class="cert-tab-pane cert-tab-active" id="tab-junior">
+                <h4 class="cert-section-title cert-title-offset">课程体系概览 · 共5大模块 · 41门课程</h4>
+                <div class="cert-tab-layout cert-layout-shifted">
+                    
+                    <!-- 左侧：初级工程师卡片 -->
+                    <div class="cert-tab-left">
+                        <div class="cert-card cert-card-junior">
+                            <div class="cert-card-header">
+                                <h3>初级工程师</h3>
+                                <p>AI为个人工作提效</p>
+                            </div>
+                            <div class="cert-card-body">
+                                <div class="cert-card-buttons">
+                                    <a href="https://page.dingtalk.com/wow/dingtalk/default/dingtalk/0NEMJJbeKutwtllLXMATR?dd_mini_app_id=5000000004997171" target="_blank" class="cert-card-btn">
+                                        免费获取证书
+                                    </a>
+                                    <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,x+WdqGa1s5LfEGLLB9jyVtFhvxw6bysk1TDwWh/1ZvedR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="cert-card-btn">
+                                        加入群聊
+                                    </a>
+                                </div>
+                                <div class="cert-card-divider"></div>
+                                <div class="cert-card-benefits">
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">10节免费AI课程在线学习</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">钉钉初级AI应用工程师证书</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">快速掌握AI表格、AI助理基础操作</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">30分钟了解AI发展史</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- 中级课程 -->
-                    <div class="cert-level-item" style="padding: 16px 20px; background: #f0f5ff; border-left: 4px solid #1677FF; border-radius: 6px;">
-                        <div style="font-size: 16px; font-weight: 600; color: #1677FF; margin-bottom: 6px;">📗 AI应用工程师 · 中级课程</div>
-                        <p style="font-size: 14px; color: #444; line-height: 1.7; margin: 0;">深入AI表格与AI助理实战，学会搭建个人业务系统、自动化工作流，实现业务流程的智能化改造。</p>
+
+                    <!-- 右侧：初级课程列表（横向布局） -->
+                    <div class="cert-tab-right cert-right-extended">
+                        
+                        <div style="flex: 1; display: flex; flex-direction: column;">
+                        
+                        <!-- 模块1：AI认知解码 -->
+                        <div class="course-module-horizontal">
+                            <div class="module-title-area">
+                                <h5>AI认知解码：<br>突破思维边界，掌握未来先机</h5>
+                            </div>
+                            <ul>
+                                <li><span>•</span>AI范式革命 - 人工智能的本质和时代机遇</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>大模型原理</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>智能决策中枢MCP技术全景介绍</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>人机协作新范式：从工具使用到思维共生</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>数据防护盾：AI时代的办公安全守则</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>Prompt工程入门：用四要素，让AI一次答对</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>Prompt工程进阶：让AI听懂你的业务语言</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>钉钉AI：你可靠的智能化操作系统</li>
+                            </ul>
+                        </div>
+
+                        <!-- 模块2：从手动到智能 -->
+                        <div class="course-module-horizontal" style="display: flex; gap: 16px; padding: 20px; background: #FAFBFC; border-radius: 10px; margin-bottom: 20px;">
+                            <div class="module-title-area">
+                                <h5>从手动到智能：<br>开启智能办公新时代</h5>
+                            </div>
+                            <ul>
+                                <li><span>•</span>智能秘书：钉钉AI一键总结IM消息</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>会议秘书：会议日程智能管理</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>告别繁琐整理：AI会议纪要全自动生成、听记+AI</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>知识库自动化：AI协助一键开启专题材料自动撰写</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>智能翻译：让你轻松拿捏多国语言</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>钉钉AI助理：陪伴你工作的每一刻</li>
+                            </ul>
+                        </div>
+
+                        <!-- 模块3：AI创作 -->
+                        <div class="course-module-horizontal">
+                            <div class="module-title-area">
+                                <h5>AI创作 - 专业写作智能流水线</h5>
+                            </div>
+                            <ul>
+                                <li><span>•</span>AI搜问：安全便利的企业级大模型应用</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI创作：文思泉涌，化身职场笔杆子</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>钉钉文档智能协作与知识管理</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>脑力加速器：钉钉脑图让思维可视化</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>零延迟协作：钉钉白板实时共创秘籍</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>全自动生产线：从大纲到精美PPT的AI秘籍</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI印：从创意到视觉物料的极速生成器</li>
+                            </ul>
+                        </div>
+
+                        <!-- 模块4：AI表格 -->
+                        <div class="course-module-horizontal">
+                            <div class="module-title-area">
+                                <h5>AI表格 - AI驱动的业务轻应用</h5>
+                            </div>
+                            <ul>
+                                <li><span>•</span>AI表格 - AI时代的应用搭建平台（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI表格 - AI时代的应用搭建平台（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI表格全方位透视：AI创建、模板中心、字段、公式</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI字段系列：AI字段介绍及场景</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>跨表魔法师：不用VLOOKUP，AI自动关联两张表的数据</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>全能"表哥"：自然语言完成应用开发</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>万能贴：「视觉」AI识别录入</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>移动端填表神器：随口说-「语音」AI识别录入</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI表格实战演练：从零搭建一个"部门周报自动汇总系统"</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>AI表格应用搭建的坚实根基：业务流程梳理与系统架构设计</li>
+                            </ul>
+                        </div>
+
+                        <!-- 模块5：悟空装机 -->
+                        <div class="course-module-horizontal">
+                            <div class="module-title-area">
+                                <h5>悟空装机部署及场景应用</h5>
+                            </div>
+                            <ul>
+                                <li><span>•</span>认知：悟空是什么（上）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>认知：悟空是什么（下）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>认知：读懂AI</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>五大场景</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>悟空的灵魂：skills技能的训练</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>悟空协作力</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>部署装机（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>部署装机（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>部署装机（三）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>部署装机（四）拓展</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1677FF;">•</span>悟空实操 - 三大场景实战</li>
+                            </ul>
+                        </div>
+                        </div><!-- end modules wrapper -->
                     </div>
                 </div>
+            </div>
+            <!-- 中级工程师Tab -->
+            <div class="cert-tab-pane" id="tab-intermediate" style="display: none;">
+                <h4 class="cert-section-title cert-title-offset">课程体系概览 · 共11大专题 · 60+门课程</h4>
+                <div class="cert-tab-layout cert-layout-shifted">
+                    
+                    <!-- 左侧：中级工程师卡片 -->
+                    <div class="cert-tab-left">
+                        <div class="cert-card cert-card-intermediate">
+                            <div class="cert-hot-badge">🔥 火热售卖中</div>
+                            <div class="cert-card-header">
+                                <h3>中级工程师</h3>
+                                <p>AI驱动业务成长</p>
+                            </div>
+                            <div class="cert-card-body">
+                                <div class="cert-card-buttons">
+                                    <a href="https://store.weixin.qq.com/shop/a/cwgZWwbgVamHZ5f" target="_blank" class="cert-card-btn">
+                                        个人学习
+                                    </a>
+                                    <a href="https://page.dingtalk.com/wow/dingtalk/default/dingtalk/dbab444deecc430591562b24c0e92267" target="_blank" class="cert-card-btn">
+                                        企业学习
+                                    </a>
+                                </div>
+                                <div class="cert-card-divider"></div>
+                                <p class="cert-card-note">拥有初级工程师全部权益，以及：</p>
+                                <div class="cert-card-benefits">
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">70节课程在线学习</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">钉钉中级AI应用工程师证书</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">AI智能企业荣誉牌匾</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">专业学习考试平台</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">AI表格及AI助理的业务落地实践</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">岗位场景实战营系列直播课</span>
+                                    </div>
+                                    <div class="cert-benefit-item">
+                                        <span class="cert-benefit-icon">✓</span>
+                                        <span class="cert-benefit-text">AI知识学习礼包</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div style="margin-top: 20px; padding: 12px 16px; background: #fffbe6; border-radius: 6px; font-size: 13px; color: #666;">
-                    🏅 完成对应级别课程并通过考核后，颁发钉钉官方认证证书
+                    <!-- 右侧：中级课程列表（直接展开） -->
+                    <div class="cert-tab-right">
+                        
+                        <!-- 3列多列布局容器（短模块自动填到前一列下方） -->
+                        <div class="course-modules-grid" style="column-count: 3; column-gap: 24px;">
+                        
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">AI智能体搭建</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>企业智能体平台DEAP介绍</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>基于工作流的业务场景搭建</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>企业员工咨询智能体搭建：智能问答（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>企业员工咨询智能体搭建：智能问答（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>从RAG原理讲到Markdown最佳实践，高效构建AI知识库</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能效率新生：用DEAP技能流打造7×24小时AI工单助理</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>自然语言工单数据可视化：智能问数</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI助理搭建 - 面试小助手（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI助理搭建 - 面试小助手（二）</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">行政人事专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能行政车辆管理（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能行政车辆管理（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能入离职管理系统（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能入离职管理系统（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI智能招聘：简历分析到发offer流程全自动</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>智能值班排班管理（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>智能值班排班管理（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>固定资产管理</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">项目管理专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>IT-研发项目管理</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>敏捷研发新引擎：钉钉AI表格实战指南</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI任务管理</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">电商专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>电商运营全链路AI提效（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>电商运营全链路AI提效（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI驱动电商行业全链路重塑</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>钉钉"悟空"赋能电商运营实战</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;"> 教育专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能教务管理（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI赋能教务管理（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI助教：从备课到作业批改全流程自动化</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">制造业专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>传统质检员转身AI指挥官（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>传统质检员转身AI指挥官（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管理设备（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管理设备（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管理模具（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管理模具（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管好客诉（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>一张表管好客诉（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>工程机械租赁管理（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>工程机械租赁管理（二）</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">营销专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI视觉拆解营销：从产品图到全域内容</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI分析用户评论挖掘潜在需求</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">财务专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>库存管理（一）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>库存管理（二）</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>发票识别录入：拍照上传，AI自动填入报销单</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI费控预警：AI自动标记超出预算标准的报销项</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>经营看板搭建：老板想看什么数据，AI一句话生成看板</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">龙虾专题</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>企业养虾生死线 - 安全、权限与可控性</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>云养虾实战 - 钉钉权限准备</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>云端养虾实战 - 手把手部署教程</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>钉钉机器人接入 - 让AI在你的工作群上班</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>钉钉AI表格接入 - 让AI替你盯舆情</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 28px;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">AI技术进阶及管理者应知应会</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI组织诊断：从会议决策看团队管理瓶颈</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI人才洞察：从会议交互看员工能力画像</li>
+                            </ul>
+                        </div>
+
+                                                <div class="course-module" style="margin-bottom: 0;">
+                            <h5 style="font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid #1A237E; display: inline-block;">案例</h5>
+                            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI落地行业最佳实践1</li>
+                                <li style="font-size: 14px; color: #444; padding-left: 18px; position: relative; line-height: 1.6;"><span style="position: absolute; left: 0; color: #1A237E;">•</span>AI落地行业最佳实践2</li>
+                            </ul>
+                        </div>
+                        </div><!-- end course-modules-grid -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<style>
+/* ========== 认证体系公共样式 ========== */
+
+/* Tab布局容器 */
+.cert-tab-layout {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+.cert-tab-layout.cert-layout-shifted {
+    margin-left: -80px;
+}
+
+/* 左侧卡片容器 */
+.cert-tab-left {
+    flex: 0 0 340px;
+    min-width: 300px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 右侧模块容器 */
+.cert-tab-right {
+    flex: 1;
+    min-width: 300px;
+}
+.cert-tab-right.cert-right-extended {
+    margin-right: -80px;
+}
+
+/* 卡片通用样式 */
+.cert-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 初级卡片背景 */
+.cert-card-junior {
+    background: linear-gradient(180deg, #FFF8F0 0%, #FFFFFF 40%);
+}
+
+/* 中级卡片背景 */
+.cert-card-intermediate {
+    background: linear-gradient(180deg, #E8F4FF 0%, #FFFFFF 40%);
+    position: relative;
+}
+
+/* 卡片标题区 - 宽松版 */
+.cert-card-header {
+    padding: 100px 32px 36px;
+    text-align: center;
+}
+.cert-card-header h3 {
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+.cert-card-junior .cert-card-header h3 { color: #5D4037; }
+.cert-card-intermediate .cert-card-header h3 { color: #1A237E; }
+.cert-card-header p {
+    font-size: 16px;
+    margin: 0;
+}
+.cert-card-junior .cert-card-header p { color: #8D6E63; }
+.cert-card-intermediate .cert-card-header p { color: #5C6BC0; }
+
+/* 卡片内容区 - 宽松版 */
+.cert-card-body {
+    padding: 50px 32px 36px;
+}
+
+/* 按钮组 - 宽松版 */
+.cert-card-buttons {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+.cert-card-btn {
+    flex: 1;
+    padding: 14px 20px;
+    background: #1677FF;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: block;
+}
+.cert-card-btn:hover {
+    background: #0958d9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(22, 119, 255, 0.3);
+}
+
+/* 分隔线 */
+.cert-card-divider {
+    height: 1px;
+    background: #E8E8E8;
+    margin: 28px 0;
+}
+
+/* 权益列表 - 宽松版 */
+.cert-card-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.cert-benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.cert-benefit-icon {
+    color: #1677FF;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+.cert-benefit-text {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 中级卡片额外提示文字 */
+.cert-card-note {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 18px;
+}
+
+/* 火热售卖中标签 */
+.cert-hot-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 5px 12px;
+    background: linear-gradient(135deg, #FF6B35, #FF8C42);
+    color: white;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 课程体系标题 */
+.cert-section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+}
+.cert-section-title.cert-title-offset {
+    margin-left: calc(340px + 20px - 80px);
+}
+
+/* 横向课程模块 */
+.course-module-horizontal {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: #FAFBFC;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.course-module-horizontal:last-child {
+    margin-bottom: 0 !important;
+}
+.course-module-horizontal .module-title-area {
+    flex: 0 0 240px;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+}
+.course-module-horizontal .module-title-area h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+    line-height: 1.5;
+}
+.course-module-horizontal ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 24px;
+    flex: 1;
+}
+.course-module-horizontal ul li {
+    font-size: 14px;
+    color: #444;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+}
+.course-module-horizontal ul li span {
+    position: absolute;
+    left: 0;
+    color: #1677FF;
+}
+
+/* 多列布局容器（中级） */
+.course-modules-grid {
+    column-count: 3;
+    column-gap: 24px;
+}
+.course-module {
+    break-inside: avoid;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: #FAFBFC;
+    border-radius: 10px;
+}
+.course-module:last-child {
+    margin-bottom: 0 !important;
+}
+.course-module h5 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #1A237E;
+    display: inline-block;
+}
+.course-module ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.course-module ul li {
+    font-size: 14px;
+    color: #444;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+}
+.course-module ul li span {
+    position: absolute;
+    left: 0;
+    color: #1A237E;
+}
+
+/* 响应式适配 */
+@media (max-width: 1100px) {
+    .course-modules-grid {
+        column-count: 2 !important;
+    }
+}
+@media (max-width: 768px) {
+    .cert-tab-layout {
+        flex-direction: column !important;
+        margin-left: 0 !important;
+    }
+    .cert-tab-left {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+    .cert-tab-right {
+        width: 100% !important;
+        margin-right: 0 !important;
+    }
+    .cert-section-title.cert-title-offset {
+        margin-left: 0 !important;
+    }
+    .course-modules-grid {
+        column-count: 1 !important;
+    }
+    .course-module-horizontal {
+        flex-direction: column !important;
+    }
+    .course-module-horizontal .module-title-area {
+        flex: 1 1 auto !important;
+        min-width: auto !important;
+        margin-bottom: 12px !important;
+    }
+    .course-module-horizontal ul {
+        grid-template-columns: 1fr !important;
+    }
+    .cert-tab-btn {
+        padding: 10px 24px !important;
+        font-size: 14px !important;
+    }
+}
+
+
+/* Tab按钮样式 */
+.cert-tab-btn {
+    padding: 12px 36px;
+    border: none;
+    border-radius: 32px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: transparent;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.cert-tab-btn:hover {
+    color: #1a1a1a;
+}
+
+.cert-tab-btn.cert-tab-active {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* Tab面板 */
+.cert-tab-pane {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式适配 */
+@media (max-width: 1100px) {
+    .course-modules-grid {
+        column-count: 2 !important;
+    }
+}
+@media (max-width: 768px) {
+    .cert-tab-layout {
+        flex-direction: column !important;
+    }
+    .cert-tab-left {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+    }
+    .cert-tab-right {
+        width: 100% !important;
+    }
+    .course-modules-grid {
+        column-count: 1 !important;
+    }
+    /* 初级横向布局在小屏下退化为垂直堆叠 */
+    .course-module-horizontal {
+        flex-direction: column !important;
+    }
+    .course-module-horizontal > div:first-child {
+        flex: 1 1 auto !important;
+        min-width: auto !important;
+        margin-bottom: 12px !important;
+    }
+    /* 初级课程列表在小屏下退化为单列 */
+    .course-module-horizontal ul {
+        grid-template-columns: 1fr !important;
+    }
+    .cert-tab-btn {
+        padding: 10px 24px !important;
+        font-size: 14px !important;
+    }
+}
+</style>
+
+<script>
+// Tab切换逻辑
+function switchCertTab(tabName) {
+    document.querySelectorAll('.cert-tab-pane').forEach(pane => {
+        pane.classList.remove('cert-tab-active');
+        pane.style.display = 'none';
+    });
+    document.querySelectorAll('.cert-tab-btn').forEach(btn => {
+        btn.classList.remove('cert-tab-active');
+    });
+    const targetPane = document.getElementById('tab-' + tabName);
+    if (targetPane) {
+        targetPane.style.display = 'block';
+        targetPane.classList.add('cert-tab-active');
+    }
+    const targetBtn = document.querySelector('.cert-tab-btn[data-tab="' + tabName + '"]');
+    if (targetBtn) {
+        targetBtn.classList.add('cert-tab-active');
+    }
+}
+
+// 按钮hover效果
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.cert-card a[href]');
+    buttons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.background = '#0958d9';
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 12px rgba(22, 119, 255, 0.3)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = '#1677FF';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    });
+});
+</script>
