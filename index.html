@@ -183,6 +183,33 @@
             background: #ffffff;
             transform: rotate(90deg);
         }
+        
+        /* 移动端浮动工具栏缩小 */
+        @media (max-width: 768px) {
+            .floating-toolbar {
+                bottom: 16px;
+                right: 16px;
+                gap: 8px;
+            }
+            .toolbar-item {
+                width: 44px;
+                height: 44px;
+            }
+            .toolbar-item svg {
+                width: 18px;
+                height: 18px;
+            }
+            .consult-popup {
+                right: 56px;
+                bottom: -10px;
+                width: 200px;
+                padding: 16px 14px;
+            }
+            .consult-popup img {
+                width: 160px;
+                height: 160px;
+            }
+        }
     </style>
 </head>
 <body>
