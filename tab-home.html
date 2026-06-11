@@ -1,3 +1,41 @@
+<!-- 顶部全屏滚动 Banner -->
+<div class="hero-banner">
+    <div class="banner-track" id="bannerTrack">
+        <div class="banner-slide">
+            <img src="https://gw.alicdn.com/imgextra/i1/O1CN01tiBFLT1jAGDLna44G_!!6000000004507-2-tps-4400-2473.png" alt="Banner 1" class="banner-bg banner-cover">
+        </div>
+        <div class="banner-slide">
+            <img src="https://gw.alicdn.com/imgextra/i2/O1CN01rdPVFd25PIlhg3qUn_!!6000000007518-2-tps-4400-1824.png" alt="Banner 2" class="banner-bg">
+        </div>
+        <div class="banner-slide">
+            <img src="https://gw.alicdn.com/imgextra/i3/O1CN015ptISO1lSEzl43S0R_!!6000000004817-2-tps-4400-1833.png" alt="Banner 3" class="banner-bg">
+        </div>
+        <div class="banner-slide">
+            <img src="https://gw.alicdn.com/imgextra/i1/O1CN01OItX9L1zZ1Tq6XLlK_!!6000000006727-2-tps-4400-1833.png" alt="Banner 4" class="banner-bg">
+        </div>
+    </div>
+    
+    <!-- Banner 指示点 -->
+    <div class="banner-dots">
+        <span class="banner-dot active" data-index="0"></span>
+        <span class="banner-dot" data-index="1"></span>
+        <span class="banner-dot" data-index="2"></span>
+        <span class="banner-dot" data-index="3"></span>
+    </div>
+    
+    <!-- Banner 左右箭头 -->
+    <button class="banner-arrow banner-prev" aria-label="上一张">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#fff"/>
+        </svg>
+    </button>
+    <button class="banner-arrow banner-next" aria-label="下一张">
+        <svg viewBox="0 0 24 24" width="32" height="32">
+            <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="#fff"/>
+        </svg>
+    </button>
+</div>
+
 <!-- 第一屏：公开课（左图右文） -->
 <div class="feature-section">
     <div class="feature-container">
@@ -99,64 +137,51 @@
 </div>
 
 
-<!-- 第四屏：热门课程（横向滚动卡片） -->
-<div class="hot-courses-section">
+<!-- 第四屏：热门课程（暂时注释掉） -->
+<!--
+<div class="hot-courses-section" id="homeHotCoursesSection">
     <div class="hot-courses-header">
         <h2>热门课程</h2>
         <p class="hot-courses-subtitle">精选高人气课程，助力企业AI转型</p>
     </div>
-    
     <div class="hot-courses-wrapper">
         <button class="scroll-btn scroll-left" id="hotScrollLeft" aria-label="向左滚动">
             <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="#333"/>
             </svg>
         </button>
-        
         <div class="hot-courses-track" id="hotCoursesTrack">
-            <!-- 卡片1 -->
             <div class="hot-course-card">
                 <h3 class="card-title">电商 AI 自动化实战营<br>——"悟空"让运营自动跑</h3>
                 <p class="card-instructor">授课专家：易安（吴彦瑾）</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i1/6000000001169/O1CN019jQQDI1KVS8u3az5X_!!6000000001169-0-tbvideo.jpg" alt="电商AI自动化实战营封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i1/6000000001169/O1CN019jQQDI1KVS8u3az5X_!!6000000001169-0-tbvideo.jpg" alt="电商AI自动化实战营">
             </div>
-            
-            <!-- 卡片2 -->
             <div class="hot-course-card">
                 <h3 class="card-title">钉钉悟空·连锁企业AI赋能实战特训营</h3>
                 <p class="card-instructor">授课专家：杨洪</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/O1CN01RBQENJ1H7gk9k4dUT_!!6000000000711-2-videocover-1697-1010.png" alt="连锁企业AI赋能特训营封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/O1CN01RBQENJ1H7gk9k4dUT_!!6000000000711-2-videocover-1697-1010.png" alt="连锁企业AI赋能特训营">
             </div>
-            
-            <!-- 卡片3 -->
             <div class="hot-course-card">
                 <h3 class="card-title">AI 赋能 TOB 场景化销售</h3>
                 <p class="card-instructor">授课专家：周雪峰</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/6000000007676/O1CN01LThvf826ZfLKMlfqY_!!6000000007676-0-tbvideo.jpg" alt="AI赋能TOB场景化销售封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/6000000007676/O1CN01LThvf826ZfLKMlfqY_!!6000000007676-0-tbvideo.jpg" alt="AI赋能TOB场景化销售">
             </div>
-            
-            <!-- 卡片4 -->
             <div class="hot-course-card">
                 <h3 class="card-title">悟空+钉钉AI 实现完成企业诊断即拿到订单</h3>
                 <p class="card-instructor">授课专家：吴菊萍</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/6000000005184/O1CN01E9c9kb1oAKLa5odiX_!!6000000005184-0-tbvideo.jpg" alt="企业诊断即拿到订单封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i4/6000000005184/O1CN01E9c9kb1oAKLa5odiX_!!6000000005184-0-tbvideo.jpg" alt="企业诊断即拿到订单">
             </div>
-            
-            <!-- 卡片5 -->
             <div class="hot-course-card">
                 <h3 class="card-title">钉钉悟空·财税数智化实战特训营</h3>
                 <p class="card-instructor">授课专家：杨洪</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i3/6000000002270/O1CN01QxoiZE1SdiD60bGHP_!!6000000002270-0-tbvideo.jpg" alt="财税数智化实战特训营封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i3/6000000002270/O1CN01QxoiZE1SdiD60bGHP_!!6000000002270-0-tbvideo.jpg" alt="财税数智化实战特训营">
             </div>
-            
-            <!-- 卡片6 -->
             <div class="hot-course-card">
                 <h3 class="card-title">从对话到执行：让悟空驱动办公革命</h3>
                 <p class="card-instructor">授课专家：朱山</p>
-                <img class="card-cover" src="https://img.alicdn.com/imgextra/i1/6000000004132/O1CN01VJ6TAU1gOVgcYpYls_!!6000000004132-0-tbvideo.jpg" alt="悟空驱动办公革命封面">
+                <img class="card-cover" src="https://img.alicdn.com/imgextra/i1/6000000004132/O1CN01VJ6TAU1gOVgcYpYls_!!6000000004132-0-tbvideo.jpg" alt="悟空驱动办公革命">
             </div>
         </div>
-        
         <button class="scroll-btn scroll-right" id="hotScrollRight" aria-label="向右滚动">
             <svg viewBox="0 0 24 24" width="24" height="24">
                 <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="#333"/>
@@ -164,4 +189,4 @@
         </button>
     </div>
 </div>
-
+-->
