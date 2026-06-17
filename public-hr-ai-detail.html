@@ -8,8 +8,8 @@
     <style>
         /* AI+HR实战营详情页专属样式 */
         .ai-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
-            color: white;
+            background: #eef4ff;
+            
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
@@ -98,22 +98,19 @@
         }
         
         .ai-hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a237e;
             position: relative;
             z-index: 1;
         }
         
         .ai-hero .subtitle {
             font-size: 22px;
-            color: #ffffff;
-            opacity: 0.95;
+            color: #1a237e;
+            
             margin-bottom: 12px;
             font-weight: 600;
             position: relative;
@@ -122,7 +119,7 @@
         
         .ai-hero .desc {
             font-size: 16px;
-            color: #b8c9e0;
+            color: #455a64;
             max-width: 600px;
             margin-bottom: 30px;
             line-height: 1.8;
@@ -141,14 +138,13 @@
         }
         
         .hero-tag {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
             font-weight: 600;
-            color: #ffffff;
+            color: #1a237e;
         }
         
         .back-btn {
@@ -439,6 +435,20 @@
         }
         
         @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100%;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            
             .ai-hero h1 {
                 font-size: 32px;
             }
@@ -499,8 +509,6 @@
         </div>
     </div>
 
-        </div>
-
     <!-- 四大核心价值 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
@@ -534,26 +542,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 主讲导师 -->
-    <!-- <div class="section-container">
-        <div class="section-title">
-            <h2>主讲导师</h2>
-            <p>兼具理论与实战经验的AI+HR专家</p>
-        </div>
-        <div class="instructor-section">
-            <div class="instructor-grid-five single-instructor">
-                <div class="instructor-card">
-                    <div class="instructor-avatar">
-                        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01hCs3YJ1pyXNozxu73_!!6000000005429-2-tps-1111-1237.png" alt="威廉">
-                    </div>
-                    <div class="instructor-name">威廉</div>
-                    <div class="instructor-title">浙江省人社厅特聘AI讲师</div>
-                    <div class="instructor-desc">杭州市/湖州市人社局AIHR先锋讲师、阿里巴巴"悟空"智能体首批认证讲师、AIGC讲师认证执行官、工信部工业文化发展中心AIGC导师认证</div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- 课程流程与安排 -->
     <div class="section-container" style="background: #f7f8fa;">
@@ -656,35 +644,8 @@
         </div>
     </div>
 
-    <!-- 报名联系 -->
-    <!-- <div class="section-container">
-        <div class="contact-section">
-            <h3>📲 扫码锁定席位</h3>
-            <div class="contact-info">联系人：娟姐 18626860006</div>
-            <div class="contact-note">钉钉微信同号</div>
-            <div style="margin-top: 16px; padding: 16px; background: #fffbe6; border-left: 4px solid #faad14; border-radius: 8px; text-align: left;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 8px;"><strong>会议信息：</strong></div>
-                <div style="font-size: 14px; color: #333; line-height: 1.8;">
-                    📅 时间：2025年6月10日-11日<br>
-                    📍 地点：杭州·钉钉创新中心<br>
-                    💰 学费：1980元/人（三人团报：1500元/人）<br>
-                    👥 面向：企业HR负责人、HRBP、COE、HR专员、人力资源数字化转型推动者
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- 页脚 -->
-    <!-- <footer>
-        <div class="footer-logo">钉钉AI咨询研究院</div>
-        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="window.location.href='index.html#about'; return false;">关于我们</p>
-        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
-        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
-    </footer> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('AI+HR实战营详情页加载完成');
         });
     </script>
     
