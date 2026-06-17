@@ -8,8 +8,8 @@
     <style>
         /* CEO专场详情页专属样式 */
         .ai-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
-            color: white;
+            background: #eef4ff;
+            
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
@@ -98,27 +98,24 @@
         }
         
         .ai-hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a237e;
         }
         
         .ai-hero .subtitle {
             font-size: 22px;
-            color: #ffffff;
-            opacity: 0.95;
+            color: #1a237e;
+            
             margin-bottom: 12px;
             font-weight: 600;
         }
         
         .ai-hero .desc {
             font-size: 16px;
-            color: #b8c9e0;
+            color: #455a64;
             max-width: 600px;
             line-height: 1.8;
         }
@@ -132,14 +129,13 @@
         }
         
         .hero-tag {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
             font-weight: 600;
-            color: #ffffff;
+            color: #1a237e;
         }
         
         .back-btn {
@@ -474,6 +470,20 @@
         }
         
         @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100%;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            
             .ai-hero h1 {
                 font-size: 32px;
             }
@@ -482,6 +492,51 @@
             .design-grid,
             .process-timeline {
                 grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 26px;
+            }
+
+            .ai-hero .subtitle {
+                font-size: 18px;
+            }
+
+            .value-card {
+                padding: 24px 20px;
+            }
+
+            .back-btn {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
+
+            .faq-question {
+                font-size: 14px;
+                padding: 14px 18px;
+            }
+
+            .faq-answer-inner {
+                padding: 0 18px 14px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-hero h1 {
+                font-size: 24px;
+            }
+
+            .ai-hero .subtitle {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 22px;
+            }
+
+            .value-card {
+                padding: 20px 16px;
             }
         }
     </style>
