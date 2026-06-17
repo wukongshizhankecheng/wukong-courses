@@ -796,23 +796,23 @@
         }
 
         // 页面初始化时默认加载首页，支持URL hash导航
-        window.onload = () => {
+        window.onload = async () => {
             const hash = window.location.hash.substring(1); // 移除#号
             
             // 检查是否是带领域的企业定制课程hash（如 enterprise-chain-stores）
             if (hash && hash.startsWith('enterprise-')) {
                 const domainId = hash.replace('enterprise-', '');
                 
-                // 先切换到企业定制课程Tab
-                switchMainTab('enterprise');
+                // 先切换到企业定制课程Tab，等待内容加载完成
+                await switchMainTab('enterprise');
                 
-                // 等待Tab内容加载完成后，激活对应的领域Tab并滚动到该区域
+                // 内容加载完成后，激活对应的领域Tab并滚动到该区域
                 setTimeout(() => {
                     activateEnterpriseDomain(domainId);
-                }, 500);
+                }, 200);
             } else {
                 const targetTab = ['home', 'public', 'enterprise', 'online', 'about'].includes(hash) ? hash : 'home';
-                switchMainTab(targetTab);
+                await switchMainTab(targetTab);
             }
         };
         
