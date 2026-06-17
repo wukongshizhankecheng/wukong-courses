@@ -8,8 +8,8 @@
     <style>
         /* 电商AI自动化实战营详情页专属样式 */
         .ai-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
-            color: white;
+            background: #eef4ff;
+            
             padding: 60px 20px 80px;
             position: relative;
             overflow: hidden;
@@ -114,22 +114,19 @@
         }
         
         .ai-hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a237e;
             position: relative;
             z-index: 1;
         }
         
         .ai-hero .subtitle {
             font-size: 22px;
-            color: #ffffff;
-            opacity: 0.95;
+            color: #1a237e;
+            
             margin-bottom: 12px;
             font-weight: 600;
             position: relative;
@@ -138,7 +135,7 @@
         
         .ai-hero .desc {
             font-size: 16px;
-            color: #b8c9e0;
+            color: #455a64;
             max-width: 600px;
             margin-bottom: 30px;
             line-height: 1.8;
@@ -157,14 +154,13 @@
         }
         
         .hero-tag {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
             font-weight: 600;
-            color: #ffffff;
+            color: #1a237e;
         }
         
         .back-btn {
@@ -448,12 +444,26 @@
         }
         
         @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100%;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            
             .ai-hero h1 {
                 font-size: 32px;
             }
             
             .value-cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr) !important;
             }
             
             .process-timeline {
@@ -468,7 +478,7 @@
         
         @media (max-width: 480px) {
             .value-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
@@ -499,32 +509,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 授课讲师（已注释掉） -->
-    <!--
-    <div class="section-container">
-        <div class="section-title">
-            <h2>授课讲师</h2>
-            <p>平台技术背景 + 企业落地经验，双重保障实战效果</p>
-        </div>
-        <div class="instructor-section">
-            <div class="instructor-grid-single" style="grid-template-columns: repeat(2, 1fr); max-width: 800px;">
-                <div class="instructor-card">
-                    <div class="instructor-avatar">吴</div>
-                    <div class="instructor-name">吴彦瑾（易安）</div>
-                    <div class="instructor-title">电商与AI融合领域资深专家</div>
-                    <div class="instructor-desc">曾服务过多家头部品牌及平台；拥有10年+电商行业经验</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">冯</div>
-                    <div class="instructor-name">冯杰楠（木兰）</div>
-                    <div class="instructor-title">阿里云AI首席算法工程师 / 腾讯专家</div>
-                    <div class="instructor-desc">曾任百度、京东、网易等公司高级算法工程师；中国传媒大学本科 / 清华大学工业大数据研究所博士</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    -->
 
     <!-- 三大课程目标 -->
     <div class="section-container">
@@ -726,34 +710,8 @@
         </div>
     </div>
 
-    <!-- 报名联系 -->
-    <!-- <div class="section-container">
-        <div class="contact-section">
-            <h3>📲 扫码锁定席位</h3>
-            <div class="contact-info">联系人：木兰老师 176033843949</div>
-            <div class="contact-note">钉钉微信同号</div>
-            <div style="margin-top: 16px; padding: 16px; background: #fffbe6; border-left: 4px solid #faad14; border-radius: 8px; text-align: left;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 8px;"><strong>会议信息：</strong></div>
-                <div style="font-size: 14px; color: #333; line-height: 1.8;">
-                    📅 时长：2天深度实战训练营<br>
-                    💰 学费：3980元/人<br>
-                     面向：电商运营负责人、内容创作者、数据运营人员、中小电商团队管理者
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- 页脚 -->
-    <!-- <footer>
-        <div class="footer-logo">钉钉AI咨询研究院</div>
-        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="window.location.href='index.html#about'; return false;">关于我们</p>
-        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
-        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
-    </footer> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('电商AI自动化实战营详情页加载完成');
         });
     </script>
     
