@@ -3653,7 +3653,12 @@
     /* about页：about-hero缩减间距 */
     .about-hero {
         margin-bottom: 0;
-        aspect-ratio: 16/10;
+        aspect-ratio: unset;
+        height: auto;
+    }
+    .about-hero .about-hero-banner {
+        height: auto;
+        object-fit: contain;
     }
 }
 
@@ -3688,7 +3693,11 @@
     .about-hero {
         margin-bottom: 0;
         aspect-ratio: unset;
-        height: 45vh;
+        height: auto;
+    }
+    .about-hero .about-hero-banner {
+        height: auto;
+        object-fit: contain;
     }
     
     /* about页：报名表卡片缩减内边距 */
