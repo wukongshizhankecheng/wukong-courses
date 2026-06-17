@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>悟空·破界者进化营【CEO专场】 - 课程详情</title>
+    <title>电商AI自动化实战营 - 课程详情</title>
     <link rel="stylesheet" href="common-styles.css">
     <style>
-        /* CEO专场详情页专属样式 */
+        /* 电商AI自动化实战营详情页专属样式 */
         .ai-hero {
             background: #eef4ff;
             
-            padding: 80px 20px;
+            padding: 60px 20px 80px;
             position: relative;
             overflow: hidden;
         }
@@ -65,7 +65,7 @@
         .schedule-item:not(:last-child) {
             margin-bottom: 12px;
             padding-bottom: 16px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            border-bottom: 1px solid #f0f0f0;
         }
         
         .schedule-date {
@@ -83,6 +83,22 @@
             align-items: center;
             gap: 6px;
             font-weight: 500;
+        }
+        
+        .schedule-venue {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            line-height: 1.5;
+        }
+        
+        .hero-slogan {
+            font-size: 28px;
+            color: #ffd700;
+            font-weight: 800;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
         }
         
         .ai-hero::before {
@@ -103,6 +119,8 @@
             margin-bottom: 20px;
             letter-spacing: 2px;
             color: #1a237e;
+            position: relative;
+            z-index: 1;
         }
         
         .ai-hero .subtitle {
@@ -111,21 +129,28 @@
             
             margin-bottom: 12px;
             font-weight: 600;
+            position: relative;
+            z-index: 1;
         }
         
         .ai-hero .desc {
             font-size: 16px;
             color: #455a64;
             max-width: 600px;
+            margin-bottom: 30px;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
         
         .hero-tags {
             display: flex;
+            justify-content: flex-start;
             gap: 12px;
             flex-wrap: wrap;
-            justify-content: flex-start;
-            margin-top: 24px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
         
         .hero-tag {
@@ -148,7 +173,8 @@
             text-decoration: none;
             transition: all 0.3s;
             box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
-            margin-top: 24px;
+            position: relative;
+            z-index: 1;
         }
         
         .back-btn:hover {
@@ -181,7 +207,7 @@
         
         .value-cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
         }
         
@@ -252,84 +278,61 @@
             background: #1677FF;
         }
         
-        .design-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        
-        .design-card {
+        .instructor-section {
             background: white;
             border-radius: 16px;
-            overflow: hidden;
+            padding: 40px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid #f0f0f0;
+            margin-bottom: 40px;
         }
         
-        .design-header {
+        .instructor-grid-single {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 400px;
+            margin: 32px auto 0;
+            justify-items: center;
+        }
+        
+        .instructor-card {
+            text-align: center;
             padding: 24px;
-            color: white;
+            background: #f7f8fa;
+            border-radius: 12px;
         }
         
-        .design-header.purple {
-            background: linear-gradient(135deg, #7C6FF7, #5B54E8);
-        }
-        
-        .design-header.orange {
-            background: linear-gradient(135deg, #FF9F43, #F97316);
-        }
-        
-        .design-header.teal {
-            background: linear-gradient(135deg, #26C6A2, #0E9E80);
-        }
-        
-        .design-num {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.3);
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            margin: 0 auto 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            font-weight: 900;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .instructor-title {
+            font-size: 14px;
+            color: #1677FF;
+            font-weight: 600;
             margin-bottom: 12px;
         }
         
-        .design-header h3 {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 6px;
-        }
-        
-        .design-header p {
+        .instructor-desc {
             font-size: 14px;
-            opacity: 0.9;
-        }
-        
-        .design-body {
-            padding: 24px;
-        }
-        
-        .design-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid #f0f0f0;
-            font-size: 15px;
-            color: #555;
-        }
-        
-        .design-item:last-child {
-            border-bottom: none;
-        }
-        
-        .design-item::before {
-            content: '▸';
-            color: #1677FF;
-            font-weight: 700;
-            flex-shrink: 0;
+            color: #666;
+            line-height: 1.6;
         }
         
         .process-timeline {
@@ -413,60 +416,31 @@
             color: #888;
         }
         
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
         }
         
-        .faq-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            border: 1px solid #f0f0f0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .faq-item:hover {
-            border-color: #1677FF;
-        }
-        
-        .faq-question {
-            padding: 18px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-        
-        .faq-icon {
-            font-size: 20px;
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
             color: #1677FF;
-            transition: transform 0.3s;
+            margin-bottom: 16px;
         }
         
-        .faq-item.active .faq-icon {
-            transform: rotate(45deg);
+        .contact-info {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
         
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-        }
-        
-        .faq-answer-inner {
-            padding: 0 24px 18px;
-            font-size: 15px;
+        .contact-note {
+            font-size: 14px;
             color: #666;
-            line-height: 1.8;
         }
         
         @media (max-width: 768px) {
@@ -488,55 +462,23 @@
                 font-size: 32px;
             }
             
-            .value-cards,
-            .design-grid,
+            .value-cards {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
             .process-timeline {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
-
-            .section-title h2 {
-                font-size: 26px;
-            }
-
-            .ai-hero .subtitle {
-                font-size: 18px;
-            }
-
-            .value-card {
-                padding: 24px 20px;
-            }
-
-            .back-btn {
-                padding: 10px 24px;
-                font-size: 14px;
-            }
-
-            .faq-question {
-                font-size: 14px;
-                padding: 14px 18px;
-            }
-
-            .faq-answer-inner {
-                padding: 0 18px 14px;
-                font-size: 13px;
+            
+            .timeline-day {
+                padding: 24px;
             }
         }
-
+        
         @media (max-width: 480px) {
-            .ai-hero h1 {
-                font-size: 24px;
-            }
-
-            .ai-hero .subtitle {
-                font-size: 16px;
-            }
-
-            .section-title h2 {
-                font-size: 22px;
-            }
-
-            .value-card {
-                padding: 20px 16px;
+            .value-cards {
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
@@ -545,278 +487,233 @@
     <!-- Hero Section -->
     <div class="ai-hero">
         <div class="ai-hero-inner">
-            <!-- 左侧文字 -->
             <div class="hero-left">
-                <h1>悟空·破界者进化营</h1>
-                <p class="subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
-                <p class="desc">解决"业务管理如何AI化管理"的难题，构建企业专属的AI转型闭环</p>
+                <h1>电商AI自动化实战营</h1>
+                <p class="subtitle">2天打造全自动运营，人效翻倍</p>
+                <p class="desc">从选品到客服全链路AI自动化，掌握AI核心能力，实现智能决策与自主化运营</p>
                 <div class="hero-tags">
-                    <span class="hero-tag">CEO + 3~4位核心骨干</span>
-                    <span class="hero-tag">2天1晚沉浸式</span>
-                    <span class="hero-tag">1+X+1微定制</span>
+                    <span class="hero-tag">电商操盘手必修</span>
+                    <span class="hero-tag">2天实操</span>
+                    <span class="hero-tag">全链路</span>
                 </div>
                 <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
             </div>
-            <!-- 右侧活动场次 -->
             <div class="hero-right">
                 <div class="schedule-card">
-                    <h3> 近期活动场次</h3>
+                    <h3>📅 近期活动场次</h3>
                     <div class="schedule-item">
-                        <div class="schedule-date">6月6日 - 6月7日</div>
-                        <div class="schedule-location">📍 杭州</div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-date">6月25日 - 6月26日</div>
-                        <div class="schedule-location">📍 合肥</div>
+                        <div class="schedule-date">2026年6月25日 - 6月26日</div>
+                        <div class="schedule-location">📍 义乌</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 三大客户价值 -->
+    <!-- 三大课程目标 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>课程目标</h2>
+            <p>从认知重塑到能力构建，全面掌握电商AI自动化</p>
+        </div>
+        <div class="value-cards" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>知界明理</h3>
+                <div class="highlight">理解AI能力边界</div>
+                <p>用AI理解业务逻辑与运营本质，构建自动化运营的底层逻辑</p>
+                <div class="value-badge">认知升级</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h3>破除焦虑</h3>
+                <div class="highlight">建立独立思考能力</div>
+                <p>摆脱对AI的恐惧与依赖，建立独立思考能力</p>
+                <div class="value-badge">心理建设</div>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">⚙️</div>
+                <h3>执要构能</h3>
+                <div class="highlight">掌握AI核心能力</div>
+                <p>掌握AI核心能力，实现智能决策与自主化运营能力</p>
+                <div class="value-badge">技能落地</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 四大核心价值 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
-            <h2>三大客户价值</h2>
-            <p>为什么CEO要带队来参加？因为这里不空谈概念，只解决落地问题</p>
+            <h2>你将收获</h2>
+            <p>从认知重塑到实操落地，全面掌握电商AI自动化能力</p>
         </div>
         <div class="value-cards">
             <div class="value-card">
-                <div class="value-icon">🧠</div>
-                <h3>认知重塑</h3>
-                <div class="highlight">消除AI焦虑</div>
-                <p>建立AI时代的组织语言和认知基础，让团队从"不知道怎么用"到"知道为什么用、怎么用"</p>
-                <div class="value-badge">从感觉到地图</div>
+                <h3>破除AI焦虑</h3>
+                <div class="highlight">建立正确认知</div>
+                <p>理解悟空AI的能力边界与底层逻辑，构建自动化运营的认知框架</p>
+                <div class="value-badge">认知升级</div>
             </div>
             <div class="value-card">
-                <div class="value-icon">🚀</div>
-                <h3>实战产出</h3>
-                <div class="highlight">带你跑通Demo</div>
-                <p>带你跑通可直接应用的AI业务原型（Demo），实现从认知到落地的完整闭环</p>
-                <div class="value-badge">不是听课，带你跑通自己的AI业务DEMO</div>
+                <h3>场景自动化</h3>
+                <div class="highlight">高频场景实战</div>
+                <p>覆盖商品上架、内容生成、数据监控、报表分析等核心运营场景</p>
+                <div class="value-badge">即学即用</div>
             </div>
             <div class="value-card">
-                <div class="value-icon">🧩</div>
-                <h3>微定制化</h3>
-                <div class="highlight">1+X+1模式</div>
-                <p>AI组织认知 + 3个行业实战主题 + 组织答疑与转化，满足不同企业个性化需求</p>
-                <div class="value-badge">适配你的业务场景</div>
+                <h3>全流程打通</h3>
+                <div class="highlight">全链路自动化</div>
+                <p>从选题→文案→图文/视频生成→发布，实现内容生产全流程自动化</p>
+                <div class="value-badge">闭环运营</div>
+            </div>
+            <div class="value-card">
+                <h3>团队协同</h3>
+                <div class="highlight">高效协作闭环</div>
+                <p>打通任务分发、进度跟踪、结果沉淀，打造高效协同自动化工作流</p>
+                <div class="value-badge">组织提效</div>
             </div>
         </div>
     </div>
 
-    <!-- 课程设计 -->
+    <!-- 课程流程与安排 -->
     <div class="section-container">
         <div class="section-title">
-            <h2>"1+X+1"模块化课程设计</h2>
-            <p>每个模块都有明确产出，不是泛泛而谈，而是带着问题来、带着方案走</p>
-        </div>
-        <div class="design-grid">
-            <div class="design-card">
-                <div class="design-header purple">
-                    <div class="design-num">1</div>
-                    <h3>AI组织认知重塑</h3>
-                    <p>重构AI与组织、业务、管理者的关系</p>
-                </div>
-                <div class="design-body">
-                    <div class="design-item">AI组织：从职能到应用</div>
-                    <div class="design-item">AI业务：业务AI数智系统+悟空调用</div>
-                    <div class="design-item">AI管理者：新数智胜任能力</div>
-                </div>
-            </div>
-            <div class="design-card">
-                <div class="design-header orange">
-                    <div class="design-num">X</div>
-                    <h3>业务场景实战（清单）</h3>
-                    <p>通用管理 + 业务增长 + 效率提升</p>
-                </div>
-                <div class="design-body">
-                    <div class="design-item">通用管理：战略/项目/财务/绩效</div>
-                    <div class="design-item">业务增长：获客/转化/渠道</div>
-                    <div class="design-item">效率提升：商品/库存/供应链</div>
-                </div>
-            </div>
-            <div class="design-card">
-                <div class="design-header teal">
-                    <div class="design-num">1</div>
-                    <h3>组织答疑与转化</h3>
-                    <p>深度解答具体业务难题，引导后续商业合作</p>
-                </div>
-                <div class="design-body">
-                    <div class="design-item">企业AI部署业务难题现场解答</div>
-                    <div class="design-item">Demo成果汇报与全场点评</div>
-                    <div class="design-item">持续成长路径与产品介绍</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 课程流程 -->
-    <div class="section-container" style="background: #f7f8fa;">
-        <div class="section-title">
-            <h2>课程流程与转化路线</h2>
-            <p>从认知到Demo，从Demo到结果——每一步都有持续的学习目标</p>
+            <h2>课程核心内容</h2>
+            <p>2天深度实战，从认知到实操再到团队赋能的全链路提升</p>
         </div>
         <div class="process-timeline">
+            <!-- DAY 1 -->
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">1</div>
-                    <h3>第一天 · 认知与落型</h3>
+                    <h3>从"累死累活"到实现"个人自动化"</h3>
                 </div>
+                
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">09:00-10:00</span>
+                        <span class="session-time">09:30-10:00</span>
                         <div class="session-content">
-                            <h4>破冰与需求摸底</h4>
-                            <p>确认痛点，企业现场诊断</p>
+                            <h4>AI电商底层原理</h4>
+                            <p>理解AI在电商领域的核心逻辑与应用场景</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">10:00-12:00</span>
+                        <span class="session-time">10:00-11:00</span>
                         <div class="session-content">
-                            <h4>认知重塑</h4>
-                            <p>认知重塑AI组织关系体系架构</p>
+                            <h4>AI选品 & 智能定价</h4>
+                            <p>利用AI工具实现精准选品与智能定价策略</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">11:00-12:00</span>
+                        <div class="session-content">
+                            <h4>电商场景AI落地整体解析</h4>
+                            <p>全链路AI落地方案拆解与实操</p>
                         </div>
                     </li>
                     <li class="session-item">
                         <span class="session-time">12:00-13:30</span>
                         <div class="session-content">
-                            <h4>午间休息</h4>
+                            <h4>午餐休息</h4>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">13:30-15:30</span>
+                        <span class="session-time">13:30-14:30</span>
                         <div class="session-content">
-                            <h4>X模块实战方法</h4>
+                            <h4>智能选品企划</h4>
+                            <p>AI驱动的选品企划实操演练</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">15:30-17:30</span>
+                        <span class="session-time">14:30-15:30</span>
                         <div class="session-content">
-                            <h4>模块上手 + 工具测试</h4>
+                            <h4>智能辅助上架</h4>
+                            <p>AI辅助商品上架全流程自动化</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">19:00-21:00</span>
+                        <span class="session-time">15:40-16:40</span>
                         <div class="session-content">
-                            <h4>晚间圆桌：继续打磨AI业务</h4>
-                            <p>商业设计工作坊，深度对接</p>
+                            <h4>智能运营</h4>
+                            <p>AI赋能日常运营，实现效率倍增</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">16:40-17:40</span>
+                        <div class="session-content">
+                            <h4>技能沉淀、展示与流程封装</h4>
+                            <p>将AI能力固化为可复用的标准化流程</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">17:40-18:00</span>
+                        <div class="session-content">
+                            <h4>总结 & 答疑</h4>
+                            <p>当天内容回顾与问题解答</p>
                         </div>
                     </li>
                 </ul>
             </div>
+            
+            <!-- DAY 2 -->
             <div class="timeline-day">
                 <div class="day-header">
                     <div class="day-num">2</div>
-                    <h3>第二天 · 汇报与签约</h3>
+                    <h3>高阶组合应用与团队赋能</h3>
                 </div>
+                
                 <ul class="session-list">
                     <li class="session-item">
-                        <span class="session-time">09:00-10:30</span>
+                        <span class="session-time">09:30-10:00</span>
                         <div class="session-content">
-                            <h4>原型打磨</h4>
-                            <p>小组完善Demo，原型汇报准备</p>
+                            <h4>智能营销</h4>
+                            <p>AI驱动的精准营销策略与实操</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">10:30-12:00</span>
+                        <span class="session-time">10:30-11:30</span>
                         <div class="session-content">
-                            <h4>小组管理：Demo成果汇总</h4>
+                            <h4>智能客服</h4>
+                            <p>搭建AI智能客服系统，提升服务效率</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">12:00-14:00</span>
+                        <span class="session-time">11:30-12:00</span>
                         <div class="session-content">
-                            <h4>午餐 & 休息</h4>
+                            <h4>悟空与钉钉联动</h4>
+                            <p>悟空AI与钉钉生态的深度联动实操</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">14:00-16:00</span>
+                        <span class="session-time">13:30-16:00</span>
                         <div class="session-content">
-                            <h4>汇报路演</h4>
-                            <p>汇报路演，小组成果展示</p>
+                            <h4>企业实践：现场搭建场景智能体</h4>
+                            <p>现场实操搭建企业级AI智能体</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">16:00-17:00</span>
+                        <span class="session-time">16:10-17:40</span>
                         <div class="session-content">
-                            <h4>答疑 & 问题深度解答</h4>
+                            <h4>结业 & 答疑</h4>
+                            <p>学习成果展示与结业颁发</p>
                         </div>
                     </li>
                     <li class="session-item">
-                        <span class="session-time">17:00-17:30</span>
+                        <span class="session-time">17:40-18:00</span>
                         <div class="session-content">
-                            <h4>商业闭环，签约探讨</h4>
+                            <h4>一对一答疑 & 个性化建议</h4>
+                            <p>针对企业实际场景的个性化指导</p>
                         </div>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 32px; padding: 24px; background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);">
-            <h4 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px;">• 后续持续机制</h4>
-            <p style="font-size: 15px; color: #666; margin: 0;">在线持续化：社群持续答疑，持续跟踪Demo落地成果</p>
-        </div>
-    </div>
-
-    <!-- FAQ -->
-    <div class="section-container">
-        <div class="section-title">
-            <h2>常见问题</h2>
-            <p>关于课程的常见疑问解答</p>
-        </div>
-        <div class="faq-list">
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    <span>谁适合参加这个课程？</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        本课程主要面向企业CEO及3-4位核心骨干（如CTO、COO、业务负责人等）。适合正在寻求AI转型但缺乏清晰路径的企业决策层团队。
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    <span>课程结束后能获得什么？</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        学员将获得：①清晰的AI转型认知框架；②可直接应用的AI业务Demo原型；③针对企业具体问题的解决方案；④持续的社群支持和答疑服务。
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    <span>需要提前准备什么吗？</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        建议提前梳理企业当前面临的业务痛点和管理难题，最好能带上具体的案例或问题来课堂讨论。我们会根据学员实际情况调整X模块的内容重点。
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item" onclick="toggleFaq(this)">
-                <div class="faq-question">
-                    <span>课程形式是怎样的？</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        采用"1+X+1"模块化设计：开营共识课建立认知，中间X节核心模块深入拆解不同业务场景，结营课进行Demo答辩验收。全程强调实操而非理论讲授。
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function toggleFaq(element) {
-            element.classList.toggle('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+        });
     </script>
-
+    
 </body>
 </html>
