@@ -8,8 +8,8 @@
     <style>
         /* AI创新增长实战营详情页专属样式 */
         .ai-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
-            color: white;
+            background: #eef4ff;
+            
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
@@ -98,22 +98,19 @@
         }
         
         .ai-hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a237e;
             position: relative;
             z-index: 1;
         }
         
         .ai-hero .subtitle {
             font-size: 22px;
-            color: #ffffff;
-            opacity: 0.95;
+            color: #1a237e;
+            
             margin-bottom: 12px;
             font-weight: 600;
             position: relative;
@@ -122,7 +119,7 @@
         
         .ai-hero .desc {
             font-size: 16px;
-            color: #b8c9e0;
+            color: #455a64;
             max-width: 600px;
             margin-bottom: 30px;
             line-height: 1.8;
@@ -141,14 +138,13 @@
         }
         
         .hero-tag {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
             font-weight: 600;
-            color: #ffffff;
+            color: #1a237e;
         }
         
         .back-btn {
@@ -430,6 +426,20 @@
         }
         
         @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100%;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            
             .ai-hero h1 {
                 font-size: 32px;
             }
@@ -526,54 +536,6 @@
         </div>
     </div>
 
-    <!-- 六导师阵容 -->
-    <!-- <div class="section-container">
-        <div class="section-title">
-            <h2>六导师阵容</h2>
-            <p>跨领域专家团，填补市场空白，只讲可复制打法</p>
-        </div>
-        <div class="instructor-section">
-            <div class="instructor-grid-six">
-                <div class="instructor-card">
-                    <div class="instructor-avatar">庄</div>
-                    <div class="instructor-name">庄妃</div>
-                    <div class="instructor-title">AI战略落地与组织转型实战专家</div>
-                    <div class="instructor-desc">全程护航从战略规划到落地实施，CHO破壁术主讲人</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">韦</div>
-                    <div class="instructor-name">韦京骏</div>
-                    <div class="instructor-title">企业AI转型战略顾问</div>
-                    <div class="instructor-desc">CEO导航仪——AI成熟度诊断与战略定力构建</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">周</div>
-                    <div class="instructor-name">周军贤</div>
-                    <div class="instructor-title">懂技术的资深财务战略专家</div>
-                    <div class="instructor-desc">CFO精算盘——ROI模型让AI投入翻10倍</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">秦</div>
-                    <div class="instructor-name">秦炜</div>
-                    <div class="instructor-title">数智化基建资深实战专家</div>
-                    <div class="instructor-desc">知识、数据、流程、Agent四位一体地基搭建</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">朱</div>
-                    <div class="instructor-name">朱莲</div>
-                    <div class="instructor-title">20年+AI商业增长实战专家</div>
-                    <div class="instructor-desc">从内卷到外滩——AI重构精准获客与高效转化闭环</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">圣</div>
-                    <div class="instructor-name">圣火</div>
-                    <div class="instructor-title">企业AI生产力绩效专家</div>
-                    <div class="instructor-desc">三招把流程中的隐性利润挖出来，钉钉AI表格+悟空实战</div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <!-- 课程流程与安排 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
@@ -668,35 +630,8 @@
         </div>
     </div>
 
-    <!-- 报名联系
-    <div class="section-container">
-        <div class="contact-section">
-            <h3>📲 扫码锁定席位</h3>
-            <div class="contact-info">联系人：曾老师 13825592897</div>
-            <div class="contact-note">钉钉微信同号</div>
-            <div style="margin-top: 16px; padding: 16px; background: #fffbe6; border-left: 4px solid #faad14; border-radius: 8px; text-align: left;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 8px;"><strong>会议信息：</strong></div>
-                <div style="font-size: 14px; color: #333; line-height: 1.8;">
-                     时间：6月12日-13日（周五、周六）<br>
-                    📍 地点：杭州（钉钉总部或指定场地）<br>
-                    💰 学费：1.59万元/人（2人同行4980元，3人同行3980元，8人同行仅需2880元）<br>
-                     面向：企业创始人、CEO、CFO、CHO、AI转型负责人、中高层管理者
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- 页脚
-    <footer>
-        <div class="footer-logo">钉钉AI咨询研究院</div>
-        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="window.location.href='index.html#about'; return false;">关于我们</p>
-        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
-        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
-    </footer> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('从存量到增量AI创新增长实战营详情页加载完成');
         });
     </script>
     
