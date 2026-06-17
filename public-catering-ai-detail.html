@@ -8,8 +8,8 @@
     <style>
         /* 餐饮连锁AI落地与组织升级详情页专属样式 */
         .ai-hero {
-            background: linear-gradient(135deg, #0a1628 0%, #1a2f5a 50%, #0d2137 100%);
-            color: white;
+            background: #eef4ff;
+            
             padding: 80px 20px;
             position: relative;
             overflow: hidden;
@@ -98,22 +98,19 @@
         }
         
         .ai-hero h1 {
-            font-size: 48px;
+            font-size: 56px;
             font-weight: 900;
             margin-bottom: 20px;
             letter-spacing: 2px;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f0fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #1a237e;
             position: relative;
             z-index: 1;
         }
         
         .ai-hero .subtitle {
             font-size: 22px;
-            color: #ffffff;
-            opacity: 0.95;
+            color: #1a237e;
+            
             margin-bottom: 12px;
             font-weight: 600;
             position: relative;
@@ -122,7 +119,7 @@
         
         .ai-hero .desc {
             font-size: 16px;
-            color: #b8c9e0;
+            color: #455a64;
             max-width: 600px;
             margin-bottom: 30px;
             line-height: 1.8;
@@ -141,14 +138,13 @@
         }
         
         .hero-tag {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 15px;
             font-weight: 600;
-            color: #ffffff;
+            color: #1a237e;
         }
         
         .back-btn {
@@ -431,6 +427,20 @@
         }
         
         @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100%;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            
             .ai-hero h1 {
                 font-size: 32px;
             }
@@ -491,8 +501,6 @@
         </div>
     </div>
 
-        </div>
-
     <!-- 四大核心价值 -->
     <div class="section-container" style="background: #f7f8fa;">
         <div class="section-title">
@@ -526,50 +534,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 五导师阵容 -->
-    <!-- <div class="section-container">
-        <div class="section-title">
-            <h2>五导师阵容</h2>
-            <p>组织力专家 + 餐饮实战顾问 + AI技术权威，全方位赋能</p>
-        </div>
-        <div class="instructor-section">
-            <div class="instructor-grid-five">
-                <div class="instructor-card">
-                    <div class="instructor-avatar">张</div>
-                    <div class="instructor-name">张成龙</div>
-                    <div class="instructor-title">行业知名组织力专家</div>
-                    <div class="instructor-desc">2010年起从事组织咨询，服务过阿里、美团、海底捞等企业</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">杨</div>
-                    <div class="instructor-name">杨旭坤</div>
-                    <div class="instructor-title">餐海咨询高级咨询师</div>
-                    <div class="instructor-desc">18年餐饮行业经验，服务过海底捞、瑞幸、蜜雪冰城等品牌</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">巴</div>
-                    <div class="instructor-name">巴雷</div>
-                    <div class="instructor-title">阿里钉钉AI咨询研究院院长</div>
-                    <div class="instructor-desc">工程师背景，香港中文大学MBA，阿里内部AI转型核心推动者</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">李</div>
-                    <div class="instructor-name">李军</div>
-                    <div class="instructor-title">钉钉餐饮行业负责人</div>
-                    <div class="instructor-desc">阿里钉钉餐饮行业业务负责人，熟悉钉钉生态与餐饮SaaS落地</div>
-                </div>
-                <div class="instructor-card">
-                    <div class="instructor-avatar">
-                        <img src="https://gw.alicdn.com/imgextra/i1/O1CN01c8LnsW1Ff0KM54DCc_!!6000000000513-2-tps-1184-1776.png" alt="冯杰楠">
-                    </div>
-                    <div class="instructor-name">冯杰楠</div>
-                    <div class="instructor-title">阿里钉钉首席AI转型顾问</div>
-                    <div class="instructor-desc">人机协同专家，国家电子信息技术人才能力提升工程专家</div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
     <!-- 课程流程与安排 -->
     <div class="section-container" style="background: #f7f8fa;">
@@ -736,35 +700,8 @@
         </div>
     </div>
 
-    <!-- 报名联系
-    <div class="section-container">
-        <div class="contact-section">
-            <h3>📲 扫码锁定席位</h3>
-            <div class="contact-info">联系人：小漫 15116936607</div>
-            <div class="contact-note">钉钉微信同号</div>
-            <div style="margin-top: 16px; padding: 16px; background: #fffbe6; border-left: 4px solid #faad14; border-radius: 8px; text-align: left;">
-                <div style="font-size: 14px; color: #666; margin-bottom: 8px;"><strong>会议信息：</strong></div>
-                <div style="font-size: 14px; color: #333; line-height: 1.8;">
-                    📅 时间：2025年6月8日-9日<br>
-                    📍 地点：杭州·阿里全球总部<br>
-                    💰 学费：新课首发价 2888元/人（原价4888元）<br>
-                    👥 限额：餐饮连锁企业创始人、CEO、运营/技术/人力总监等高管
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- 页脚
-    <footer>
-        <div class="footer-logo">钉钉AI咨询研究院</div>
-        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="window.location.href='index.html#about'; return false;">关于我们</p>
-        <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
-        <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
-    </footer> -->
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('餐饮连锁AI落地与组织升级详情页加载完成');
         });
     </script>
     
