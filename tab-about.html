@@ -1,12 +1,86 @@
 <!-- 关于我们页面 -->
+<style>
+    .consult-card h3 {
+        font-size: 24px !important;
+        margin-bottom: 20px !important;
+        letter-spacing: 0.5px;
+    }
+    .consult-card ul li {
+        font-size: 17px !important;
+        line-height: 2 !important;
+        margin-bottom: 6px;
+    }
+    .consult-card-btn {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 13px 36px;
+        background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+        color: #fff !important;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 3px 10px rgba(22,119,255,0.25);
+        letter-spacing: 0.5px;
+    }
+    .consult-card-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 16px rgba(22,119,255,0.35);
+    }
+</style>
 <div class="about-page">
     <!-- Hero Section -->
     <div class="about-hero">
         <img src="https://gw.alicdn.com/imgextra/i3/O1CN01QhNTsm1gdclBIfLtK_!!6000000004165-2-tps-4400-1833.png" alt="钉钉AI咨询研究院 Banner" class="about-hero-banner">
     </div>
 
+    <!-- 合作咨询模块 -->
+    <div class="consult-module">
+        <div class="consult-module-inner">
+            <div class="consult-header">
+                <h2>开启您的AI转型之旅</h2>
+                <p>联系您的钉钉客户经理，获取专属AI咨询方案</p>
+            </div>
+            <div class="consult-cards">
+                <!-- 客户合作视角 -->
+                <div class="consult-card">
+                    <h3>客户合作</h3>
+                    <ul>
+                        <li>企业AI转型战略咨询与诊断</li>
+                        <li>定制化AI人才培养方案</li>
+                        <li>AI应用场景落地指导与陪跑</li>
+                        <li>组织智能化升级全案服务</li>
+                        <li>AI大赛及实战工作坊支持</li>
+                    </ul>
+                    <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,zdzsEQzStCNFs2x138iyL1H1T/KNqGsbdxXhceiNrlqdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="consult-card-btn">立即咨询</a>
+                </div>
+                <!-- 服务商合作视角 -->
+                <div class="consult-card">
+                    <h3>服务商合作</h3>
+                    <ul>
+                        <li>联合打造AI行业解决方案</li>
+                        <li>渠道合作激励与分润政策</li>
+                        <li>技术平台与课程资源支持</li>
+                        <li>钉钉官方生态品牌背书</li>
+                        <li>共建AI服务生态网络</li>
+                    </ul>
+                    <a href="https://qr.dingtalk.com/action/joingroup?code=v1,k1,3LVnXtbo4wxIOg3xIISoVFH1T/KNqGsbh3FhvEiRfICdR7ksupjDEA==&_dt_no_comment=1&origin=11" target="_blank" class="consult-card-btn">立即咨询</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我们 大标题 -->
+    <div class="about-section-title-block">
+        <h2>关于我们</h2>
+        <div class="about-divider"></div>
+    </div>
+
     <!-- 标语区：使命·愿景·优势 -->
-    <div style="background: linear-gradient(180deg, #ffffff 0%, #f5f7fb 100%); padding: 72px 0 64px;">
+    <div style="background: #ffffff; padding: 72px 0 64px;">
         <div style="max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; gap: 48px; flex-wrap: wrap;">
             <!-- 使命 -->
             <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 18px;">
@@ -38,7 +112,7 @@
 
 
     <!-- AI战略咨询体系 -->
-    <div class="section-container" style="background: #f7f8fa;">
+    <div class="section-container">
         <div class="section-title">
             <h2>📈 AI战略咨询体系</h2>
             <p>AI如何在我的组织里发生？六级演进路径</p>
@@ -78,11 +152,11 @@
     </div>
 
     <!-- ============ 一级标题：个人学习 ============ -->
-    <div style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
+    <div class="about-dark-banner" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 60%);"></div>
         <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 24px;">
             <div style="font-size: 80px; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: -20px;">01</div>
-            <h2 style="font-size: 36px; font-weight: 800; color: #ffffff; margin-bottom: 16px;">个人学习：AI应用工程师认证</h2>
+            <h2 style="font-weight: 800; color: #ffffff; margin-bottom: 16px;">个人学习：AI应用工程师认证</h2>
             <p style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6;">系统化的AI能力认证，从基础办公提效到深度业务应用，助力个人职业成长</p>
         </div>
     </div>
@@ -247,17 +321,17 @@
     </div>
 
     <!-- ============ 一级标题：企业全员AI化 ============ -->
-    <div style="background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
+    <div class="about-dark-banner" style="background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 100%); padding: 80px 0; text-align: center; position: relative; overflow: hidden;">
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 70% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 60%);"></div>
         <div style="position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 24px;">
             <div style="font-size: 80px; font-weight: 900; color: rgba(255,255,255,0.08); line-height: 1; margin-bottom: -20px;">02</div>
-            <h2 style="font-size: 36px; font-weight: 800; color: #ffffff; margin-bottom: 16px;">企业全员AI化：学习加实战，赛马出方案</h2>
+            <h2 style="font-weight: 800; color: #ffffff; margin-bottom: 16px;">企业全员AI化：学习加实战，赛马出方案</h2>
             <p style="font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6;">AI认证 + 实战营 + AI大赛，三步走激活组织AI能力，让AI真正落地到业务场景</p>
         </div>
     </div>
 
     <!-- 企业全员AI化方案 -->
-    <div class="section-container" style="background: #f7f8fa;">
+    <div class="section-container">
         <div class="section-title">
             <h2>🏢 企业全员AI化解决方案</h2>
             <p>认证 + 实战营 + AI大赛，三步走激活组织AI能力</p>
@@ -301,7 +375,7 @@
     </div>
 
     <!-- 最佳实践案例 -->
-    <div class="section-container" style="background: #f7f8fa;">
+    <div class="section-container">
         <div class="section-title">
             <h2>💼 最佳实践案例</h2>
             <p>真实企业的AI转型成果</p>
@@ -519,10 +593,26 @@
         </div>
     </div>
 
-    <!-- CTA -->
-    <div class="cta-section" style="position: relative; left: 50%; margin-left: -50vw; margin-right: 0; width: 100vw; max-width: none; border-radius: 0; padding: 60px 20px;">
-        <h2>开启您的AI转型之旅</h2>
-        <p>联系您的钉钉客户经理，获取专属AI咨询方案</p>
-        <button class="cta-button" onclick="showConsultPopup()">立即咨询</button>
+    <!-- 咨询弹窗 -->
+    <div class="consult-modal-overlay" id="aboutConsultModal">
+        <div class="consult-modal-content">
+            <button class="consult-modal-close" onclick="closeAboutConsultPopup()">×</button>
+            <img src="https://gw.alicdn.com/imgextra/i1/O1CN016CfrfB1ojaqRMGryd_!!6000000005261-2-tps-544-544.png" alt="咨询二维码">
+            <h3>扫码咨询</h3>
+            <p>钉钉扫描二维码<br>获取专属合作方案</p>
+        </div>
     </div>
+
+    <script>
+        function showAboutConsultPopup() {
+            document.getElementById('aboutConsultModal').classList.add('active');
+        }
+        function closeAboutConsultPopup() {
+            document.getElementById('aboutConsultModal').classList.remove('active');
+        }
+        // 点击遮罩层关闭弹窗
+        document.getElementById('aboutConsultModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAboutConsultPopup();
+        });
+    </script>
 </div>
