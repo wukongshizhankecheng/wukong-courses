@@ -1,4 +1,823 @@
-<!-- 公开课列表视图 -->
+<!-- 公开课列表视图 - 竖版卡片布局 -->
+<style>
+    /* 卡片网格布局 */
+    #public-list-view .content-wrapper {
+        max-width: 1420px;
+        padding: 0 40px;
+    }
+
+    #public-list-view .section-full-width {
+        padding: 60px 0 20px;
+    }
+
+    #public-list-view .section-header-center {
+        margin-bottom: 20px;
+    }
+
+    #public-list-view .course-filter-bar {
+        max-width: 1320px;
+        margin-bottom: 20px;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .course-card-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 34px 28px;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 0 16px;
+    }
+
+    #public-list-view .hot-courses-section {
+        padding: 40px 0;
+    }
+
+    #public-list-view .hot-courses-header {
+        margin-bottom: 24px;
+    }
+
+    #public-list-view .vcard-meta-location,
+    #public-list-view .vcard-meta-time {
+        font-size: 14px;
+        color: #555;
+        display: block;
+        line-height: 1.7;
+    }
+
+    /* 竖版课程卡片 */
+    .course-vcard {
+        background: #ffffff;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: none;
+        border: 1px solid #e6e9ee;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        min-height: 0;
+        min-width: 0;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+
+    .course-vcard:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(31, 35, 41, 0.08);
+        border-color: #dce1e8;
+    }
+
+    /* 卡片封面图 */
+    .vcard-cover {
+        width: 100%;
+        aspect-ratio: 1.68 / 1;
+        height: auto;
+        overflow: hidden;
+        background: #f5f5f5;
+        position: relative;
+        border-radius: 0;
+    }
+
+    .vcard-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.4s ease;
+    }
+
+    .course-vcard:hover .vcard-cover img {
+        transform: scale(1.05);
+    }
+
+    /* 课程天数标签 */
+    .vcard-duration-tag {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: #1677ff;
+        color: #fff;
+        padding: 4px 11px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.2;
+        box-shadow: none;
+    }
+
+    /* 卡片内容区 */
+    .vcard-body {
+        padding: 16px 26px 8px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 课程重点标签 - 突出显示，有大有小 */
+    .vcard-highlights {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 7px;
+        margin-bottom: 8px;
+        overflow: hidden;
+    }
+
+    .vcard-highlight-tag {
+        display: inline-block;
+        padding: 5px 9px;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.25;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .vcard-highlight-tag.tag-blue {
+        background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
+        color: #1677FF;
+    }
+
+    .vcard-highlight-tag.tag-orange {
+        background: linear-gradient(135deg, #fff7e6, #ffe7ba);
+        color: #d46b08;
+    }
+
+    .vcard-highlight-tag.tag-green {
+        background: linear-gradient(135deg, #f6ffed, #d9f7be);
+        color: #389e0d;
+    }
+
+    .vcard-highlight-tag.tag-purple {
+        background: linear-gradient(135deg, #f9f0ff, #efdbff);
+        color: #722ed1;
+    }
+
+    /* 课程标题 */
+    .vcard-title {
+        font-size: 19px;
+        font-weight: 700;
+        color: #1f2329;
+        margin-bottom: 10px;
+        margin-top: 0;
+        line-height: 1.48;
+        min-height: 0;
+        text-align: left;
+    }
+
+    /* 覆盖 common-styles.css 中 .course-title 的截断样式 */
+    .course-vcard .course-title {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+
+
+    /* 课程元信息 */
+    .vcard-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 0;
+        flex: 0;
+    }
+
+    .vcard-meta-item {
+        font-size: 13px;
+        color: #7a7f87;
+        line-height: 1.5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        overflow: visible;
+        text-overflow: clip;
+        white-space: normal;
+    }
+
+    .vcard-meta-item .meta-icon {
+        flex-shrink: 0;
+        width: 16px;
+        height: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+
+    .vcard-meta-location {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .vcard-meta-time {
+        color: #7a7f87;
+        margin-left: auto;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    /* 卡片底部按钮 */
+    .vcard-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 26px 16px;
+    }
+
+    .vcard-footer .detail-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        position: static;
+        width: auto;
+        text-align: center;
+        color: #1677FF; /* Blue text */
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        background: none !important; /* Remove background */
+        border: none !important; /* Remove border */
+        padding: 0 !important; /* Remove padding */
+        box-shadow: none !important; /* Remove shadow */
+    }
+
+    .vcard-footer .detail-btn::after {
+        content: '→';
+        margin-left: 6px;
+        transition: transform 0.3s ease;
+    }
+
+    .vcard-footer .detail-btn:hover::after {
+        transform: translateX(3px);
+    }
+
+    /* 响应式：小桌面/平板 */
+    @media (max-width: 1080px) {
+        #public-list-view .content-wrapper {
+            padding: 0 24px;
+        }
+
+        #public-list-view .course-filter-bar {
+            max-width: 100%;
+        }
+
+        .course-card-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .course-vcard {
+            min-height: auto;
+        }
+    }
+
+    /* 响应式：手机 */
+    @media (max-width: 540px) {
+        #public-list-view .content-wrapper {
+            padding: 0 12px;
+        }
+
+        .course-card-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 0 0 16px;
+        }
+
+        .course-vcard {
+            padding: 0;
+        }
+
+        .vcard-body {
+            padding: 18px 22px 12px;
+        }
+
+        .vcard-footer {
+            padding: 0 22px 22px;
+        }
+
+        .vcard-title {
+            font-size: 18px;
+            min-height: 0;
+            margin-bottom: 18px;
+        }
+
+        .vcard-highlight-tag {
+            font-size: 13px;
+        }
+
+        .vcard-meta-item {
+            font-size: 14px;
+        }
+    }
+
+    /* 侧边详情页样式 */
+    @keyframes sidebarSpin {
+        to { transform: rotate(360deg); }
+    }
+
+    #sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        backdrop-filter: blur(2px);
+    }
+
+    #sidebar-detail {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 720px;
+        max-width: 88%;
+        height: 100%;
+        background: #fff;
+        box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+        z-index: 1001;
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+    }
+
+    body.sidebar-active #sidebar-overlay {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    body.sidebar-active #sidebar-detail {
+        transform: translateX(0);
+    }
+
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 24px;
+        border-bottom: 1px solid #eef0f4;
+        flex-shrink: 0;
+        background: #ffffff;
+    }
+
+    .sidebar-header h3 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+    }
+
+    .sidebar-close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        padding: 4px 8px;
+        line-height: 1;
+        color: #adb5bd;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+
+    .sidebar-close-btn:hover {
+        background: #f1f3f5;
+        color: #495057;
+    }
+
+    .sidebar-content {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* ===== 详情页内容在侧边栏中的全面适配 ===== */
+
+    /* -- Hero 区域：紧凑化 -- */
+    .sidebar-content .ai-hero {
+        padding: 36px 28px !important;
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%) !important;
+    }
+
+    .sidebar-content .ai-hero::before {
+        display: none;
+    }
+
+    .sidebar-content .ai-hero-inner {
+        flex-direction: row !important;
+        gap: 24px !important;
+        max-width: 100% !important;
+        align-items: center !important;
+    }
+
+    .sidebar-content .ai-hero h1 {
+        font-size: 20px !important;
+        margin-bottom: 6px !important;
+        letter-spacing: 0.5px !important;
+        line-height: 1.35 !important;
+        color: #1a237e !important;
+    }
+
+    .sidebar-content .ai-hero .subtitle {
+        font-size: 14px !important;
+        margin-bottom: 4px !important;
+        color: #37474f !important;
+        font-weight: 600 !important;
+    }
+
+    .sidebar-content .ai-hero .desc {
+        font-size: 12px !important;
+        max-width: 100% !important;
+        line-height: 1.6 !important;
+        color: #78909c !important;
+    }
+
+    .sidebar-content .hero-left {
+        flex: 1 !important;
+        min-width: 0 !important;
+    }
+
+    .sidebar-content .hero-right {
+        width: 210px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .sidebar-content .hero-tags {
+        margin-top: 12px !important;
+        gap: 8px !important;
+    }
+
+    .sidebar-content .hero-tag {
+        font-size: 11px !important;
+        padding: 5px 12px !important;
+        border-radius: 14px !important;
+        background: rgba(255, 255, 255, 0.8) !important;
+        border: 1px solid #90b4f8 !important;
+        color: #1a56db !important;
+        font-weight: 500 !important;
+    }
+
+    .sidebar-content .hero-slogan {
+        font-size: 15px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .sidebar-content .back-btn {
+        display: none !important;
+    }
+
+    /* -- 场次卡片（标题右侧） -- */
+    .sidebar-content .schedule-card {
+        padding: 16px 14px !important;
+        border-radius: 12px !important;
+        background: #ffffff !important;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06) !important;
+        border: 1px solid #e8edf3 !important;
+        backdrop-filter: none !important;
+    }
+
+    .sidebar-content .schedule-card h3 {
+        font-size: 13px !important;
+        margin-bottom: 12px !important;
+        color: #1a1a1a !important;
+        font-weight: 700 !important;
+    }
+
+    .sidebar-content .schedule-item {
+        padding: 8px 0 8px 12px !important;
+        margin-left: 0 !important;
+        border-left: 2px solid #1677FF !important;
+    }
+
+    .sidebar-content .schedule-item:not(:last-child) {
+        margin-bottom: 8px !important;
+        padding-bottom: 10px !important;
+        border-bottom: 1px solid #f0f2f5 !important;
+    }
+
+    .sidebar-content .schedule-date {
+        font-size: 13px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .sidebar-content .schedule-location {
+        font-size: 12px !important;
+    }
+
+    /* -- 通用段落容器 -- */
+    .sidebar-content .section-container {
+        max-width: 100% !important;
+        padding: 32px 28px !important;
+    }
+
+    .sidebar-content .section-container + .section-container {
+        margin-top: 4px !important;
+    }
+
+    .sidebar-content .section-title {
+        margin-bottom: 20px !important;
+    }
+
+    .sidebar-content .section-title h2 {
+        font-size: 18px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .sidebar-content .section-title p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        color: #8c8c8c !important;
+    }
+
+    /* -- 价值卡片网格：三列并排 -- */
+    .sidebar-content .value-cards {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+    }
+
+    .sidebar-content .value-card {
+        padding: 16px 14px !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+    }
+
+    .sidebar-content .value-card:hover {
+        transform: none !important;
+    }
+
+    .sidebar-content .value-icon {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 10px !important;
+        font-size: 20px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .sidebar-content .value-card h3 {
+        font-size: 15px !important;
+        margin-bottom: 3px !important;
+    }
+
+    .sidebar-content .value-card .highlight {
+        font-size: 12px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .sidebar-content .value-card p {
+        font-size: 12px !important;
+        line-height: 1.6 !important;
+        margin-bottom: 8px !important;
+    }
+
+    .sidebar-content .value-badge {
+        font-size: 11px !important;
+        padding: 3px 8px !important;
+    }
+
+    /* -- 课程设计网格（CEO 页面）：三列并排 -- */
+    .sidebar-content .design-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        align-items: stretch !important;
+    }
+
+    .sidebar-content .design-card {
+        border-radius: 12px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+    }
+
+    .sidebar-content .design-header {
+        padding: 14px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        flex: 1 !important;
+        justify-content: center !important;
+        min-height: 110px !important;
+    }
+
+    .sidebar-content .design-header.purple,
+    .sidebar-content .design-header.orange,
+    .sidebar-content .design-header.teal {
+        background: linear-gradient(135deg, #6FA3F2, #4A8AE0) !important;
+    }
+
+    .sidebar-content .design-body {
+        padding: 12px 14px !important;
+        flex: 1 !important;
+    }
+
+    .sidebar-content .design-header h3 {
+        font-size: 14px !important;
+    }
+
+    .sidebar-content .design-header p {
+        font-size: 11px !important;
+    }
+
+    .sidebar-content .design-num {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 13px !important;
+        margin-bottom: 6px !important;
+    }
+
+    .sidebar-content .design-item {
+        font-size: 12px !important;
+        padding: 6px 0 !important;
+    }
+
+    /* -- 课程流程时间线：双列并排 -- */
+    .sidebar-content .process-timeline {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 16px !important;
+        align-items: start !important;
+    }
+
+    .sidebar-content .timeline-day {
+        padding: 14px 12px !important;
+        border-radius: 12px !important;
+        border: 1px solid #eef0f4 !important;
+    }
+
+    .sidebar-content .day-header {
+        margin-bottom: 12px !important;
+        padding-bottom: 8px !important;
+        gap: 8px !important;
+        border-bottom: 1px solid #f0f2f5 !important;
+    }
+
+    .sidebar-content .day-num {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+    }
+
+    .sidebar-content .day-header h3 {
+        font-size: 14px !important;
+    }
+
+    .sidebar-content .session-item {
+        padding: 6px 0 !important;
+        gap: 8px !important;
+        align-items: flex-start !important;
+    }
+
+    .sidebar-content .session-time {
+        font-size: 11px !important;
+        padding: 6px 10px !important;
+        border-radius: 6px !important;
+        min-height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        line-height: 1.2 !important;
+    }
+
+    .sidebar-content .session-content h4 {
+        font-size: 13px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .sidebar-content .session-content p {
+        font-size: 11px !important;
+    }
+
+    /* -- 讲师区域（所有变体网格） -- */
+    .sidebar-content .instructor-section {
+        padding: 20px 0 !important;
+        margin-bottom: 0 !important;
+        background: transparent !important;
+        border-radius: 0 !important;
+    }
+
+    .sidebar-content .instructor-grid,
+    .sidebar-content .instructor-grid-five,
+    .sidebar-content .instructor-grid-six {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 14px !important;
+        max-width: 100% !important;
+    }
+
+    .sidebar-content .instructor-grid-single {
+        grid-template-columns: 1fr !important;
+        max-width: 360px !important;
+    }
+
+    .sidebar-content .instructor-card {
+        padding: 16px !important;
+        border-radius: 10px !important;
+    }
+
+    .sidebar-content .instructor-avatar {
+        width: 80px !important;
+        height: 80px !important;
+        font-size: 32px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .sidebar-content .instructor-name {
+        font-size: 16px !important;
+        margin-bottom: 4px !important;
+    }
+
+    .sidebar-content .instructor-title {
+        font-size: 13px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .sidebar-content .instructor-desc {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+
+    /* -- FAQ 区域 -- */
+    .sidebar-content .faq-list {
+        max-width: 100% !important;
+    }
+
+    .sidebar-content .faq-item {
+        border-radius: 10px !important;
+        margin-bottom: 8px !important;
+        border: 1px solid #eef0f4 !important;
+    }
+
+    .sidebar-content .faq-item:hover {
+        border-color: #b8d4ff !important;
+    }
+
+    .sidebar-content .faq-question {
+        font-size: 13px !important;
+        padding: 12px 14px !important;
+    }
+
+    .sidebar-content .faq-icon {
+        font-size: 16px !important;
+    }
+
+    .sidebar-content .faq-answer-inner {
+        padding: 0 14px 10px !important;
+        font-size: 12px !important;
+        line-height: 1.7 !important;
+    }
+
+    /* -- 联系/咨询区域 -- */
+    .sidebar-content .contact-section {
+        padding: 20px 18px !important;
+        border-radius: 12px !important;
+        margin-top: 0 !important;
+    }
+
+    .sidebar-content .contact-section h3 {
+        font-size: 16px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .sidebar-content .contact-info {
+        font-size: 14px !important;
+    }
+
+    .sidebar-content .contact-note {
+        font-size: 12px !important;
+    }
+
+    /* -- 内联样式的后续机制覆盖 -- */
+    .sidebar-content div[style*="text-align: center"] h4 {
+        font-size: 15px !important;
+    }
+
+    .sidebar-content div[style*="text-align: center"] p {
+        font-size: 13px !important;
+    }
+
+    @media (max-width: 768px) {
+        #sidebar-detail {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+</style>
+
 <div id="public-list-view">
 <div class="section-full-width section-white">
 <div class="content-wrapper">
@@ -8,7 +827,7 @@
         <p>了解课程详细安排，找到您需要的课程学习</p>
     </div>
 
-    <!-- 搜索筛选栏 -->
+<!-- 搜索筛选栏 -->
     <div class="course-filter-bar">
         <div class="filter-row">
             <input type="text" class="filter-input" placeholder="输入关键字">
@@ -55,152 +874,280 @@
         </div>
     </div>
 
-    <!-- 课程列表容器 -->
+    <!-- 课程卡片网格容器 -->
     <!-- 注意：data-start-date 用于自动排序，如有多个场次日期，请填写最晚的日期 -->
-    <div class="course-list-container">
+    <div class="course-card-grid course-list-container">
         
         <!-- 课程1：CEO专场 -->
-        <div class="course-list-item" data-start-date="2026-06-25">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-25" data-category="management" data-audience="ceo">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i1/O1CN01hFAlax1M2iWoO1GR4_!!6000000001377-2-tps-720-405.png" alt="CEO专场">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">悟空·破界者进化营【CEO专场】</h3>
-                <p class="course-subtitle">两天一晚，带你直接跑通 AI 业务系统 Demo</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>杭州、合肥</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月6-7日 / 6月25-26日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天1晚</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-blue tag-lg">CEO专场</span>
+                    <span class="vcard-highlight-tag tag-orange tag-sm">跑通AI业务系统Demo</span>
+                </div>
+                <h3 class="vcard-title course-title">悟空·破界者进化营</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>杭州</span><span class="vcard-meta-time">6月6-7日</span></span>
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>合肥</span><span class="vcard-meta-time">6月25-26日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-ceo-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程2：AI转型三级跳 -->
-        <div class="course-list-item" data-start-date="2026-05-29">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-05-29" data-category="ai-transformation" data-audience="manager">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i4/O1CN01UKzju81j4J425oRJ4_!!6000000004494-2-tps-1079-557.png" alt="AI转型三级跳">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">AI转型三级跳</h3>
-                <p class="course-subtitle">AI时代的业务设计和组织设计</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>广州</span>
-                    <span class="meta-item"><strong>开课时间：</strong>5月29-30日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-purple tag-lg">AI转型</span>
+                    <span class="vcard-highlight-tag tag-green tag-sm">业务+组织设计</span>
+                </div>
+                <h3 class="vcard-title course-title">AI转型三级跳</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>广州</span><span class="vcard-meta-time">5月29-30日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-ai-transformation-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程3：餐饮连锁AI落地与组织升级 -->
-        <div class="course-list-item" data-start-date="2026-06-08">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-08" data-category="ai-transformation" data-audience="ceo">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i4/O1CN01vc0dNs1tvZHXN5OUq_!!6000000005964-2-tps-1124-863.png" alt="餐饮连锁AI落地">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">餐饮连锁AI落地与组织升级</h3>
-                <p class="course-subtitle">拿到新地图 | 开启新模式 | 成就新组织</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月8-9日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-orange tag-lg">餐饮连锁</span>
+                    <span class="vcard-highlight-tag tag-blue tag-sm">AI落地</span>
+                    <span class="vcard-highlight-tag tag-green tag-sm">组织升级</span>
+                </div>
+                <h3 class="vcard-title course-title">餐饮连锁AI落地与组织升级</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>杭州</span><span class="vcard-meta-time">6月8-9日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-catering-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程4：AI+HR实战营 -->
-        <div class="course-list-item" data-start-date="2026-06-10">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-10" data-category="hr" data-audience="hr">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i4/O1CN01YewURw1h8JIPkIyv9_!!6000000004232-2-tps-1054-499.png" alt="AI+HR实战营">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">AI+HR实战营</h3>
-                <p class="course-subtitle">四步打造HR专属智能体 · AI时代的人力资源必修课</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong>威廉</span>
-                    <span class="meta-item"><strong>开课城市：</strong>成都</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月10-11日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-purple tag-lg">HR专属</span>
+                    <span class="vcard-highlight-tag tag-blue tag-sm">智能体实战</span>
+                </div>
+                <h3 class="vcard-title course-title">AI+HR实战营</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>成都</span><span class="vcard-meta-time">6月10-11日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-hr-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程5：从存量到增量AI创新增长实战营 -->
-        <div class="course-list-item" data-start-date="2026-06-12">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-12" data-category="management" data-audience="manager">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i2/O1CN01a0yS121uIT5LcLZGj_!!6000000006014-2-tps-1599-953.png" alt="AI创新增长实战营">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">从存量到增量AI创新增长实战营</h3>
-                <p class="course-subtitle">用AI原生组织重构企业增长逻辑，从存量红海杀入增量蓝海</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月12-13日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-green tag-lg">存量→增量</span>
+                    <span class="vcard-highlight-tag tag-orange tag-sm">AI原生组织</span>
+                </div>
+                <h3 class="vcard-title course-title">从存量到增量AI创新增长实战营</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>杭州</span><span class="vcard-meta-time">6月12-13日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-growth-ai-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程6：开启AI新篇章 -->
-        <div class="course-list-item" data-start-date="2026-06-13">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-13" data-category="ai-transformation" data-audience="manager">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i1/O1CN01dINpj11ExUhWxr8LR_!!6000000000418-2-tps-800-485.png" alt="开启AI新篇章">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">开启AI新篇章</h3>
-                <p class="course-subtitle">全部门 AI 落地 · 标杆案例 + 企业流程，企业效率速升！</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>杭州</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月13-14日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-blue tag-lg">全部门AI落地</span>
+                    <span class="vcard-highlight-tag tag-green tag-sm">标杆案例</span>
+                </div>
+                <h3 class="vcard-title course-title">开启AI新篇章</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>杭州</span><span class="vcard-meta-time">6月13-14日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-new-chapter-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
         <!-- 课程7：电商AI自动化实战营 -->
-        <div class="course-list-item" data-start-date="2026-06-25">
-            <div class="course-thumb">
+        <div class="course-vcard course-list-item" data-start-date="2026-06-25" data-category="ecommerce" data-audience="operator">
+            <div class="vcard-cover course-thumb">
                 <img src="https://gw.alicdn.com/imgextra/i2/O1CN01XXWgPz1v6OFxElOQi_!!6000000006123-2-tps-1535-825.png" alt="电商AI自动化实战营">
+                <span class="vcard-duration-tag">2天</span>
             </div>
-            <div class="course-info">
-                <h3 class="course-title">电商AI自动化实战营</h3>
-                <p class="course-subtitle">让运营自动跑 · 2天打造全自动运营，人效翻倍</p>
-                <div class="course-meta">
-                    <span class="meta-item"><strong>授课讲师：</strong></span>
-                    <span class="meta-item"><strong>开课城市：</strong>义乌</span>
-                    <span class="meta-item"><strong>开课时间：</strong>6月25-26日</span>
-                    <span class="meta-item"><strong>课程天数：</strong>2天</span>
+            <div class="vcard-body course-info">
+                <div class="vcard-highlights">
+                    <span class="vcard-highlight-tag tag-orange tag-lg">电商运营</span>
+                    <span class="vcard-highlight-tag tag-purple tag-sm">自动化实战</span>
+                    <span class="vcard-highlight-tag tag-green tag-sm">人效翻倍</span>
+                </div>
+                <h3 class="vcard-title course-title">电商AI自动化实战营</h3>
+                <div class="vcard-meta course-meta">
+                    <span class="vcard-meta-item meta-item"><span class="vcard-meta-location"><span class="meta-icon">📍</span>义乌</span><span class="vcard-meta-time">6月25-26日</span></span>
                 </div>
             </div>
-            <div class="course-action">
+            <div class="vcard-footer course-action">
                 <a href="public-ecommerce-auto-detail.html" class="detail-btn">查看详情</a>
             </div>
         </div>
 
     </div>
+    </div>
 </div>
+
+<script>
+    // ===== 侧边栏课程详情功能 =====
+    // 注意：此脚本在 AJAX 加载后立即执行，不能使用 DOMContentLoaded
+    (function() {
+        var sidebarDetail = document.getElementById('sidebar-detail');
+        var sidebarOverlay = document.getElementById('sidebar-overlay');
+        var sidebarCloseBtn = document.querySelector('.sidebar-close-btn');
+        var sidebarContent = document.querySelector('.sidebar-content');
+
+        if (!sidebarDetail || !sidebarOverlay || !sidebarCloseBtn || !sidebarContent) return;
+
+        // 加载课程详情到侧边栏
+        function openDetail(detailUrl) {
+            sidebarContent.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#999;font-size:15px;"><div style="width:32px;height:32px;border:3px solid #e0e0e0;border-top-color:#1677FF;border-radius:50%;animation:sidebarSpin 0.8s linear infinite;margin:0 auto 16px;"></div>正在加载...</div>';
+            document.body.classList.add('sidebar-active');
+
+            fetch(detailUrl)
+                .then(function(res) {
+                    if (!res.ok) throw new Error('加载失败');
+                    return res.text();
+                })
+                .then(function(html) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(html, 'text/html');
+
+                    // 注入详情页 <style> 到主页面（侧边栏内生效）
+                    var styles = doc.querySelectorAll('style');
+                    var scopedCss = '';
+                    styles.forEach(function(s) { scopedCss += s.textContent + '\n'; });
+                    if (scopedCss) {
+                        var styleEl = document.createElement('style');
+                        styleEl.id = 'sidebar-scoped-style';
+                        styleEl.textContent = scopedCss;
+                        document.head.appendChild(styleEl);
+                    }
+
+                    // 填充 body 内容
+                    sidebarContent.innerHTML = doc.body.innerHTML;
+
+                    // 隐藏返回按钮
+                    sidebarContent.querySelectorAll('.back-btn').forEach(function(b) { b.style.display = 'none'; });
+
+                    // 4张卡片的 value-cards 自动切换为 2x2 布局
+                    sidebarContent.querySelectorAll('.value-cards').forEach(function(vc) {
+                        var cards = vc.querySelectorAll(':scope > .value-card');
+                        if (cards.length >= 4) {
+                            vc.style.setProperty('grid-template-columns', 'repeat(2, 1fr)', 'important');
+                        }
+                    });
+
+                    // 执行详情页 <script>
+                    sidebarContent.querySelectorAll('script').forEach(function(old) {
+                        var s = document.createElement('script');
+                        Array.from(old.attributes).forEach(function(a) { s.setAttribute(a.name, a.value); });
+                        if (old.textContent) s.textContent = old.textContent;
+                        old.parentNode.replaceChild(s, old);
+                    });
+
+                    sidebarContent.scrollTop = 0;
+                })
+                .catch(function(err) {
+                    console.error('[Sidebar] Load error:', err);
+                    sidebarContent.innerHTML = '<div style="text-align:center;padding:80px 20px;color:#999;">加载详情失败，请稍后再试。</div>';
+                });
+        }
+
+        // 关闭侧边栏
+        function closeSidebar() {
+            document.body.classList.remove('sidebar-active');
+            setTimeout(function() {
+                sidebarContent.innerHTML = '';
+                var s = document.getElementById('sidebar-scoped-style');
+                if (s) s.remove();
+            }, 350);
+        }
+
+        // 关闭事件
+        sidebarCloseBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.body.classList.contains('sidebar-active')) closeSidebar();
+        });
+
+        // "查看详情"按钮 -> 打开侧边栏
+        document.querySelectorAll('.vcard-footer .detail-btn').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                var url = btn.getAttribute('href');
+                if (url) openDetail(url);
+            });
+        });
+
+        // 卡片整体点击 -> 打开侧边栏
+        document.querySelectorAll('.course-vcard.course-list-item').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.detail-btn')) return;
+                var link = card.querySelector('.detail-btn');
+                if (link) {
+                    var url = link.getAttribute('href');
+                    if (url) openDetail(url);
+                }
+            });
+        });
+    })();
+</script>
+
+<!-- 侧边详情页 HTML 结构 -->
+<div id="sidebar-overlay"></div>
+<div id="sidebar-detail">
+    <div class="sidebar-header">
+        <h3>课程详情</h3>
+        <button class="sidebar-close-btn">×</button>
+    </div>
+    <div class="sidebar-content">
+    </div>
 </div>
 
 
