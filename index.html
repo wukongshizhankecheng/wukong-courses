@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>钉钉AI咨询研究院 - 课程系统</title>
-    <link rel="stylesheet" href="common-styles.css">
+    <link rel="stylesheet" href="common-styles.css?v=20260616c">
     <style>
         /* 简单的加载动画 */
         .loading-spinner {
@@ -157,7 +157,8 @@
         
         .qr-modal-content img {
             width: 400px;
-            height: 400px;
+            max-width: 90vw;
+            height: auto;
             object-fit: contain;
             display: block;
         }
@@ -225,7 +226,7 @@
                 <button class="nav-tab" data-tab="public" onclick="switchMainTab('public')">公开课</button>
                 <button class="nav-tab" data-tab="enterprise" onclick="switchMainTab('enterprise')">企业定制课程</button>
                 <button class="nav-tab" data-tab="online" onclick="switchMainTab('online')">线上课程</button>
-                <button class="nav-tab" data-tab="about" onclick="switchMainTab('about')">关于我们</button>
+                <button class="nav-tab" data-tab="about" onclick="switchMainTab('about')">合作咨询</button>
             </div>
         </div>
     </nav>
@@ -276,62 +277,75 @@
             items.forEach(function(item) {
                 const title = item.querySelector('.course-title');
                 const subtitle = item.querySelector('.course-subtitle');
-                const metaItems = item.querySelectorAll('.meta-item');
                 
                 const titleText = title ? title.textContent.toLowerCase() : '';
                 const subtitleText = subtitle ? subtitle.textContent.toLowerCase() : '';
                 
-                let unitText = '', instructorText = '', cityItemText = '', timeItemText = '';
-                metaItems.forEach(function(meta) {
-                    const text = meta.textContent;
-                    if (text.indexOf('开课单位') !== -1) unitText = text;
-                    else if (text.indexOf('授课讲师') !== -1) instructorText = text;
-                    else if (text.indexOf('开课城市') !== -1) cityItemText = text;
-                    else if (text.indexOf('开课时间') !== -1) timeItemText = text;
-                });
+                // 直接查询城市和时间的专用元素
+                var cityEl = item.querySelector('.vcard-meta-location');
+                var timeEl = item.querySelector('.vcard-meta-time');
+                var cityItemText = cityEl ? cityEl.textContent : '';
+                var timeItemText = timeEl ? timeEl.textContent : '';
                 
+                // 关键字搜索：匹配标题、副标题、城市、时间
                 let matchKeyword = true;
                 if (keyword) {
                     matchKeyword = titleText.indexOf(keyword) !== -1 || 
                                    subtitleText.indexOf(keyword) !== -1 ||
-                                   unitText.toLowerCase().indexOf(keyword) !== -1 ||
-                                   instructorText.toLowerCase().indexOf(keyword) !== -1;
+                                   cityItemText.toLowerCase().indexOf(keyword) !== -1 ||
+                                   timeItemText.toLowerCase().indexOf(keyword) !== -1;
                 }
                 
+                // 课程类别：使用 data-category 属性匹配
                 let matchCategory = true;
                 if (categoryVal && categoryVal !== 'all') {
-                    const categoryKeywords = {
-                        'ai-transformation': ['AI转型', 'AI时代'],
-                        'management': ['破界者', 'CEO专场', '增长实战营', '新篇章', '餐饮连锁'],
-                        'hr': ['HR实战营', '人力资源'],
-                        'ecommerce': ['电商', '运营']
-                    };
-                    const keywords = categoryKeywords[categoryVal] || [];
-                    matchCategory = keywords.some(function(kw) {
-                        return titleText.indexOf(kw.toLowerCase()) !== -1;
-                    });
+                    const itemCategory = item.getAttribute('data-category') || '';
+                    if (itemCategory) {
+                        matchCategory = itemCategory === categoryVal;
+                    } else {
+                        // 兼容：无 data-category 时回退到文本匹配
+                        const categoryKeywords = {
+                            'ai-transformation': ['AI转型', 'AI时代', 'AI落地', 'AI新篇章'],
+                            'management': ['破界者', 'CEO专场', '增长实战营', '新篇章', '餐饮连锁', '存量', '增量'],
+                            'hr': ['HR实战营', '人力资源', 'HR专属'],
+                            'ecommerce': ['电商', '运营', '自动化']
+                        };
+                        const keywords = categoryKeywords[categoryVal] || [];
+                        matchCategory = keywords.some(function(kw) {
+                            return titleText.indexOf(kw.toLowerCase()) !== -1 || subtitleText.indexOf(kw.toLowerCase()) !== -1;
+                        });
+                    }
                 }
                 
+                // 课程对象：使用 data-audience 属性匹配
                 let matchAudience = true;
                 if (audienceVal && audienceVal !== 'all') {
-                    const audienceKeywords = {
-                        'ceo': ['CEO', '决策者', '破界者'],
-                        'manager': ['管理者', '管理'],
-                        'hr': ['HR', '人力'],
-                        'operator': ['运营', '实操']
-                    };
-                    const keywords = audienceKeywords[audienceVal] || [];
-                    matchAudience = keywords.some(function(kw) {
-                        return titleText.indexOf(kw.toLowerCase()) !== -1 || 
-                               subtitleText.indexOf(kw.toLowerCase()) !== -1;
-                    });
+                    const itemAudience = item.getAttribute('data-audience') || '';
+                    if (itemAudience) {
+                        matchAudience = itemAudience === audienceVal;
+                    } else {
+                        // 兼容：无 data-audience 时回退到文本匹配
+                        const audienceKeywords = {
+                            'ceo': ['CEO', '决策者', '破界者'],
+                            'manager': ['管理者', '管理'],
+                            'hr': ['HR', '人力'],
+                            'operator': ['运营', '实操']
+                        };
+                        const keywords = audienceKeywords[audienceVal] || [];
+                        matchAudience = keywords.some(function(kw) {
+                            return titleText.indexOf(kw.toLowerCase()) !== -1 || 
+                                   subtitleText.indexOf(kw.toLowerCase()) !== -1;
+                        });
+                    }
                 }
                 
+                // 城市筛选：匹配 meta 中的城市文本
                 let matchCity = true;
                 if (cityText && cityVal !== 'all') {
                     matchCity = cityItemText.indexOf(cityText) !== -1;
                 }
                 
+                // 时间筛选：匹配 meta 中的月份文本
                 let matchTime = true;
                 if (monthText && timeVal !== 'all') {
                     matchTime = timeItemText.indexOf(monthText) !== -1;
@@ -359,26 +373,23 @@
         
         // 公开课筛选功能初始化
         function initPublicFilter() {
-            // 如果已经初始化过，直接返回（避免重复绑定事件）
-            if (publicFilterInitialized) {
-                // 即使已初始化，也要重新排序（因为内容重新注入了）
-                sortCourseList();
-                return;
-            }
-            
-            // 绑定事件
+            // 绑定事件（使用 data 属性防止重复绑定，同时兼容 DOM 被 innerHTML 替换的情况）
             var keywordInput = document.querySelector('.filter-input');
-            if (keywordInput) {
+            if (keywordInput && !keywordInput.dataset.filterBound) {
                 keywordInput.addEventListener('input', publicFilterCourses);
+                keywordInput.dataset.filterBound = 'true';
             }
             
             var selects = document.querySelectorAll('.filter-select');
             selects.forEach(function(sel) {
-                sel.addEventListener('change', publicFilterCourses);
+                if (!sel.dataset.filterBound) {
+                    sel.addEventListener('change', publicFilterCourses);
+                    sel.dataset.filterBound = 'true';
+                }
             });
             
             var clearBtn = document.querySelector('.filter-clear-btn');
-            if (clearBtn) {
+            if (clearBtn && !clearBtn.dataset.filterBound) {
                 clearBtn.addEventListener('click', function() {
                     // 清空输入框
                     var input = document.querySelector('.filter-input');
@@ -394,11 +405,12 @@
                     publicFilterCourses();
                     sortCourseList();
                 });
+                clearBtn.dataset.filterBound = 'true';
             }
             
             publicFilterInitialized = true;
             
-            // 首次初始化也要排序
+            // 每次初始化都要重新排序（因为内容可能重新注入了）
             sortCourseList();
         }
         
@@ -456,8 +468,14 @@
                 }
             });
 
+            // 设置页面底色（合作咨询页为白色，其他页恢复默认）
+            document.body.style.background = (tabId === 'about') ? '#ffffff' : '';
+
             
-            // 2. 显示加载中（禁用缓存，确保始终加载最新内容）
+            // 2. 先滚到顶部，避免替换内容时浏览器保持底部滚动位置
+            window.scrollTo(0, 0);
+            
+            // 3. 显示加载中（禁用缓存，确保始终加载最新内容）
             container.innerHTML = '<div class="loading-spinner">正在加载内容...</div>';
 
             try {
@@ -497,8 +515,8 @@
                     setTimeout(initPublicFilter, 50);
                 }
                 
-                // 9. 自动滚动到页面顶端
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                // 9. 确保滚动位置在顶端
+                window.scrollTo(0, 0);
             } catch (error) {
                 console.error(error);
                 container.innerHTML = '<div class="loading-spinner">内容加载出错，请刷新页面重试。</div>';
@@ -569,7 +587,7 @@
             if (track.dataset.bannerInitialized === 'true') return;
             track.dataset.bannerInitialized = 'true';
 
-            var totalOriginal = 4;
+            var totalOriginal = 3;
             var currentIndex = 0;
             var autoPlayTimer;
             var isTransitioning = false;
@@ -580,12 +598,12 @@
                 var clone = slides[i].cloneNode(true);
                 track.appendChild(clone);
             }
-            // 现在 track 有 8 个 slide：[0,1,2,3,0,1,2,3]
+            // 现在 track 有 6 个 slide：[0,1,2,0,1,2]
 
             function goToSlide(index, animate) {
                 if (animate === undefined) animate = true;
                 track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-                track.style.transform = 'translateX(-' + (index * 12.5) + '%)';
+                track.style.transform = 'translateX(-' + (index * 16.6667) + '%)';
             }
 
             function updateDots(realIndex) {
@@ -608,7 +626,7 @@
                     goToSlide(currentIndex);
                     updateDots(currentIndex);
 
-                    // 当滚到克隆的第1屏（索引4）时，瞬间跳回真正的第1屏（索引0）
+                    // 当滚到克隆的第1屏（索引3）时，瞬间跳回真正的第1屏（索引0）
                     setTimeout(function() {
                         if (currentIndex >= totalOriginal) {
                             currentIndex = currentIndex % totalOriginal;
@@ -839,7 +857,7 @@
     </script>
     <footer>
         <div class="footer-logo">钉钉AI咨询研究院</div>
-        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="switchMainTab('about'); return false;">关于我们</p>
+        <p style="margin-top: 10px; cursor: pointer; color: #64b5f6;" onclick="switchMainTab('about'); return false;">合作咨询</p>
         <p style="margin-top: 10px;">© 2026 | 赋能百业，AI提效</p>
         <p style="margin-top: 10px; font-size: 12px;">如有疑问，请联系您的钉钉客户经理</p>
     </footer>
