@@ -1,5 +1,6 @@
 /* 
  * Unified Stylesheet for WuKong Courses Portal 
+ * Generated automatically by extract_css.py
  */
 
 /* --- Part 1: Styles from original index.html --- */
@@ -2700,7 +2701,7 @@
     .value-cards,
     .design-grid,
     .process-timeline {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
 }
 
@@ -4255,12 +4256,12 @@
 /* 响应式：手机 */
 @media (max-width: 480px) {
     .hero-banner {
-        aspect-ratio: unset;
-        height: auto;
-        min-height: 45vh;
+        aspect-ratio: 16/9;
+        max-height: 50vh;
     }
     .banner-bg {
-        object-fit: contain;
+        object-fit: cover;
+        object-position: center top;
     }
     
     .banner-content {
