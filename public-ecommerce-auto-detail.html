@@ -210,6 +210,10 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
         }
+
+        .value-cards-3col {
+            grid-template-columns: repeat(3, 1fr);
+        }
         
         .value-card {
             background: white;
@@ -445,12 +449,12 @@
         
         @media (max-width: 768px) {
             .ai-hero-inner {
-                flex-direction: column;
+                flex-direction: column !important;
                 gap: 24px;
             }
             
             .hero-right {
-                width: 100%;
+                width: 100% !important;
             }
             
             .ai-hero {
@@ -465,9 +469,13 @@
             .value-cards {
                 grid-template-columns: repeat(2, 1fr) !important;
             }
+
+            .value-cards-3col {
+                grid-template-columns: 1fr !important;
+            }
             
             .process-timeline {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
                 gap: 16px;
             }
             
@@ -478,6 +486,10 @@
         
         @media (max-width: 480px) {
             .value-cards {
+                grid-template-columns: 1fr !important;
+            }
+
+            .value-cards-3col {
                 grid-template-columns: 1fr !important;
             }
         }
@@ -516,7 +528,7 @@
             <h2>课程目标</h2>
             <p>从认知重塑到能力构建，全面掌握电商AI自动化</p>
         </div>
-        <div class="value-cards" style="grid-template-columns: repeat(3, 1fr);">
+        <div class="value-cards value-cards-3col">
             <div class="value-card">
                 <div class="value-icon">🎯</div>
                 <h3>知界明理</h3>
