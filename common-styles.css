@@ -4257,7 +4257,11 @@
 @media (max-width: 480px) {
     .hero-banner {
         aspect-ratio: unset;
-        height: 45vh;
+        height: auto;
+        min-height: 45vh;
+    }
+    .banner-bg {
+        object-fit: contain;
     }
     
     .banner-content {
