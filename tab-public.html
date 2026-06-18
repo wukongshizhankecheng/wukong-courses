@@ -815,6 +815,55 @@
             width: 100%;
             max-width: 100%;
         }
+
+        /* Hero 区域：上下堆叠 */
+        .sidebar-content .ai-hero-inner {
+            flex-direction: column !important;
+            gap: 16px !important;
+        }
+
+        .sidebar-content .hero-right {
+            width: 100% !important;
+            flex-shrink: 1 !important;
+        }
+
+        .sidebar-content .ai-hero {
+            padding: 24px 16px !important;
+        }
+
+        .sidebar-content .ai-hero h1 {
+            font-size: 22px !important;
+        }
+
+        /* 价值卡片：单列排列 */
+        .sidebar-content .value-cards {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+        }
+
+        /* 课程设计网格：单列排列 */
+        .sidebar-content .design-grid {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+        }
+
+        /* 课程流程时间线：上下堆叠 */
+        .sidebar-content .process-timeline {
+            grid-template-columns: 1fr !important;
+            gap: 16px !important;
+        }
+
+        /* 讲师网格：单列 */
+        .sidebar-content .instructor-grid,
+        .sidebar-content .instructor-grid-five,
+        .sidebar-content .instructor-grid-six {
+            grid-template-columns: 1fr !important;
+        }
+
+        /* 内容容器减少内边距 */
+        .sidebar-content .section-container {
+            padding: 24px 16px !important;
+        }
     }
 </style>
 
