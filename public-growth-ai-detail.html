@@ -427,12 +427,12 @@
         
         @media (max-width: 768px) {
             .ai-hero-inner {
-                flex-direction: column;
+                flex-direction: column !important;
                 gap: 24px;
             }
             
             .hero-right {
-                width: 100%;
+                width: 100% !important;
             }
             
             .ai-hero {
@@ -445,15 +445,15 @@
             }
             
             .value-cards {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr !important;
             }
             
             .instructor-grid-six {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr !important;
             }
             
             .process-timeline {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
                 gap: 16px;
             }
             
@@ -464,11 +464,11 @@
         
         @media (max-width: 480px) {
             .value-cards {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
             
             .instructor-grid-six {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
             }
         }
     </style>
