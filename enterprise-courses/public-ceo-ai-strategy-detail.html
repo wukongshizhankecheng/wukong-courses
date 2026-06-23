@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老板AI战略决断私享会 - 课程详情</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* 老板AI战略决断私享会详情页专属样式 */
+        .ai-hero {
+            background: #eef4ff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-left { flex: 1; }
+        .hero-right { flex-shrink: 0; width: 320px; }
+
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .ai-hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            color: #1a237e;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #1a237e;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #455a64;
+            line-height: 1.8;
+            max-width: 600px;
+            margin-bottom: 28px;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .hero-tag {
+            background: #d4e4ff;
+            color: #1677FF;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(22, 119, 255, 0.3);
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 36px;
+            border-radius: 10px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(22, 119, 255, 0.6);
+        }
+
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 20px 18px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .schedule-card h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule-item {
+            position: relative;
+            padding: 10px 0 10px 14px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+
+        .schedule-item:not(:last-child) {
+            margin-bottom: 8px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .schedule-date {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .poster-thumb {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eef0f5;
+            transition: all 0.3s ease;
+        }
+        .poster-thumb:hover {
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .poster-thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .poster-thumb-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 0;
+            background: #1677FF;
+            letter-spacing: 1px;
+        }
+
+        /* 海报灯箱 */
+        .poster-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            cursor: zoom-out;
+        }
+        .poster-lightbox.active { display: flex; }
+        .poster-lightbox img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .poster-lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .poster-lightbox-close:hover { opacity: 1; }
+
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 课程价值对比 */
+        .value-contrast {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .value-card-contrast {
+            border-radius: 16px;
+            padding: 36px 32px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .value-card-contrast.not-this {
+            background: #fafafa;
+            border-color: #eee;
+        }
+
+        .value-card-contrast.is-this {
+            background: white;
+            border-color: #b8d4ff;
+            box-shadow: 0 4px 20px rgba(22, 119, 255, 0.1);
+        }
+
+        .value-card-contrast .vc-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .value-card-contrast h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .value-card-contrast ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .value-card-contrast li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #555;
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .value-card-contrast li .icon {
+            flex-shrink: 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .value-quote {
+            max-width: 900px;
+            margin: 36px auto 0;
+            text-align: center;
+            background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
+            border-radius: 14px;
+            padding: 28px 36px;
+            border: 1px solid #b8d4ff;
+            font-size: 16px;
+            color: #1a237e;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        /* 课程模块 */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .module-header {
+            padding: 24px;
+            color: white;
+        }
+
+        .module-header.purple { background: linear-gradient(135deg, #6da0ef, #518fe2); }
+        .module-header.orange { background: linear-gradient(135deg, #6da0ef, #518fe2); }
+        .module-header.teal   { background: linear-gradient(135deg, #6da0ef, #518fe2); }
+
+        .module-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .module-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .module-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .module-body {
+            padding: 24px;
+        }
+
+        .module-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .module-item:last-child { border-bottom: none; }
+
+        .module-item::before {
+            content: '▸';
+            color: #1677FF;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* 交付物 */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .deliverable-item {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 20px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            border-color: #1677FF;
+        }
+
+        .deliverable-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 12px;
+        }
+
+        .deliverable-item h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        /* 陪跑流程 */
+        .runway-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .runway-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #1677FF, #26C6A2);
+            border-radius: 2px;
+        }
+
+        .runway-phase {
+            display: flex;
+            align-items: flex-start;
+            gap: 28px;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .runway-phase:last-child { margin-bottom: 0; }
+
+        .runway-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 3px 12px rgba(22, 119, 255, 0.4);
+            z-index: 1;
+            margin-left: 31px;
+        }
+
+        .runway-content {
+            flex: 1;
+            background: white;
+            border-radius: 14px;
+            padding: 24px 28px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .runway-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .runway-content p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* 导师介绍 */
+        .mentor-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 48px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .mentor-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(22, 119, 255, 0.3);
+        }
+
+        .mentor-info h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .mentor-title {
+            font-size: 14px;
+            color: #1677FF;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        .mentor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .mentor-tag {
+            background: #f0f5ff;
+            color: #1677FF;
+            font-size: 13px;
+            padding: 5px 12px;
+            border-radius: 16px;
+            border: 1px solid #d4e4ff;
+        }
+
+        .mentor-desc {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* FAQ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #1677FF;
+        }
+
+        .faq-question {
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            user-select: none;
+        }
+
+        .faq-icon {
+            color: #1677FF;
+            font-size: 20px;
+            font-weight: 700;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 16px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 24px 20px;
+            font-size: 15px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .ai-hero { padding: 48px 20px; }
+            .ai-hero-inner {
+                flex-direction: column !important;
+                gap: 32px;
+            }
+            .hero-right { width: 100% !important; }
+            .ai-hero h1 { font-size: 32px !important; letter-spacing: 1px; }
+            .ai-hero .subtitle { font-size: 18px !important; }
+            .modules-grid { grid-template-columns: 1fr !important; }
+            .deliverables-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            .value-contrast { grid-template-columns: 1fr !important; }
+            .mentor-card {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center;
+                padding: 32px 24px;
+            }
+            .mentor-tags { justify-content: center; }
+            .runway-timeline::before { left: 20px; }
+            .runway-dot { margin-left: 1px; }
+            .section-title h2 { font-size: 26px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .ai-hero h1 { font-size: 26px !important; }
+            .ai-hero .subtitle { font-size: 16px !important; }
+            .deliverables-grid { grid-template-columns: 1fr !important; }
+            .section-title h2 { font-size: 22px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <h1>老板AI战略决断私享会</h1>
+                <p class="subtitle">1天看透AI战略全局 · 1晚画出AI转型地图</p>
+                <p class="desc">别人教你"使用AI"，我们教您"决断AI"。专为CEO、创始人设计的AI战略私享会，一天认知重塑，一晚画出转型地图，30天陪跑落地。</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">CEO专属</span>
+                    <span class="hero-tag">战略视角</span>
+                    <span class="hero-tag">场景体验</span>
+                    <span class="hero-tag">共创工作坊</span>
+                    <span class="hero-tag">30天陪跑</span>
+                </div>
+                <a class="back-btn" href="javascript:void(0)" onclick="window.history.back()">← 返回课程列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 课程安排</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">2026年7月5日（周日）</div>
+                        <div class="schedule-location">
+                            <span>📍</span>
+                            <span>上海阿里中心</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="schedule-date">30天线上陪跑</div>
+                    </div>
+                    <div class="poster-thumb" onclick="openPosterLightbox()">
+                        <img src="https://gw.alicdn.com/imgextra/i1/O1CN01JEXjfd1PsQ5csPhdv_!!6000000001896-2-tps-1080-6408.png" alt="课程海报" />
+                        <span class="poster-thumb-label">查看课程海报</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程价值 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>这门课，有什么不同？</h2>
+            <p>等待，是这个时代最危险的选择</p>
+        </div>
+        <div class="value-contrast">
+            <div class="value-card-contrast not-this">
+                <div class="vc-icon">❌</div>
+                <h3 style="color:#999;">普通AI课</h3>
+                <ul>
+                    <li><span class="icon">·</span>学操作、看演示</li>
+                    <li><span class="icon">·</span>听概念、记笔记</li>
+                    <li><span class="icon">·</span>讲师演示，学员旁观</li>
+                    <li><span class="icon">·</span>课程结束即失联</li>
+                </ul>
+            </div>
+            <div class="value-card-contrast is-this">
+                <div class="vc-icon">✅</div>
+                <h3 style="color:#1a237e;">老板AI战略决断私享会</h3>
+                <ul>
+                    <li><span class="icon" style="color:#1677FF;">·</span><strong>定战略</strong>——五力模型诊断结构性盲区</li>
+                    <li><span class="icon" style="color:#1677FF;">·</span><strong>识场景</strong>——六大AI场景沉浸体验</li>
+                    <li><span class="icon" style="color:#1677FF;">·</span><strong>画地图</strong>——共创你的AI转型战略地图</li>
+                    <li><span class="icon" style="color:#1677FF;">·</span><strong>做承诺</strong>——30天落地计划 + 首周行动锁定</li>
+                </ul>
+            </div>
+        </div>
+        <div class="value-quote">
+            AI既没有形影，一把手接下的第一个场景，就是全公司的开篇。
+        </div>
+    </div>
+
+    <!-- 三大课程模块 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>三大核心模块</h2>
+            <p>从认知破壁到场景体验，再到共创产出，一天系统构建AI战略认知</p>
+        </div>
+        <div class="modules-grid">
+            <!-- 模块1：认知破壁 -->
+            <div class="module-card">
+                <div class="module-header purple">
+                    <div class="module-num">01</div>
+                    <h3>认知破壁</h3>
+                    <p>看见盲区，找到结构性突破口</p>
+                </div>
+                <div class="module-body">
+                    <div class="module-item">现场诊断：看到同行老板的真实现状</div>
+                    <div class="module-item">五力模型：找到你的最大结构性盲区</div>
+                    <div class="module-item">战略地图：看懂护城河为何天地差别</div>
+                </div>
+            </div>
+
+            <!-- 模块2：场景体验 -->
+            <div class="module-card">
+                <div class="module-header orange">
+                    <div class="module-num">02</div>
+                    <h3>场景体验</h3>
+                    <p>六大高价值AI场景沉浸演示</p>
+                </div>
+                <div class="module-body">
+                    <div class="module-item">会议秘书：AI驱动的会议全流程管理</div>
+                    <div class="module-item">市场洞察：实时竞争情报与行业分析</div>
+                    <div class="module-item">经营分析：数据驱动的经营决策辅助</div>
+                    <div class="module-item">销冠助理：AI赋能销售全流程提效</div>
+                    <div class="module-item">智能客服：7×24小时智能应答系统</div>
+                    <div class="module-item">法务助理：合同审查与合规风险预警</div>
+                </div>
+            </div>
+
+            <!-- 模块3：共创工作坊 -->
+            <div class="module-card">
+                <div class="module-header teal">
+                    <div class="module-num">03</div>
+                    <h3>共创工作坊</h3>
+                    <p>画出你的AI转型战略地图</p>
+                </div>
+                <div class="module-body">
+                    <div class="module-item">绘制地图：画出你的AI转型战略地图</div>
+                    <div class="module-item">炮火检验：15人互相诊断，灵魂三问</div>
+                    <div class="module-item">公开承诺：30天落地计划 + 首周行动锁定</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6大即时交付物 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>6大即时交付物</h2>
+            <p>课程结束，带走属于你的AI战略工具箱</p>
+        </div>
+        <div class="deliverables-grid">
+            <div class="deliverable-item">
+                <div class="deliverable-icon">📊</div>
+                <h4>五力模型快照卡</h4>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon">🔥</div>
+                <h4>热点场景规划模板</h4>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon">💰</div>
+                <h4>AI ROI决策卡</h4>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon">🗺️</div>
+                <h4>AI战略地图</h4>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon">✍️</div>
+                <h4>AI变革承诺书</h4>
+            </div>
+            <div class="deliverable-item">
+                <div class="deliverable-icon">🩺</div>
+                <h4>AI成熟度评估诊断</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- 30天线上陪跑 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>30天线上陪跑</h2>
+            <p>企业AI落地PK赛，从认知到结果的全程陪伴</p>
+        </div>
+        <div class="runway-timeline">
+            <div class="runway-phase">
+                <div class="runway-dot">1</div>
+                <div class="runway-content">
+                    <h4>第一阶段 · 第1周</h4>
+                    <p>公众号/平台启动 → MVP团队确认。明确首个AI落地场景，组建最小可行团队，启动项目。</p>
+                </div>
+            </div>
+            <div class="runway-phase">
+                <div class="runway-dot">2</div>
+                <div class="runway-content">
+                    <h4>第二阶段 · 第2–3周</h4>
+                    <p>线上测试 → 48小时联合验证。在线跑通AI场景原型，导师团队48小时内联合验证可行性并给出优化建议。</p>
+                </div>
+            </div>
+            <div class="runway-phase">
+                <div class="runway-dot">3</div>
+                <div class="runway-content">
+                    <h4>第三阶段 · 第4周</h4>
+                    <p>细化拆解 → 路线图汇报。完成AI落地方案的细化拆解，输出完整路线图，进行阶段性成果汇报。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 导师介绍 -->
+    <!-- <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>导师介绍</h2>
+            <p>企业AI战略落地实战派导师</p>
+        </div>
+        <div class="mentor-card">
+            <div class="mentor-avatar">韦</div>
+            <div class="mentor-info">
+                <h3>韦宗骏（韦宁）</h3>
+                <p class="mentor-title">企业AI战略落地顾问 | 钉钉AI咨询研究团队AI实战导师</p>
+                <div class="mentor-tags">
+                    <span class="mentor-tag">北大+复旦双学位</span>
+                    <span class="mentor-tag">阿里&华为等多家科技公司顾问</span>
+                    <span class="mentor-tag">服务150+企业智能化转型</span>
+                    <span class="mentor-tag">主导10+项目获国家级奖项</span>
+                    <span class="mentor-tag">500+案例经验</span>
+                    <span class="mentor-tag">专注AI+企业管理</span>
+                </div>
+                <p class="mentor-desc">擅长小步快跑、渐进式落地，专注AI+企业管理领域，专业领域为AI战略规划。帮助150+企业实现智能化转型，拥有丰富的跨行业AI落地实战经验。</p>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- 常见问题 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>常见问题</h2>
+            <p>关于老板AI战略决断私享会，你可能想知道的</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>这门课和市面上的AI培训有什么区别？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        市面上的AI课大多教操作和工具使用，面向执行层。这门课专为决策者设计，聚焦战略视角——帮你识别AI转型的结构性盲区，画出属于你自己的AI战略地图，并通过30天陪跑确保落地。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>我不懂技术，能跟上课程内容吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        完全可以。本课程面向CEO、创始人等决策层设计，不涉及编程或技术实现。课程通过场景体验、案例拆解和共创工作坊的方式，让你从战略层面理解AI的价值和落地路径。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>30天陪跑具体怎么进行？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        课程结束后进入30天线上陪跑阶段：第1周启动MVP团队，第2-3周线上测试并进行48小时联合验证，第4周细化拆解并输出路线图汇报。期间有导师团队持续跟进和PK赛机制，确保AI落地不停留在纸面。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>课程适合哪些行业和规模的企业？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        课程覆盖制造、零售、餐饮、服务、科技等多个行业。无论企业规模大小，AI战略的核心逻辑相通——找到你的结构性突破口，选择最适合的落地场景，小步快跑逐步推进。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>如何报名？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        可通过页面底部的报名链接直接报名，或联系您的钉钉客户经理获取专属报名通道。席位有限，仅限企业CEO、创始人或授权决策人参加。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 报名信息 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>报名信息</h2>
+            <p>小班制闭门会，仅限15家企业决策者参加</p>
+        </div>
+        <div class="reg-card">
+            <div class="reg-card-left">
+                <div class="reg-info-grid">
+                    <div class="reg-info-item">
+                        <span class="reg-info-label">时间</span>
+                        <span class="reg-info-value">7月5日（周日）09:00 – 21:30</span>
+                    </div>
+                    <div class="reg-info-item">
+                        <span class="reg-info-label">地点</span>
+                        <span class="reg-info-value" style="color:#1677FF;">上海阿里中心</span>
+                    </div>
+                    <div class="reg-info-item">
+                        <span class="reg-info-label">名额</span>
+                        <span class="reg-info-value">15家企业闭门会（小班制）</span>
+                    </div>
+                    <div class="reg-info-item">
+                        <span class="reg-info-label">对象</span>
+                        <span class="reg-info-value">仅限企业实控人 / CEO / 创始人</span>
+                    </div>
+                </div>
+                <div class="reg-price-row">
+                    <div class="reg-price-card">
+                        <div class="reg-price-tag">2人同行</div>
+                        <div class="reg-price-amount"><span class="reg-price-yen">¥</span>4980</div>
+                        <div class="reg-price-unit2">元/人</div>
+                    </div>
+                    <div class="reg-price-card">
+                        <div class="reg-price-tag">1人报名</div>
+                        <div class="reg-price-amount"><span class="reg-price-yen">¥</span>5980</div>
+                        <div class="reg-price-unit2">元/人</div>
+                    </div>
+                </div>
+            </div>
+            <div class="reg-card-right">
+                <img src="https://gw.alicdn.com/imgextra/i3/O1CN01Jk4OkR1CdgL6xi3oB_!!6000000000104-2-tps-290-288.png" alt="扫码报名" class="reg-qr-img" />
+                <p class="reg-qr-label">扫码报名</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .reg-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            border: 1px solid #eef0f5;
+        }
+        .reg-card-left { flex: 1; }
+        .reg-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 32px;
+            margin-bottom: 32px;
+            padding-bottom: 28px;
+            border-bottom: 1px dashed #e8ecf2;
+        }
+        .reg-info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+        .reg-info-label {
+            color: #999;
+            font-size: 13px;
+            flex-shrink: 0;
+            min-width: 36px;
+        }
+        .reg-info-value {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        .reg-price-row {
+            display: flex;
+            gap: 24px;
+        }
+        .reg-price-card {
+            flex: 1;
+            max-width: 200px;
+            background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%);
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            border: 1px solid #d4e4ff;
+        }
+        .reg-price-tag {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .reg-price-amount {
+            font-size: 36px;
+            font-weight: 900;
+            color: #1677FF;
+            line-height: 1.1;
+        }
+        .reg-price-yen {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .reg-price-unit2 {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+        }
+        .reg-card-right {
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .reg-qr-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 12px;
+        }
+        .reg-qr-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+        .registration-banner {
+            background: linear-gradient(135deg, #0a1628 0%, #0f2044 50%, #0a1628 100%);
+            padding: 56px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .registration-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 40px,
+                rgba(255,255,255,0.02) 40px,
+                rgba(255,255,255,0.02) 80px
+            );
+            pointer-events: none;
+        }
+        .reg-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 48px;
+            position: relative;
+            z-index: 1;
+        }
+        .reg-left { flex: 1; }
+        .reg-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        .reg-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 32px;
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed rgba(255,255,255,0.2);
+        }
+        .reg-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            color: rgba(255,255,255,0.9);
+        }
+        .reg-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            flex-shrink: 0;
+            min-width: 36px;
+        }
+        .reg-value {
+            color: #fff;
+            font-weight: 500;
+        }
+        .reg-pricing {
+            display: flex;
+            gap: 48px;
+        }
+        .reg-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+        .reg-price-label {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+        .reg-price-num {
+            font-size: 42px;
+            font-weight: 900;
+            background: linear-gradient(180deg, #ffd700 0%, #f0a500 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            font-style: italic;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .reg-price-unit {
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+        }
+        .reg-right {
+            flex-shrink: 0;
+            text-align: center;
+        }
+        .reg-qr {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 8px;
+        }
+        .reg-qr-text {
+            color: #fff;
+            font-size: 15px;
+            font-weight: 500;
+            margin-top: 12px;
+            letter-spacing: 2px;
+        }
+        @media (max-width: 768px) {
+            .reg-card {
+                flex-direction: column !important;
+                padding: 28px 20px !important;
+                gap: 28px !important;
+            }
+            .reg-info-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .reg-price-row {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .reg-price-card {
+                max-width: none !important;
+                flex: 1 !important;
+                min-width: 140px;
+            }
+            .reg-price-amount {
+                font-size: 28px !important;
+            }
+            .reg-inner {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+            .reg-details {
+                grid-template-columns: 1fr !important;
+            }
+            .reg-pricing {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 24px !important;
+            }
+            .reg-price-num {
+                font-size: 32px !important;
+            }
+        }
+        .contact-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleFaq(element) {
+            element.closest('.faq-item').classList.toggle('active');
+        }
+
+        function openPosterLightbox() {
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePosterLightbox() {
+            document.getElementById('posterLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+
+    <!-- 海报灯箱 -->
+    <div class="poster-lightbox" id="posterLightbox" onclick="closePosterLightbox()">
+        <span class="poster-lightbox-close" onclick="closePosterLightbox()">&times;</span>
+        <img src="https://gw.alicdn.com/imgextra/i1/O1CN01JEXjfd1PsQ5csPhdv_!!6000000001896-2-tps-1080-6408.png" alt="课程海报" onclick="event.stopPropagation()" />
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钉钉「AI创世」AI讲师认证班 - 课程详情</title>
+    <link rel="stylesheet" href="common-styles.css">
+    <style>
+        /* AI讲师认证班详情页专属样式 */
+        .ai-hero {
+            background: #eef4ff;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ai-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            flex: 1;
+        }
+        
+        .hero-right {
+            flex-shrink: 0;
+            width: 320px;
+        }
+        
+        .schedule-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        .schedule-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .schedule-item {
+            position: relative;
+            padding: 14px 0 14px 16px;
+            margin-left: 8px;
+            border-left: 3px solid #1677FF;
+        }
+        
+        .schedule-item:not(:last-child) {
+            margin-bottom: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .schedule-date {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+        
+        .schedule-location {
+            font-size: 14px;
+            color: #1677FF;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .poster-thumb {
+            margin-top: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eef0f5;
+            transition: all 0.3s ease;
+        }
+        .poster-thumb:hover {
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .poster-thumb img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+        .poster-thumb-label {
+            display: block;
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 0;
+            background: #1677FF;
+            letter-spacing: 1px;
+        }
+        .poster-lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            overflow-y: auto;
+            cursor: zoom-out;
+        }
+        .poster-lightbox.active { display: flex; }
+        .poster-lightbox img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        .poster-lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 24px;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            line-height: 1;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .poster-lightbox-close:hover { opacity: 1; }
+
+        .ai-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(22, 119, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(124, 111, 247, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
+        
+        .ai-hero h1 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            color: #1a237e;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .subtitle {
+            font-size: 22px;
+            color: #1a237e;
+            margin-bottom: 12px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-hero .desc {
+            font-size: 16px;
+            color: #455a64;
+            max-width: 600px;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tags {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tag {
+            background: #d4e4ff;
+            border: 1px solid #1677FF;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(22, 119, 255, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(22, 119, 255, 0.6);
+        }
+        
+        .section-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        
+        .value-card {
+            background: white;
+            border-radius: 16px;
+            padding: 36px 28px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(22, 119, 255, 0.12);
+            border-color: #1677FF;
+        }
+        
+        .value-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #E8F0FE, #D4E4FC);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+        
+        .value-card h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .value-card .highlight {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .value-card p {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .value-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f7f8fa;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .value-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1677FF;
+        }
+        
+        .instructor-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+            margin-bottom: 40px;
+        }
+        
+        .instructor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+            justify-items: center;
+        }
+        
+        .instructor-card {
+            text-align: center;
+            padding: 24px;
+            background: #f7f8fa;
+            border-radius: 12px;
+        }
+        
+        .instructor-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+        
+        .instructor-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        
+        .instructor-title {
+            font-size: 14px;
+            color: #1677FF;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .instructor-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .process-timeline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .timeline-day {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .timeline-day.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .day-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .day-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #1677FF, #0958D9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        .day-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+        
+        .session-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .session-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        
+        .session-item:last-child {
+            border-bottom: none;
+        }
+        
+        .session-time {
+            flex-shrink: 0;
+            background: #E8F0FE;
+            color: #1677FF;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        .session-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .session-content p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .cert-benefits-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+        }
+        
+        .cert-benefits-table th,
+        .cert-benefits-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .cert-benefits-table th {
+            background: #f7f8fa;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 15px;
+        }
+        
+        .cert-benefits-table td {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .cert-benefits-table tr:hover td {
+            background: #f0f5ff;
+        }
+        
+        .faq-section {
+            padding: 40px 0;
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #f0f0f0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .faq-item:hover {
+            border-color: #1677FF;
+        }
+        
+        .faq-question {
+            padding: 18px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+        
+        .faq-answer-inner {
+            padding: 0 24px 18px;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #666;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #f0f4ff, #e8f0fe);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-section h3 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1677FF;
+            margin-bottom: 16px;
+        }
+        
+        .contact-info {
+            font-size: 18px;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .contact-note {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .ai-hero-inner {
+                flex-direction: column !important;
+                gap: 24px;
+            }
+            
+            .hero-right {
+                width: 100% !important;
+            }
+            
+            .ai-hero {
+                padding: 48px 16px;
+            }
+            
+            .ai-hero h1 {
+                font-size: 28px;
+            }
+            
+            .value-cards {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .instructor-grid {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .process-timeline {
+                grid-template-columns: 1fr !important;
+                gap: 16px;
+            }
+            
+            .timeline-day {
+                padding: 24px;
+            }
+            
+            .cert-benefits-table {
+                font-size: 13px;
+            }
+            
+            .cert-benefits-table th,
+            .cert-benefits-table td {
+                padding: 12px 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .value-cards {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .instructor-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="ai-hero">
+        <div class="ai-hero-inner">
+            <div class="hero-left">
+                <h1>AI讲师认证班</h1>
+                <p class="subtitle">钉钉「AI创世」计划 · 从零基础到真会教</p>
+                <p class="desc">三天深度赋能，系统掌握AI基础知识、主流工具平台与课程设计方法论，获得行业认可的AI讲师认证，开启AI教育新赛道</p>
+                <div class="hero-tags">
+                    <span class="hero-tag">AI+教育融合</span>
+                    <span class="hero-tag">实战案例教学</span>
+                    <span class="hero-tag">权威认证</span>
+                    <span class="hero-tag">持续支持</span>
+                </div>
+                <a href="index.html#public" class="back-btn">← 返回公开课列表</a>
+            </div>
+            <div class="hero-right">
+                <div class="schedule-card">
+                    <h3>📅 近期活动场次</h3>
+                    <div class="schedule-item">
+                        <div class="schedule-date">7月18日 - 7月20日</div>
+                        <div class="schedule-location">📍 杭州</div>
+                    </div>
+                    <div class="poster-thumb" onclick="openPosterLightbox()">
+                        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01cQSoBE1ODpN2Oxb3x_!!6000000001672-2-tps-1200-17898.png" alt="课程海报" />
+                        <span class="poster-thumb-label">查看课程海报</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程特色 & 证书价值 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>课程特色</h2>
+            <p>钉钉「AI创世」计划，培养新时代AI教育先锋</p>
+        </div>
+        <div class="value-cards">
+            <div class="value-card">
+                <h3>名师授课</h3>
+                <div class="highlight">权威师资</div>
+                <p>来自阿里巴巴集团、钉钉教育研究院及顶尖高校的资深讲师，兼具AI实战与教学经验</p>
+                <div class="value-badge">行业权威</div>
+            </div>
+            <div class="value-card">
+                <h3>实战案例教学</h3>
+                <div class="highlight">边学边练</div>
+                <p>以真实教学场景驱动，强调实操应用，每天产出可落地的AI教学方案</p>
+                <div class="value-badge">即学即用</div>
+            </div>
+            <div class="value-card">
+                <h3>AI赋能教师成长</h3>
+                <div class="highlight">系统进阶</div>
+                <p>从AI基础认知到工具实操再到课程设计，三天系统构建AI教学能力体系</p>
+                <div class="value-badge">全面赋能</div>
+            </div>
+            <div class="value-card">
+                <h3>持续服务支持</h3>
+                <div class="highlight">长期陪伴</div>
+                <p>结业后持续提供答疑、进阶课程与校友社群资源，助力教学能力持续迭代</p>
+                <div class="value-badge">持续成长</div>
+            </div>
+        </div>
+
+        <div style="max-width: 800px; margin: 48px auto 0; background: white; border-radius: 16px; padding: 32px; border: 1px solid #f0f0f0;">
+            <h3 style="font-size: 20px; font-weight: 800; color: #1a1a1a; margin-bottom: 16px;">证书价值</h3>
+            <ul style="padding-left: 20px; color: #555; line-height: 2.2; font-size: 15px;">
+                <li>阿里巴巴集团认可，行业合作伙伴广泛认可</li>
+                <li>可作为职称评定、职业晋升的有力凭证</li>
+                <li>加入钉钉AI教育联盟，获得持续学习与资源共享机会</li>
+                <li>优秀学员可获推荐参与钉钉AI教育项目合作</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 课程流程与安排 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>三天课程安排</h2>
+            <p>从认知重塑到实战实操，再到成果产出与认证通关，系统进阶</p>
+        </div>
+        <div class="process-timeline">
+            <!-- DAY 1 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">1</div>
+                    <h3>Day 1 · 认知重塑 × 钉钉AI全能实操</h3>
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:30-12:00<br><small style="color:#888;">上午</small></span>
+                        <div class="session-content">
+                            <h4>讲师画像：AI时代的讲师长什么样？</h4>
+                            <p style="line-height:2;"><strong>破冰与互动热身：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 自我介绍（我是谁、我的课程是什么、我对AI的第一印象）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> AI工具使用现状快速摸底<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 建立3天学习契约，明确带走目标<br>
+                            <strong>AI时代讲师蓝图发布：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 企业需要什么样的AI培训师？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 钉钉生态的讲师能力标准与画像<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 培训型讲师 vs 咨询型讲师的成长路径<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 成功讲师案例复盘——他们是怎么做到的？<br>
+                            <strong>钉钉AI能力全景地图：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 钉钉数字化基座与AI能力全家桶系统演示<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 企业标杆案例拆解——AI在真实企业中如何落地？</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:00-17:00<br><small style="color:#888;">下午</small></span>
+                        <div class="session-content">
+                            <h4>钉钉原生AI能力深度实操</h4>
+                            <p style="line-height:2;"><strong>AI提效三字经——AI记 · AI诊 · AI答：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> AI听记（自定义模板、随口说配置、会议纪要一键生成、面试报告模板）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> AI创作（AI文档、AI幻灯片、AI脑图、AI印海报生成）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> AI搜问（企业知识库检索、生成面试题、一句话搭建HR工具）<br>
+                            <strong>AI表格：从"死表格"到"活系统"：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 认知重构——为什么传统Excel救不了业务？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 六关闯关实操（基础字段校验→状态看板→AI字段→跨表联动→自动化工作流→权限管控）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 贯穿场景——现场搭建一个「智能招聘候选人追踪系统」<br>
+                            <strong>DEAP平台入门：搭建你的第一个智能体：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> DEAP是什么？企业AI平台六大核心模块介绍<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 现场演示——新建智能体→配置人设→添加知识→发布上线</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">19:00-21:00<br><small style="color:#888;">夜间工坊</small></span>
+                        <div class="session-content">
+                            <h4>DEAP深度实操 + 夜间自练作业</h4>
+                            <p style="line-height:2;"><strong>DEAP进阶实操：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 知识集搭建（RAG原理、知识撰写技巧、文档上传与调优）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 工作流配置（自动化执行行业业务流程、跨系统打通：审批/通知/数据录入）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> MCP能力（钉钉MCP广场介绍、自定义MCP配置）<br>
+                            <strong>夜间自练作业：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 用DEAP搭建一个自己业务场景的智能体（行政助理 / 知识问答机器人 / 招聘助手，任选其一）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 现场辅导答疑</p>
+                        </div>
+                    </li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <div style="font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px;">预期收获</div>
+                    <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 10px;"></div>
+                    <p style="font-size: 14px; color: #666; line-height: 1.7; margin: 0;">掌握AI听记+AI表格+DEAP三大核心工具 · 完成一个亲手搭建的智能体</p>
+                </div>
+            </div>
+            
+            <!-- DAY 2 -->
+            <div class="timeline-day">
+                <div class="day-header">
+                    <div class="day-num">2</div>
+                    <h3>Day 2 · 悟空全实操 × AI硬件 × 市场洞察</h3>
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:30-12:00<br><small style="color:#888;">上午</small></span>
+                        <div class="session-content">
+                            <h4>阿里园区参访 + 悟空认知重塑</h4>
+                            <p style="line-height:2;"><strong>阿里园区参访：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 深入阿里巴巴园区（C区等），感受AI原生企业氛围<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 近距离体验钉钉产品实战与企业数字化落地现场<br>
+                            <strong>悟空认知重塑：从大模型到智能体：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 大模型"只能动口"，智能体"能动手"的本质区别<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 平台架构——大脑（规划推理）/ 手脚（操作执行）/ 记忆（知识沉淀）<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> Skill（技能）作为资产——如何将企业业务流程封装为可调用的AI技能</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:00-17:00<br><small style="color:#888;">下午</small></span>
+                        <div class="session-content">
+                            <h4>悟空全面实操 × AI硬件 × 市场洞察</h4>
+                            <p style="line-height:2;"><strong>悟空全面实操：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 安装部署、技能广场搜索与安装、Prompt优化技巧<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 六大实战场景（联动悟空+钉钉自动生成工作周报；使用悟空设计汇报文稿；构建个人业务资讯情报系统；综合多源信息生成行业分析报告；合同审查——法务/合规AI工作流；悟空应用场景案例库）<br>
+                            <strong>OPT商型案例深度拆解：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 三大核心场景演练技巧与场景化价值传递<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 门店场景OPT应用实操<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 电商场景OPT应用实操<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 制造场景OPT应用实操<br>
+                            <strong>钉钉AI硬件生态全景：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> DingTalk A1 Pro / DingTalk Real / AI前台H1 / AI智机H1 / 智能工牌介绍<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 硬件+悟空联动——打造智能化办公空间<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 讲师如何将AI硬件融入企业培训方案？<br>
+                            <strong>企业AI培训市场情况与需求分析：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 当前企业AI培训市场规模与增速洞察<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 主流竞争格局——谁在做、怎么做、差异在哪？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 企业客户最关心的AI培训需求拆解<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 客户决策路径拆解——企业如何选讲师、选课程？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 讲师定价策略与差异化品牌打造方向</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">19:00-21:00<br><small style="color:#888;">夜间工坊</small></span>
+                        <div class="session-content">
+                            <h4>往期讲师成功经验分享</h4>
+                            <p style="line-height:2;"><strong>[培训型] 企业内训师/HRD/商业讲师：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 如何将钉钉AI融入组织赋能课程？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 企业公开课/内训型课程的AI化改造路径与落地案例<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 如何从0到1开发一门钉钉AI+行业的爆款课程？<br>
+                            <strong>[咨询型] 往期认证讲师实战经验分享：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 如何在咨询交付中融入钉钉AI？<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 为外部客户设计AI融入解决方案<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 推动企业内部AI落地应用<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> Q&A：培训师同辈提问互动</p>
+                        </div>
+                    </li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <div style="font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px;">预期收获</div>
+                    <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 10px;"></div>
+                    <p style="font-size: 14px; color: #666; line-height: 1.7; margin: 0;">全面掌握悟空平台 · 了解AI硬件与行业案例 · 两类讲师成功路径清晰</p>
+                </div>
+            </div>
+            
+            <!-- DAY 3 -->
+            <div class="timeline-day full-width">
+                <div class="day-header">
+                    <div class="day-num">3</div>
+                    <h3>Day 3 · 成果产出 × 认证通关</h3>
+                </div>
+                
+                <ul class="session-list">
+                    <li class="session-item">
+                        <span class="session-time">09:30-12:00<br><small style="color:#888;">上午</small></span>
+                        <div class="session-content">
+                            <h4>课程AI化方法论整合 + 个人课程打磨与设计</h4>
+                            <p style="line-height:2;"><strong>课程AI化方法论整合：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 提炼可复用的"AI+行业课程"标准框架<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 培训师路径 vs 咨询师路径——各自的课程设计策略<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 讲师能力分级体系说明与后续晋升路径<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 结业后100节线上课程资源使用指引<br>
+                            <strong>个人课程打磨与设计：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 将3天所学融入自己的课程体系，产出一份"AI+行业课程改造方案"<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 用悟空生成课程大纲框架 / 模块拆解 / 课程介绍页 / demo场景试跑<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 导师逐组巡场辅导，解决个性化设计问题</p>
+                        </div>
+                    </li>
+                    <li class="session-item">
+                        <span class="session-time">14:00-17:30<br><small style="color:#888;">下午</small></span>
+                        <div class="session-content">
+                            <h4>悟空认证考试 × 课程路演 × 结业典礼</h4>
+                            <p style="line-height:2;"><strong>悟空认证考试：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 悟空部署工程师（初级）认证考试<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 现场集中完成<br>
+                            <strong>课程演示汇报路演：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 每位学员5分钟上台展示——我的课程结合钉钉AI之后是什么样的<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 导师即时点评 + 学员互评<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 优秀方案现场认可，颁发"最佳课程改造奖"<br>
+                            <strong>结业典礼：</strong><br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 钉钉AI讲师结业证书颁发<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 100节线上课程资源正式开通<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 讲师社群加入与后续支持说明<br>
+                            <span style="color:#bbb;font-size:6px;">●</span> 合影留念</p>
+                        </div>
+                    </li>
+                </ul>
+                <div style="margin-top: 20px;">
+                    <div style="font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px;">预期收获</div>
+                    <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 10px;"></div>
+                    <p style="font-size: 14px; color: #666; line-height: 1.7; margin: 0;">提升宏观方案设计能力 · 课程入选钉钉官方库 · 获得官方背书与首批合作线索</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 我们正在寻找这样的讲师 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>我们正在寻找这样的讲师</h2>
+            <p>如果您符合以下任一画像，这里就是为您打造的舞台</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">企业内训师</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HRD / 培训经理</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">希望将AI能力融入组织赋能，打造更有竞争力的课程体系</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">管理咨询顾问 / 行业专家</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">HR、销售、运营、供应链等</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">希望将AI融入核心方法论，为客户创造更大价值</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">商业讲师</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">培训机构创始人</p>
+                <div style="width: 40px; height: 3px; background: #1677FF; border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">渴望在AI浪潮中打造差异化的AI+行业课程，抢占市场先机</p>
+            </div>
+            <div style="background: white; border-radius: 16px; padding: 28px; border: 1px solid #e8edf3; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                <h3 style="font-size: 18px; font-weight: 800; margin-bottom: 4px; color: #1a1a1a;">领域KOL / 实战专家</h3>
+                <p style="font-size: 14px; color: #1677FF; margin-bottom: 12px; font-weight: 600;">AI技术应用 / 营销 / 销售 / 财务 / HR等</p>
+                <div style="width: 40px; height: 3px; background: linear-gradient(90deg, #7c4dff, #1677FF); border-radius: 2px; margin-bottom: 12px;"></div>
+                <p style="font-size: 14px; line-height: 1.7; color: #666; margin: 0;">拥有深厚行业经验，希望通过系统学习钉钉AI能力，放大个人教学影响力</p>
+            </div>
+        </div>
+        <p style="max-width: 900px; margin: 28px auto 0; text-align: center; font-size: 14px; color: #888;">本期开放报名，不设资历筛选，欢迎各背景讲师参与。</p>
+    </div>
+
+    <!-- 讲师能力认证分级体系 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>讲师能力认证分级体系</h2>
+            <p>L0-L4五级进阶，从布道师到布道官的完整成长路径</p>
+        </div>
+        <table class="cert-benefits-table">
+            <thead>
+                <tr>
+                    <th>等级</th>
+                    <th>名称</th>
+                    <th>晋级标准</th>
+                    <th>核心权益</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong style="color: #1677FF;">L0</strong></td>
+                    <td>钉钉AI布道师（预备）</td>
+                    <td>完成三天培训 + 通过悟空认证考试</td>
+                    <td>获得结业证书 / 加入钉钉讲师社群 / 100节课程资源</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L1</strong></td>
+                    <td>钉钉AI布道师</td>
+                    <td>持有结业证书 + 完成1门AI课程开发（提交课纲）+ 完成首次课程讲授（内训/公开课均可）</td>
+                    <td>正式认证证书 / 讲师档案收录 / 讲师社群</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L2</strong></td>
+                    <td>钉钉AI资深布道师</td>
+                    <td>L1基础上 + 季度累计完成5场以上课程讲授 + 学员满意度评分≥4.5分</td>
+                    <td>生态合作推荐优先权 / 专属学习资源包 / 可申请担任认证班助教</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L3</strong></td>
+                    <td>钉钉AI首席布道师</td>
+                    <td>L2基础上 + 有1个以上可对外展示的标杆案例 + 季度累计交付课时≥30课时</td>
+                    <td>进入钉钉AI研究院师资推荐库 / 官方背书素材授权 / 受邀参与课程共创</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #1677FF;">L4</strong></td>
+                    <td>钉钉AI布道官</td>
+                    <td>L3基础上 + 跨行业交付能力 + 年度影响力评定通过</td>
+                    <td>最高级别认证 / 受邀参与认证班授课 / 钉钉AI品牌联名合作资格</td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="text-align: center; font-size: 13px; color: #999; margin-top: 16px;">※分级体系随业务需要调整，最终解释权归钉钉AI咨询研究院所有</p>
+    </div>
+
+    <!-- 评审能力认证成绩标准 -->
+    <div class="section-container" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>评审能力认证成绩标准</h2>
+            <p>六大维度综合评定，总分80分</p>
+        </div>
+        <table class="cert-benefits-table">
+            <thead>
+                <tr>
+                    <th>评分维度</th>
+                    <th>评分标准</th>
+                    <th>分值</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>教学设计能力</strong></td>
+                    <td>AI教学方案的完整性、创新性与可操作性</td>
+                    <td>15分</td>
+                    <td>含教学目标、内容编排、AI融合深度</td>
+                </tr>
+                <tr>
+                    <td><strong>AI工具应用能力</strong></td>
+                    <td>AI工具的熟练度与应用场景匹配度</td>
+                    <td>15分</td>
+                    <td>Prompt技巧、工具选型、实操演示</td>
+                </tr>
+                <tr>
+                    <td><strong>课堂组织与引导能力</strong></td>
+                    <td>课堂节奏把控、学员引导与互动设计</td>
+                    <td>10分</td>
+                    <td>时间管理、节奏控制、引导技巧</td>
+                </tr>
+                <tr>
+                    <td><strong>学生互动与反馈能力</strong></td>
+                    <td>学员参与度、互动质量与反馈有效性</td>
+                    <td>10分</td>
+                    <td>互动设计、即时反馈、学员激励</td>
+                </tr>
+                <tr>
+                    <td><strong>教学反思与改进能力</strong></td>
+                    <td>教学效果分析与持续改进方案</td>
+                    <td>15分</td>
+                    <td>数据驱动分析、改进措施、迭代计划</td>
+                </tr>
+                <tr>
+                    <td><strong>综合表现</strong></td>
+                    <td>三天学习投入度、团队协作与成果展示</td>
+                    <td>15分</td>
+                    <td>学习态度、协作精神、成果质量</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 报名须知 -->
+    <div class="section-container">
+        <div class="section-title">
+            <h2>报名须知</h2>
+            <p>了解报名要求与课程费用说明</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0; margin-bottom: 24px;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">报名要求</h3>
+                <ul style="padding-left: 20px; color: #555; line-height: 2; font-size: 15px;">
+                    <li>需具备一定AI基础，了解AI基本概念</li>
+                    <li>需有教学经验，能够独立授课</li>
+                    <li>对AI+教育有浓厚兴趣，愿意持续学习</li>
+                    <li>自备笔记本电脑，用于课堂实操</li>
+                </ul>
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 32px; border: 1px solid #f0f0f0;">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px;">课程费用说明</h3>
+                <p style="color: #555; font-size: 15px; line-height: 1.8;">
+                    课程费用 <strong style="color: #e53935; font-size: 20px;">9800元</strong>，含教材费、证书费、培训费等。属于"AI未来"系列课程，总价值超10万元。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 常见问题 -->
+    <div class="section-container faq-section" style="background: #f7f8fa;">
+        <div class="section-title">
+            <h2>常见问题解答</h2>
+            <p>关于AI讲师认证班，你可能想知道的</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q1: 需要有编程基础才能参加吗？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        不需要。本课程面向零基础学员设计，从AI基本概念讲起，循序渐进。无论你是教师、培训师还是企业管理者，都可以轻松上手。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q2: 课程适合哪些人群？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        适合希望转型AI教育方向的教师、培训师、企业内训师，以及对AI教育感兴趣的教育管理者和创业者。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q3: 认证证书的有效期是多久？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        认证证书长期有效，同时提供1年免费进阶课程和答疑服务，帮助您持续更新知识体系。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q4: 课程结束后如何继续学习？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        结业后将加入钉钉AI教育联盟校友社群，可获取最新课程资讯、教学资源和行业交流机会，持续赋能成长。
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    <span>Q5: 如何报名？</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        可通过页面底部的报名链接直接报名，或联系您的钉钉客户经理获取专属报名通道。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 联系方式 -->
+    <div class="section-container">
+        <div class="contact-section" style="display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 32px 40px;">
+            <div style="flex: 1;">
+                <h3 style="margin-bottom: 10px;">钉钉AI咨询研究院讲师认证运营中心</h3>
+                <p class="contact-note" style="margin: 0;">如有任何疑问，请联系您的钉钉客户经理</p>
+            </div>
+            <div style="flex-shrink: 0;">
+                <a href="https://mp.weixin.qq.com/s/bMaGjyYPgkopea7oj49SjA" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1677FF 0%, #0958D9 100%); color: white; font-size: 17px; font-weight: 700; padding: 16px 36px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 20px rgba(22, 119, 255, 0.35); transition: all 0.3s ease; white-space: nowrap; gap: 8px;">
+                    <span>立即报名</span>
+                    <span style="font-size: 20px; line-height: 1;">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .contact-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(22, 119, 255, 0.5) !important;
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+
+    <script>
+        function toggleFaq(element) {
+            element.closest('.faq-item').classList.toggle('active');
+        }
+
+        function openPosterLightbox() {
+            document.getElementById('posterLightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closePosterLightbox() {
+            document.getElementById('posterLightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+        });
+    </script>
+
+    <!-- 海报灯箱 -->
+    <div class="poster-lightbox" id="posterLightbox" onclick="closePosterLightbox()">
+        <span class="poster-lightbox-close" onclick="closePosterLightbox()">&times;</span>
+        <img src="https://gw.alicdn.com/imgextra/i4/O1CN01cQSoBE1ODpN2Oxb3x_!!6000000001672-2-tps-1200-17898.png" alt="课程海报" onclick="event.stopPropagation()" />
+    </div>
+
+</body>
+</html>
